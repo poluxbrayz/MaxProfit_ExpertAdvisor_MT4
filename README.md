@@ -1,2 +1,2 @@
 # MaxProfit_ExpertAdvisor_MT4
- MaxProfit: Asesor Experto para Metatrader 4. Funciona en el Timeframe M1. Es necesario ejecutar el Script LoadHistoryData.mq4 para cargar los datos historicos de todos los simbolos antes de ejecutar el asesor experto.  Donaciones al paypal xantrum.solutions@gmail.com
+MaxProfit: Asesor Experto para MetaTrader 4. Funciona en el Periodo de Tiempo M1. Es necesario descargar los datos históricos de todos los Periodos de Tiempo de todos los Símbolos en el Centro de Historiales de MetaTrader antes de ejecutar el Asesor Experto. Donaciones al paypal xantrum.solutions@gmail.com
