@@ -1,11 +1,14 @@
 //+------------------------------------------------------------------+
-//|                                                 LoadHistory.mqh
+//|                                                 LoadHistory.mq4
+//|                                          Copyright 2012, K Lam
 //+------------------------------------------------------------------+
 //
 //Version 2
 // fix in unknow the timeframe H1
 //load all timeframe, leave the frame M1
 
+#property copyright "Copyright 2017"
+#property link      ""
 
 #define Version  20130121
 
@@ -52,15 +55,15 @@ int LastPage=0; //0,1,5,15
 int Pause=500;//8000               //Wait 500\ 0.5 scend
 int KeyHome=500;
 int HomeLoop[10]; //1000
-//string Symbols[];
+string Symbols[];
 
-//int TF[10] = {0,1,5,15,30,60,240,1440,10080,43200};
-//int AverageDaysPeriod[10]={0,30,60,90,180,360,360,360,720,720};
+int TF[10] = {0,1,5,15,30,60,240,1440,10080,43200};
+int AverageDaysPeriod[10]={0,30,60,90,180,360,360,360,720,720};
 
 //+------------------------------------------------------------------+
 //| script program start function                                    |
 //+------------------------------------------------------------------+
-void LoadHistoryData() {
+void start() {
    int iFrame;
    
 //--------------------------------------------------------------------
@@ -76,13 +79,29 @@ void LoadHistoryData() {
    if(Roundload){
       for(iFrame=1;iFrame<10;iFrame++) {//new add Load all page exclude M1
          LastPage=TF[iFrame];
-         //SymbolsList(true);
+         MarketInfoToSymbols();
          DownloadHomeKey();
       }
    }else{
-      //SymbolsList(true);
+      MarketInfoToSymbols();
       DownloadHomeKey();
    }
+   return;
+}
+
+
+//+------------------------------------------------------------------+
+//| MarketInfoToSymbols()                                            |
+//+------------------------------------------------------------------+
+void MarketInfoToSymbols() {
+      
+   ArrayFree(Symbols);
+   
+   for(int i=0;i<SymbolsTotal(true);i++){
+      ArrayResize(Symbols,ArraySize(Symbols)+1);
+      Symbols[i]=SymbolName(i,true);
+   }
+
    return;
 }
 
@@ -103,7 +122,7 @@ void DownloadHomeKey() {
       handle=GetDlgItem(handle,0x50);
       handle=GetDlgItem(handle,0x8A71);
       count=SendMessageA(handle,LVM_GETITEMCOUNT,0,0);
-      } else Print("Error :",GetLastError());
+   } else Print("Error :",GetLastError());
 
    for(i=0;i<count&&!IsStopped();i++) {
       if(TimeFrameLoaded(Symbols[i])==true) continue;
@@ -120,11 +139,47 @@ void DownloadHomeKey() {
             //PostMessageA(handlechart, WM_KEYDOWN, VK_HOME,0);//Pass HOME Key
             Sleep(2);
             }
+         /*j=3;
+         StartBars=iBars(Symbols[i],TF[j]);
+         //LOOP HOME FOR 30   
+         if(loadhome)
+            for(l=0;l<HomeLoop[j];l++) {
+               //key in 30 time
+               for(m=0;m<30;m++) {
+                  PostMessageA(handlechart, WM_KEYDOWN, VK_HOME,0);//Pass HOME Key
+                  Sleep(2);
+                  }
+               CurrBars=iBars(Symbols[i],TF[j]);
+               if(PreBars!=CurrBars) {
+                  k=0;
+                  PreBars=CurrBars;
+                  } else k++;
+               if(k>5) { //if 5 time is same then break
+                  Print("Start Bar@",StartBars," Bar=",CurrBars," at ",Symbols[i]," Timeframe=",TF[j]);
+                  break;
+                  }            
+             }//if(loadhome)
+           */
                
    //switch page each tf[10]
-         for(j=1;j<=10;j++) {
+         for(j=1;j<=9+1;j++) {
             LastPage=TF[j];
             Sleep(1000);
+            /*switch(LastPage) {
+               case 1: PostMessageA(handlechart,WM_COMMAND,TimeF[0],0);j=0; break;
+               case 5: PostMessageA(handlechart,WM_COMMAND,TimeF[1],0);j=1; break;
+               case 15: PostMessageA(handlechart,WM_COMMAND,TimeF[2],0);j=2; break;
+               case 30: PostMessageA(handlechart,WM_COMMAND,TimeF[3],0);j=3; break;
+               
+               case 60: PostMessageA(handlechart,WM_COMMAND,TimeF[4],0);j=4; break;
+               case 240: PostMessageA(handlechart,WM_COMMAND,TimeF[5],0);j=5; break;
+               case 1440: PostMessageA(handlechart,WM_COMMAND,TimeF[6],0);j=6; break;
+               case 10080: PostMessageA(handlechart,WM_COMMAND,TimeF[7],0);j=7; break;
+               case 43200: PostMessageA(handlechart,WM_COMMAND,TimeF[8],0);j=8; break;
+                           
+               case 0: PostMessageA(GetParent(handlechart),WM_CLOSE,0,0); break;
+               default: PostMessageA(handlechart,WM_COMMAND,TimeF[2],0);j=2; break;
+            }*/
             if(j<ArraySize(TF)){
                if(TimeFrameLoaded(Symbols[i],j)==true) continue;
                PostMessageA(handlechart,WM_COMMAND,TimeF[j],0);
@@ -197,13 +252,18 @@ bool TimeFrameLoaded(string _iSymbol,int _TF_index=-1){
       for(int j=1;j<=9;j++){
          if(iBars(_iSymbol,TF[j])<HomeLoop[j]){
             Loaded=false;
+         }else{
+            Print(_iSymbol," TF=",TF[j]," iClose=",iClose(_iSymbol,TF[j],HomeLoop[j]-1));
          }
       }
       return Loaded;
    
    }else if(_TF_index>=1){
+      j=_TF_index;
       if(iBars(_iSymbol,TF[j])<HomeLoop[j]){
             Loaded=false;
+      }else{
+            Print(_iSymbol," TF=",TF[j]," iClose=",iClose(_iSymbol,TF[j],HomeLoop[j]-1));
       }
       return Loaded;
    
