@@ -34,29 +34,37 @@ double TotalEquity(){
 double TotalLot(){
    double Equity=TotalEquity();
    double TotalLot=Equity/1000;
-   double MFID1=iMFI(iSymbol,TF[TF_D1],3,0);
-   double RSID1=iRSI(iSymbol,TF[TF_D1],3,PRICE_CLOSE,0);
-   double MFIH4=iMFI(iSymbol,TF[TF_H4],5,0);
+   double MFIH4=iMFI(iSymbol,TF[TF_H4],6,0);
    double RSIH4=iRSI(iSymbol,TF[TF_H4],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double MFIH1=iMFI(iSymbol,TF[TF_H1],6,0);
+   double RSIH1=iRSI(iSymbol,TF[TF_H1],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double SpreadD1=SpreadNumPeriod(TF_H4,6,0,true);
    double AverageH4Spread=AverageSpreadNumPeriod(TF_H4,1);
-   bool ForceUp=(MACD_Trend[TF_D1]=="Up" && MFID1>=40 && RSID1>=51 && MFIH4>=70 && RSIH4>=70 && SpreadD1>=AverageH4Spread*3);
-   bool ForceDown=(MACD_Trend[TF_D1]=="Down" && MFID1<=60 && RSID1<=49 && MFIH4<=30 && RSIH4<=30 && SpreadD1<=-AverageH4Spread*3);
+   bool ForceUp=(MACD_Trend[TF_D1]=="Up" && MFIH4>=65 && RSIH4>=70 && MFIH1>=65 && RSIH1>=70 && SpreadD1>=AverageH4Spread*2);
+   bool ForceDown=(MACD_Trend[TF_D1]=="Down" && MFIH4<=35 && RSIH4<=30 && MFIH1<=35 && RSIH1<=30 && SpreadD1<=-AverageH4Spread*2);
    bool Force=(MACD_Trend[TF_D1]==W1Trend && (ForceUp==true || ForceDown==true));
-   TotalLot=(Force==true)? TotalLot/3 : TotalLot/4;
-   TotalLot=FormatDecimals(TotalLot,2);
+   double TotalLotForce=FormatDecimals(TotalLot/3,2);
+   double TotalLotNormal=FormatDecimals(TotalLot/4,2);
+   TotalLotForce=(FormatDecimals(TotalLotForce/3,2)<=double(0.01))? MathMax(TotalLotForce+0.03,0.06) : TotalLotForce;
+   TotalLot=(Force==true)? TotalLotForce : TotalLotNormal;
    if(TotalLot<MinLot() && Equity>=3) TotalLot=MinLot();
+   //Print("TotalLot=",TotalLot,", MinLot=",MinLot(),", Force=",Force,", MACD_Trend[TF_D1]=",MACD_Trend[TF_D1],", W1Trend=",W1Trend,", MFIH4=",MFIH4,", RSIH4=",RSIH4,", MFIH1=",MFIH1,", RSIH1=",RSIH1,", SpreadD1=",SpreadD1,", AverageH4Spread*3=",AverageH4Spread*(MACD_Trend[TF_D1]=="Down"?-3:3)); 
+   //Si la ultima orden cerrada tuvo un profit negativo y Force==false, entonces TotalLot=0
+   /*if(objOrders.Profit_LastClosedOrder()<0 && Force==false){
+      TotalLot=0;
+   }*/
    return TotalLot;
 }
 
 double MaxLot(){
+   double _TotalLot=TotalLot();
    double Risk=(W1Trend!="Ranging")? 3 : 4;
    double Percent = double(1)/(double(ArraySize(Symbols))*Risk);
-   Percent=IsTesting()==true? Percent*1 : Percent;
-   double MaxLot=TotalLot()*Percent;
+   double MaxLot=_TotalLot*Percent;
    double MaxLotTrading=MarketInfo(iSymbol,MODE_MAXLOT);
-   if(MaxLot<MinLot() && MinLot()<=TotalLot()) MaxLot=MinLot();
-   if(MaxLot>MaxLotTrading && MaxLotTrading<=TotalLot()) MaxLot=MaxLotTrading;
+   if(MaxLot<MinLot() && MinLot()<=_TotalLot) MaxLot=MinLot();
+   if(MaxLot>MaxLotTrading && MaxLotTrading<=_TotalLot) MaxLot=MaxLotTrading;
+   //Print("MaxLot=",MaxLot,", _TotalLot=",_TotalLot,", Percent=",Percent,", Risk=",Risk,", MaxLotTrading=",MaxLotTrading);
    return FormatDecimals(MaxLot,2);
 }
 
@@ -107,5 +115,6 @@ double Lots()
    if(MarketInfo(iSymbol,MODE_MARGINREQUIRED)*Lot>AccountFreeMargin()){
       Lot=AccountFreeMargin()/MarketInfo(iSymbol,MODE_MARGINREQUIRED);
    }
+   //Print("Lot=",Lot,", MaxLot=",MaxLot(),", UsedLots(true)=",UsedLots(true),", TotalLot=",TotalLot());
    return(Lot);
 }

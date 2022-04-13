@@ -256,6 +256,15 @@ class Orders
       }//for
    };
    
+   double Profit_LastClosedOrder(){
+      for(int i=ArraySize(OrderList)-1;i>=0;i--){
+         if(OrderList[i].Closed==true){
+            return OrderList[i].Order_Profit;
+         }
+      }
+      return 0;
+   }
+   
    void ImportOrders(){
       
       //bool Order_Mode_History;

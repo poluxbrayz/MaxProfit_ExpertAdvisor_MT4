@@ -48,4 +48,4 @@ string MACD_Trend[TF_W1+1],Trends[];
 int FastEMAPeriod,SlowEMAPeriod,SignalLinePeriod,Get_MACD_TF;
 int Count_Temp;
 string StartedSymbols[];
-
+bool ForceH4Trend;
