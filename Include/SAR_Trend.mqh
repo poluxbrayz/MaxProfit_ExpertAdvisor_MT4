@@ -96,7 +96,8 @@ string Get_SAR_Trend(int _MACD_TF,int &Count_Periods,int ShiftM1=0,string _iSymb
 	   if(Get_SAR_TF==TF_H4){
    	   int PrevPeriodsH4=Count_Periods_SAR_Trend(Trend,TF_H4,0.2,0.2,Shift+Count_Periods,_iSymbol);
    	   Count_Periods=Count_Periods+PrevPeriodsH4;
-   	   Count_Periods=(int)MathCeil(double(Count_Periods)/double(6));
+   	   CountPeriodsH4ofD1_PrevPeriodsH4=Count_Periods;
+      	Count_Periods=(int)MathCeil(double(Count_Periods)/double(6));
    	}
    	CountPeriodsH4ofD1=Count_Periods_SAR_Trend(Trend,TF_H4,0.06,0.06,Get_Shift(ShiftM1,TF[TF_H4]),_iSymbol);
 	}
