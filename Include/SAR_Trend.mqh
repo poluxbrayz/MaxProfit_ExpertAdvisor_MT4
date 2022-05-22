@@ -54,9 +54,9 @@ void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
          SAR_Maximun=1;
       }
    }else if(_MACD_TF<=TF_D1){
+      Get_SAR_TF=TF_H4;
       SAR_Step=0.06;  // 1/18
       SAR_Maximun=0.06;
-      Get_SAR_TF=TF_H4;
    }else if(_MACD_TF==TF_W1){
       SAR_Step=0.14;  // 1/7
       SAR_Maximun=0.14;
@@ -90,16 +90,19 @@ string Get_SAR_Trend(int _MACD_TF,int &Count_Periods,int ShiftM1=0,string _iSymb
    }
       
    if(_MACD_TF==TF_H1){
-   	CountPeriodsH1ofH4=Count_Periods_SAR_Trend(Trend,TF_H1,0.06,0.06,Get_Shift(ShiftM1,TF[TF_H1]),_iSymbol);
+      CountPeriodsH1ofH4=Count_Periods_SAR_Trend(Trend,TF_H1,0.08,0.08,Shift,_iSymbol);
+   	int PrevPeriodsH1=Count_Periods_SAR_Trend(Trend,TF_H1,0.2,0.2,Shift+CountPeriodsH1ofH4,_iSymbol);
+   	CountPeriodsH1ofH4_PrevPeriodsH1=CountPeriodsH1ofH4+PrevPeriodsH1;
 	}
    if(_MACD_TF==TF_D1){
 	   if(Get_SAR_TF==TF_H4){
    	   int PrevPeriodsH4=Count_Periods_SAR_Trend(Trend,TF_H4,0.2,0.2,Shift+Count_Periods,_iSymbol);
+   	   CountPeriodsH4ofD1=Count_Periods;
    	   Count_Periods=Count_Periods+PrevPeriodsH4;
    	   CountPeriodsH4ofD1_PrevPeriodsH4=Count_Periods;
       	Count_Periods=(int)MathCeil(double(Count_Periods)/double(6));
    	}
-   	CountPeriodsH4ofD1=Count_Periods_SAR_Trend(Trend,TF_H4,0.06,0.06,Get_Shift(ShiftM1,TF[TF_H4]),_iSymbol);
+   	//CountPeriodsH4ofD1=Count_Periods_SAR_Trend(Trend,TF_H4,0.06,0.06,Get_Shift(ShiftM1,TF[TF_H4]),_iSymbol);
 	}
 	if(_MACD_TF==TF_W1 && Get_SAR_TF==TF_D1){
 	   MACD_Trend[TF_D1]=Get_SAR_Trend(TF_D1,CountPeriodsTrend[TF_D1],ShiftM1,_iSymbol,1.0,1.0);

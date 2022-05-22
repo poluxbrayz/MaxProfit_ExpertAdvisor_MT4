@@ -38,13 +38,13 @@ double TotalLot(){
    double RSIH4=iRSI(iSymbol,TF[TF_H4],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double MFIH1=iMFI(iSymbol,TF[TF_H1],6,0);
    double RSIH1=iRSI(iSymbol,TF[TF_H1],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
-   double SpreadD1=SpreadNumPeriod(TF_H4,6,0,true);
+   double SpreadD1=SpreadNumPeriod(TF_H4,MathMin(7,CountPeriodsH4ofD1_PrevPeriodsH4),0,true);
    double AverageH4Spread=AverageSpreadNumPeriod(TF_H4,1);
    bool ForceUp=(MACD_Trend[TF_D1]=="Up" && MFIH4>=65 && RSIH4>=70 && MFIH1>=65 && RSIH1>=70 && SpreadD1>=AverageH4Spread*2);
    bool ForceDown=(MACD_Trend[TF_D1]=="Down" && MFIH4<=35 && RSIH4<=30 && MFIH1<=35 && RSIH1<=30 && SpreadD1<=-AverageH4Spread*2);
    bool Force=(MACD_Trend[TF_D1]==W1Trend && (ForceUp==true || ForceDown==true));
    double TotalLotForce=FormatDecimals(TotalLot/3,2);
-   double TotalLotNormal=FormatDecimals(TotalLot/4,2);
+   double TotalLotNormal=FormatDecimals(TotalLot/5,2);
    TotalLotForce=(FormatDecimals(TotalLotForce/3,2)<=double(0.01))? MathMax(TotalLotForce+0.03,0.06) : TotalLotForce;
    TotalLot=(Force==true)? TotalLotForce : TotalLotNormal;
    if(TotalLot<MinLot() && Equity>=3) TotalLot=MinLot();
@@ -58,7 +58,7 @@ double TotalLot(){
 
 double MaxLot(){
    double _TotalLot=TotalLot();
-   double Risk=(W1Trend!="Ranging")? 3 : 4;
+   double Risk=(W1Trend!="Ranging")? 3 : 5;
    double Percent = double(1)/(double(ArraySize(Symbols))*Risk);
    double MaxLot=_TotalLot*Percent;
    double MaxLotTrading=MarketInfo(iSymbol,MODE_MAXLOT);

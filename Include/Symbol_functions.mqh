@@ -187,7 +187,7 @@ bool FirstBar(){
          Print("iSymbol=",iSymbol,", ",Vars_MACD_Trend_By_Change[MACD_TF]);  
       }
       Print("iSymbol=",iSymbol,", W1Trend=",W1Trend,", D1Trend=",D1Trend,", H4Trend=",H4Trend,", H1Trend=",H1Trend,", M30Trend=",M30Trend,", M15Trend=",M15Trend);
-      Print("iSymbol=",iSymbol,", OpenBuy=",OpenBuy,", OpenSell=",OpenSell,", D1_Limit_RSI=",D1_Limit_RSI,", D1_Limit_MFI=",D1_Limit_MFI,", D1_Limit_Up=",D1_Limit_Up,", D1_Limit_Down=",D1_Limit_Down,", FirstBar=",_FirstBar);
+      Print("iSymbol=",iSymbol,", OpenBuy=",OpenBuy,", OpenSell=",OpenSell,", D1_Limit_RSI=",D1_Limit_RSI,", D1_Limit_Up=",D1_Limit_Up,", D1_Limit_Down=",D1_Limit_Down,", H4_Limit_RSI=",H4_Limit_RSI,", H4_Limit_Up=",H4_Limit_Up,", H4_Limit_Down=",H4_Limit_Down,", FirstBar=",_FirstBar);
    }
    
    return _FirstBar;
