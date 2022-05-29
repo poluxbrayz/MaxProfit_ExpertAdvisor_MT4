@@ -93,11 +93,11 @@ string ValidateMFI(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,stri
          MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=3; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=51; RSILastPeriod_Down=49;
       }
       else if(_MACD_TF<=TF_D1){ 
-         MFITotal_TF=TF_D1; MFITotal_Periods=4; MFITotal_Up=45; MFITotal_Down=55; RSITotal_Up=55; RSITotal_Down=45;
+         MFITotal_TF=TF_D1; MFITotal_Periods=4; MFITotal_Up=40; MFITotal_Down=60; RSITotal_Up=55; RSITotal_Down=45;
          MFILastPeriod_TF=TF_D1; MFILastPeriod_Periods=3; MFILastPeriod_Up=51; MFILastPeriod_Down=49; RSILastPeriod_Up=55; RSILastPeriod_Down=45;
       }
       else if(_MACD_TF<=TF_W1){ 
-         MFITotal_TF=TF_D1; MFITotal_Periods=5; MFITotal_Up=45; MFITotal_Down=55; RSITotal_Up=55; RSITotal_Down=45;
+         MFITotal_TF=TF_D1; MFITotal_Periods=5; MFITotal_Up=40; MFITotal_Down=60; RSITotal_Up=55; RSITotal_Down=45;
          MFILastPeriod_TF=TF_D1; MFILastPeriod_Periods=3; MFILastPeriod_Up=51; MFILastPeriod_Down=49; RSILastPeriod_Up=55; RSILastPeriod_Down=45;
       }
       
@@ -134,18 +134,18 @@ string ValidateMFI(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,stri
    //ForceH4Trend
    ForceH4Trend=false;
    if(_MACD_TF<=TF_D1){
-      double RSI_H4=iRSI(_iSymbol,TF[TF_H4],5,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H4]));
-      double RSI_H1=iRSI(_iSymbol,TF[TF_H1],5,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H1]));
-      double RSI_M30=iRSI(_iSymbol,TF[TF_M30],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_M30]));
+      double RSI_H4=iRSI(_iSymbol,TF[TF_H4],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H4]));
+      double RSI_H1=iRSI(_iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H1]));
+      double RSI_M30=iRSI(_iSymbol,TF[TF_M30],6,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_M30]));
       double MFI_H4=iMFI(_iSymbol,TF[TF_H4],5,Get_Shift(ShiftM1,TF[TF_H4]));
       double MFI_H1=iMFI(_iSymbol,TF[TF_H1],5,Get_Shift(ShiftM1,TF[TF_H1]));
       double MFI_M30=iMFI(_iSymbol,TF[TF_M30],6,Get_Shift(ShiftM1,TF[TF_M30]));
-      if(Trend=="Up"){
-         ForceH4Trend=(MathCeil(RSI_H4)>=70 && MathCeil(MFI_H4)>=60 && MathCeil(RSI_H1)>=70 && MathCeil(MFI_H1)>=60 && MathCeil(RSI_M30)>=70 && MathCeil(MFI_M30)>=70)? true:false;
-      }else if(Trend=="Down"){
-         ForceH4Trend=(MathFloor(RSI_H4)<=30 && MathFloor(MFI_H4)<=40 && MathFloor(RSI_H1)<=30 && MathFloor(MFI_H1)<=40 && MathFloor(RSI_M30)<=30 && MathFloor(MFI_M30)<=30)? true:false;
+      if(MACD_Trend[TF_H4]=="Up"){
+         ForceH4Trend=(MathCeil(RSI_H4)>=70 && MathCeil(MFI_H4)>=60 && MathCeil(RSI_H1)>=70 && MathCeil(MFI_H1)>=60 && MathCeil(RSI_M30)>=70 && MathCeil(MFI_M30)>=65)? true:false;
+      }else if(MACD_Trend[TF_H4]=="Down"){
+         ForceH4Trend=(MathFloor(RSI_H4)<=30 && MathFloor(MFI_H4)<=40 && MathFloor(RSI_H1)<=30 && MathFloor(MFI_H1)<=40 && MathFloor(RSI_M30)<=30 && MathFloor(MFI_M30)<=35)? true:false;
       }
-      Print("ForceH4Trend=",ForceH4Trend,", Trend=",Trend,", RSI_H4=",RSI_H4,", MFI_H4=",MFI_H4,", RSI_H1=",RSI_H1,", MFI_H1=",MFI_H1,", RSI_M30=",RSI_M30,", MFI_M30=",MFI_M30);
+      Print("ForceH4Trend=",ForceH4Trend,", MACD_Trend[TF__H4]=",MACD_Trend[TF_H4],", RSI_H4=",RSI_H4,", MFI_H4=",MFI_H4,", RSI_H1=",RSI_H1,", MFI_H1=",MFI_H1,", RSI_M30=",RSI_M30,", MFI_M30=",MFI_M30);
    }
       
    RSI_Trend[_MACD_TF]="Ranging";
@@ -374,7 +374,7 @@ bool IsConstantRSI(string Trend,int Max_Periods,int ShiftM1=0){
       
       if(CheckZigZag(MACD_Trend[TF_H4],TF_H4,CountPeriodsH4ofD1_PrevPeriodsH4+7,ShiftM1)==false) return false;
       
-      int CountPeriodsH4=MathMin(CountPeriodsH4ofD1_PrevPeriodsH4,12);
+      int CountPeriodsH4=MathMin(CountPeriodsH4ofD1_PrevPeriodsH4+1,15);
       double SpreadTrendH4=MathAbs(SpreadNumPeriod(TF_H4,CountPeriodsH4,Get_Shift(ShiftM1,TF[TF_H4]),true));
       double AverageSpreadH12=AverageSpreadNumPeriod(TF_H4,1)*3;
       
@@ -391,6 +391,16 @@ bool IsConstantRSI(string Trend,int Max_Periods,int ShiftM1=0){
          Print("IsConstantRSI=false: SpreadTrendH1=",SpreadTrendH1," < AverageSpreadH3=",AverageSpreadH3,", CountPeriodsH1=",CountPeriodsH1);
          return false;
       }
+      
+      int CountPeriodsM30=8;
+      double SpreadTrendM30=MathAbs(SpreadNumPeriod(TF_M30,CountPeriodsM30,Get_Shift(ShiftM1,TF[TF_M30]),true));
+      double AverageSpreadH1=AverageSpreadNumPeriod(TF_H1,1);
+      
+      if(SpreadTrendM30<AverageSpreadH1){ 
+         Print("IsConstantRSI=false: SpreadTrendM30=",SpreadTrendM30," < AverageSpreadH1=",AverageSpreadH1,", CountPeriodsM30=",CountPeriodsM30);
+         return false;
+      }
+      
       
       
       int _MACD_TF=TF_D1;
@@ -532,6 +542,7 @@ bool IsConstantRSI(string Trend,int Max_Periods,int ShiftM1=0){
 
       double AverageH4Spread=AverageSpreadNumPeriod(TF_H4,1);
       double AverageH1Spread=AverageSpreadNumPeriod(TF_H1,1);
+      double AverageM30Spread=AverageSpreadNumPeriod(TF_M30,1);
             
       //Diagonal
       //Verifica la subida y bajada del precio en las ultimas horas
@@ -545,15 +556,15 @@ bool IsConstantRSI(string Trend,int Max_Periods,int ShiftM1=0){
          int MA_Period=2;
          bool DiagonalMA=true;
          
-         for(_MACD_TF=TF_D1;_MACD_TF>=TF_H1;_MACD_TF--){
+         for(_MACD_TF=TF_D1;_MACD_TF>=TF_M30;_MACD_TF--){
             switch(_MACD_TF){
                case TF_D1: MA_Period=2; Max_Periods=(Hour()<=12? 3 : 2); MinSpread=AverageH4Spread; break;
-               case TF_H4: MA_Period=2; Max_Periods=9
-               ; MinSpread=AverageH4Spread*1.5; break;
+               case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH4Spread*1.5; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1.5; break;
+               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread; break;
             }
             
-            MA0=iMA(iSymbol,TF[TF_H1],MA_Period,0,MODE_LWMA,PRICE_HIGH,Get_Shift(ShiftM1,TF[TF_H1]));
+            MA0=iMA(iSymbol,TF[TF_M30],MA_Period,0,MODE_LWMA,PRICE_HIGH,Get_Shift(ShiftM1,TF[TF_M30]));
             LowestMA=0;
             for(Shift=1;Shift<Max_Periods;Shift++){
                MA=iMA(iSymbol,TF[_MACD_TF],MA_Period,0,MODE_LWMA,PRICE_MEDIAN,Get_Shift(ShiftM1,TF[_MACD_TF])+Shift);
@@ -585,14 +596,15 @@ bool IsConstantRSI(string Trend,int Max_Periods,int ShiftM1=0){
          int MA_Period=2;
          bool DiagonalMA=true;
          
-         for(_MACD_TF=TF_D1;_MACD_TF>=TF_H1;_MACD_TF--){
+         for(_MACD_TF=TF_D1;_MACD_TF>=TF_M30;_MACD_TF--){
             switch(_MACD_TF){
                case TF_D1: MA_Period=2; Max_Periods=3; MinSpread=AverageH4Spread; break;
-               case TF_H4: MA_Period=2; Max_Periods=12; MinSpread=AverageH4Spread*1.5; break;
-               case TF_H1: MA_Period=2; Max_Periods=12; MinSpread=AverageH1Spread*1.5; break;
+               case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH4Spread*1.5; break;
+               case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1.5; break;
+               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread; break;
             }
             
-            MA0=iMA(iSymbol,TF[TF_H1],MA_Period,0,MODE_LWMA,PRICE_LOW,Get_Shift(ShiftM1,TF[TF_H1]));
+            MA0=iMA(iSymbol,TF[TF_M30],MA_Period,0,MODE_LWMA,PRICE_LOW,Get_Shift(ShiftM1,TF[TF_M30]));
             HighestMA=0;
             for(Shift=1;Shift<Max_Periods;Shift++){
                MA=iMA(iSymbol,TF[_MACD_TF],MA_Period,0,MODE_LWMA,PRICE_MEDIAN,Get_Shift(ShiftM1,TF[_MACD_TF])+Shift);
