@@ -90,8 +90,10 @@ string Get_SAR_Trend(int _MACD_TF,int &Count_Periods,int ShiftM1=0,string _iSymb
    }
       
    if(_MACD_TF==TF_H1){
-      CountPeriodsH1ofH4=Count_Periods_SAR_Trend(Trend,TF_H1,0.08,0.08,Shift,_iSymbol);
-   	int PrevPeriodsH1=Count_Periods_SAR_Trend(Trend,TF_H1,0.2,0.2,Shift+CountPeriodsH1ofH4,_iSymbol);
+      CountPeriodsH1ofH4=Count_Periods_SAR_Trend(Trend,TF_H4,0.34,0.34,Get_Shift(ShiftM1,TF[TF_H4]),_iSymbol);
+   	int PrevPeriodsH1=Count_Periods_SAR_Trend(Trend,TF_H4,0.5,0.5,Get_Shift(ShiftM1,TF[TF_H4])+CountPeriodsH1ofH4,_iSymbol);
+   	CountPeriodsH1ofH4=CountPeriodsH1ofH4*4;
+   	PrevPeriodsH1=PrevPeriodsH1*4;
    	CountPeriodsH1ofH4_PrevPeriodsH1=CountPeriodsH1ofH4+PrevPeriodsH1;
 	}
    if(_MACD_TF==TF_D1){
