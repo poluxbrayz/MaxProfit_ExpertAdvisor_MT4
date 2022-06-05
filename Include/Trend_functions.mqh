@@ -195,7 +195,7 @@ bool CheckBBollinger(int _MACD_TF,int BB_Periods=6,int ShiftM1=0,string _iSymbol
          //Trend Up    
             
          Price=iHigh(_iSymbol,TF[_MACD_TF],Shift);  
-         Band_Upper=iBands(_iSymbol,TF[_MACD_TF],BB_Periods,2,0,PRICE_CLOSE,MODE_UPPER,Shift);
+         Band_Upper=iBands(_iSymbol,TF[_MACD_TF],BB_Periods,3,0,PRICE_CLOSE,MODE_UPPER,Shift);
          Vars_BBollinger[_MACD_TF]=StringConcatenate("CheckBBollinger=",Price>Band_Upper,", BBollinger[",_MACD_TF,"]=Up, Price=",Price,", Band_Upper=",Band_Upper);
          Print(Vars_BBollinger[_MACD_TF]);
                            
@@ -208,7 +208,7 @@ bool CheckBBollinger(int _MACD_TF,int BB_Periods=6,int ShiftM1=0,string _iSymbol
       
          //Trend Down
          Price=iLow(_iSymbol,TF[_MACD_TF],Shift);
-         Band_Lower=iBands(_iSymbol,TF[_MACD_TF],BB_Periods,2,0,PRICE_CLOSE,MODE_LOWER,Shift);
+         Band_Lower=iBands(_iSymbol,TF[_MACD_TF],BB_Periods,3,0,PRICE_CLOSE,MODE_LOWER,Shift);
          Vars_BBollinger[_MACD_TF]=StringConcatenate("CheckBBollinger=",Price<Band_Lower,", BBollinger[",_MACD_TF,"]=Down, Price=",Price,", Band_Lower=",Band_Lower);
          Print(Vars_BBollinger[_MACD_TF]);
          
