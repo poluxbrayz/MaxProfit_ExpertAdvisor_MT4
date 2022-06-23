@@ -34,14 +34,15 @@ double TotalEquity(){
 double TotalLot(){
    double Equity=TotalEquity();
    double TotalLot=Equity/1000;
-   double MFIH4=iMFI(iSymbol,TF[TF_H4],6,0);
+   double MFIH4=iMFI(iSymbol,TF[TF_H4],3,0);
+   double MFI1H4=iMFI(iSymbol,TF[TF_H4],3,1);
    double RSIH4=iRSI(iSymbol,TF[TF_H4],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double MFIH1=iMFI(iSymbol,TF[TF_H1],6,0);
    double RSIH1=iRSI(iSymbol,TF[TF_H1],6,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double SpreadD1=SpreadNumPeriod(TF_H4,MathMin(7,CountPeriodsH4ofD1_PrevPeriodsH4),0,true);
    double AverageH4Spread=AverageSpreadNumPeriod(TF_H4,1);
-   bool ForceUp=(MACD_Trend[TF_D1]=="Up" && MFIH4>=65 && RSIH4>=70 && MFIH1>=65 && RSIH1>=70 && SpreadD1>=AverageH4Spread*2);
-   bool ForceDown=(MACD_Trend[TF_D1]=="Down" && MFIH4<=35 && RSIH4<=30 && MFIH1<=35 && RSIH1<=30 && SpreadD1<=-AverageH4Spread*2);
+   bool ForceUp=(MACD_Trend[TF_D1]=="Up" && MFIH4>=65 && MFI1H4>=55 && RSIH4>=70 && MFIH1>=65 && RSIH1>=70 && SpreadD1>=AverageH4Spread*2);
+   bool ForceDown=(MACD_Trend[TF_D1]=="Down" && MFIH4<=35 && MFI1H4<=45 && RSIH4<=30 && MFIH1<=35 && RSIH1<=30 && SpreadD1<=-AverageH4Spread*2);
    bool Force=(MACD_Trend[TF_D1]==W1Trend && (ForceUp==true || ForceDown==true));
    double TotalLotForce=FormatDecimals(TotalLot/3,2);
    double TotalLotNormal=FormatDecimals(TotalLot/5,2);

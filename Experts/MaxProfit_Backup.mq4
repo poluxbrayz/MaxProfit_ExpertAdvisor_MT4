@@ -3,8 +3,8 @@
 //|                                               Xantrum Solutions. |
 //|                                    https://www.xantrum.solutions |
 //+------------------------------------------------------------------+
-#property description "Max Profit Expert Advisor"
-#property copyright "Xantrum Solutions 2022-04-16"
+#property description "Max Profit Expert Advisor for Metatrader 4"
+#property copyright "Xantrum Solutions 2022"
 #property link      "https://www.xantrum.solutions"
 #property version   "1.7"
 #property icon       "../Images/MaxProfit.ico"; 
@@ -26,6 +26,7 @@
 
 //--- Inputs
 extern const string EA_Period = "M1";
+extern const string Donate_Paypal = "https://www.paypal.com/donate/?hosted_button_id=VHL87XUJENRXQ";
 bool Maximum_Lot  = false;
 bool Confirm_Order  = false;
 
@@ -87,8 +88,8 @@ void OnTick(){
    if(iVolume(Symbol(),Period(),0)>1) return;   
    
    if(IsTesting()==true){
-      if(CurrentTimeFrame()>TF_M15){//M1, M5. M15
-         Print("Change Period to M5");
+      if(CurrentTimeFrame()>TF_M1){//M1, M5. M15
+         Print("Change Period to M1");
       }
       ProcessTick();
       //Test();
@@ -166,13 +167,16 @@ void SetTrends(int ShiftM1=0){
 
 void SetLimits(int ShiftM1=0){
    
-   D1_Limit_Up=75; D1_Limit_Down=25;
-   int D1_Limit_Periods=6;
+   D1_Limit_Up=80; D1_Limit_Down=20;
+   int D1_Limit_Periods=5;
+   H4_Limit_Up=80; H4_Limit_Down=20;
+   int H4_Limit_Periods=12;
    int MaxPeriodsH4=30;
    int ShiftH4=Get_Shift(ShiftM1,PERIOD_H4);
    int ShiftD1=Get_Shift(ShiftM1,PERIOD_D1);
       
    D1_Limit_RSI=iRSI(iSymbol,TF[TF_D1],D1_Limit_Periods,PRICE_CLOSE,ShiftD1);
+   H4_Limit_RSI=iRSI(iSymbol,TF[TF_H4],H4_Limit_Periods,PRICE_CLOSE,ShiftH4);
    
    bool IsTrend=!(CountPeriodsTrend[TF_D1]==1 && CountPeriodsH4ofD1==1 && CountPeriodsTrend[TF_H4]==1 && CountPeriodsH1ofH4<=4);
    
@@ -235,7 +239,7 @@ void CheckForOpen()
                
                SetStopLoss();
                
-               PriceTakeProfit=0;          
+               SetTakeProfit(Order_Open_Price);
                
                Order_Lots=Lots();
                
@@ -264,7 +268,7 @@ void CheckForOpen()
                }
                Print("Vars_MACD_Trend_By_Change[",TF_D1,"] = ",Vars_MACD_Trend_By_Change[TF_D1]);  
                Print("W1Trend=",W1Trend,", D1Trend=",D1Trend,", H4Trend=",H4Trend,", H1Trend=",H1Trend);
-               Print("UnderLimitBuy=",UnderLimitBuy,", D1_Limit_RSI=",D1_Limit_RSI,", D1_Limit_MFI=",D1_Limit_MFI);
+               Print("UnderLimitBuy=",UnderLimitBuy,", D1_Limit_RSI=",D1_Limit_RSI,", H4_Limit_RSI=",H4_Limit_RSI);
                
                
          }
@@ -274,7 +278,7 @@ void CheckForOpen()
                   
                   SetStopLoss();
                   
-                  PriceTakeProfit=0;          
+                  SetTakeProfit(Order_Open_Price);
                      
                   Order_Lots=Lots();
                   
@@ -304,7 +308,7 @@ void CheckForOpen()
                   }
                   Print("Vars_MACD_Trend_By_Change[",TF_D1,"] = ",Vars_MACD_Trend_By_Change[TF_D1]);  
                   Print("W1Trend=",W1Trend,", D1Trend=",D1Trend,", H4Trend=",H4Trend,", H1Trend=",H1Trend);
-                  Print("OverLimitSell=",OverLimitSell,", D1_Limit_RSI=",D1_Limit_RSI,", D1_Limit_MFI=",D1_Limit_MFI);
+                  Print("OverLimitSell=",OverLimitSell,", D1_Limit_RSI=",D1_Limit_RSI,", H4_Limit_RSI=",H4_Limit_RSI);
                   
          }//else
       }//while
@@ -367,7 +371,7 @@ void CheckForClose()
                   Print(Vars_MACD_Trend_By_Change[_MACD_TF]);  
                }
                Print("W1Trend=",W1Trend,", D1Trend=",D1Trend,", H4Trend=",H4Trend,", H1Trend=",H1Trend,", M30Trend=",M30Trend,", M15Trend=",M15Trend);
-               Print("OpenOrder.Get_Order_Profit()=",OpenOrder.Get_Order_Profit(),", Order_Open_Time=",Order_Open_Time," <= iTime(iSymbol,TF[TF_H4],3)=",iTime(iSymbol,TF[TF_H4],3));
+               Print("OpenOrder.Get_Order_Profit()=",OpenOrder.Get_Order_Profit(),", CountPeriodsH4ofD1=",CountPeriodsH4ofD1,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4);
             }
             
             /*if((Order_Type==OP_BUY && H4Trend!="Down" && H1Trend!="Down" && M30Trend!="Down" && M15Trend!="Down") || 
@@ -422,8 +426,8 @@ void CheckForClose()
              }
              
              
-             //Si la ganancia es menor que 0 y la hora de apertura de la orden es anterior a las 12 horas
-             if(OpenOrder.Get_Order_Profit()<0 && Order_Open_Time<=iTime(iSymbol,TF[TF_H4],3)){
+             //Si la ganancia es menor que 0 y CountPeriodsH4ofD1>=1 y CountPeriodsH4ofD1_PrevPeriodsH4>=3
+             if(OpenOrder.Get_Order_Profit()<0 && CountPeriodsH4ofD1>=1 && CountPeriodsH4ofD1_PrevPeriodsH4>=3){
              
                if((Order_Type==OP_BUY && MACD_Trend[TF_M30]=="Down" && H1Trend=="Down" && H4Trend=="Down" && D1Trend=="Down") || (Order_Type==OP_SELL && MACD_Trend[TF_M30]=="Up" && H1Trend=="Up" && H4Trend=="Up" && D1Trend=="Up") ){
                   Close_TF=TF_H4;
@@ -518,41 +522,45 @@ void CheckForClose()
 }
 
 void SetStopLoss(){
-   double AverageH4Spread=AverageSpreadNumPeriod(TF_H4,1);
-   int Shift=0,MaxShift=MathMin(10,iBars(iSymbol,PERIOD_D1));
+   double AverageH20Spread=AverageSpreadNumPeriod(TF_H4,1)*5;
+   double SpreadD1=MathAbs(SpreadNumPeriod(TF_H4,MathMin(7,CountPeriodsH4ofD1_PrevPeriodsH4),0,true));
+   double PriceClose=iClose(iSymbol,TF[TF_H4],0);
    
    if(MACD_Trend[TF_H4]=="Up"){
-      PriceStopLoss=iClose(iSymbol,TF[TF_H4],0)-AverageH4Spread*5;
-      double LowPrice=PriceStopLoss;
-      int Lowest;
-      while(LowPrice>=PriceStopLoss && Shift<MaxShift){
-         Lowest=iLowest(iSymbol,PERIOD_D1,MODE_LOW,5,Shift);
-         LowPrice=iLow(iSymbol,PERIOD_D1,Lowest)-AverageH4Spread;
-         Shift++;
-      }
-      PriceStopLoss=MathMin(LowPrice,PriceStopLoss);
+      double LowPriceD1=MathMin(PriceClose-SpreadD1,PriceClose-AverageH20Spread);
+      int LowestTrend=iLowest(iSymbol,PERIOD_H4,MODE_LOW,CountPeriodsH4ofD1_PrevPeriodsH4+1,0);
+      double LowPriceTrend=iLow(iSymbol,PERIOD_H4,LowestTrend);
+      LowPriceTrend=MathMin(LowPriceTrend,PriceClose-AverageH20Spread);
+      Print("SetStopLoss: PriceStopLoss=",PriceStopLoss,", LowPriceD1=",LowPriceD1,", LowPriceTrend=",LowPriceTrend,", LowestTrend=",LowestTrend,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", SpreadD1=",SpreadD1,", AverageH20Spread=",AverageH20Spread);
+      PriceStopLoss=MathMax(LowPriceD1,LowPriceTrend);
       
-   }else{
-      PriceStopLoss=iClose(iSymbol,TF[TF_H4],0)+AverageH4Spread*5;
-      double HighPrice=PriceStopLoss;
-      int Highest;
-      while(HighPrice<=PriceStopLoss && Shift<MaxShift){
-         Highest=iHighest(iSymbol,PERIOD_D1,MODE_HIGH,5,Shift);
-         HighPrice=iHigh(iSymbol,PERIOD_D1,Highest)+AverageH4Spread;
-         Shift++;
-      }
-      PriceStopLoss=MathMax(HighPrice,PriceStopLoss);
+   }else{//Down
+      double HighPriceD1=MathMax(PriceClose+SpreadD1,PriceClose+AverageH20Spread);
+      int HighestTrend=iHighest(iSymbol,PERIOD_H4,MODE_HIGH,CountPeriodsH4ofD1_PrevPeriodsH4+1,0);
+      double HighPriceTrend=iHigh(iSymbol,PERIOD_H4,HighestTrend);
+      HighPriceTrend=MathMax(HighPriceTrend,PriceClose+AverageH20Spread);
+      Print("SetStopLoss: PriceStopLoss=",PriceStopLoss,", HighPriceD1=",HighPriceD1,", HighPriceTrend=",HighPriceTrend,", HighestTrend=",HighestTrend,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", SpreadD1=",SpreadD1,", AverageH20Spread=",AverageH20Spread);
+      PriceStopLoss=MathMin(HighPriceD1,HighPriceTrend);
    }
 }
 
 void SetTakeProfit(double Order_Open_Price){
+   PriceTakeProfit=0;  
+   double RSIH4=iRSI(iSymbol,TF[TF_H4],4,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double MFIH4=iMFI(iSymbol,TF[TF_H4],4,0);
+   double RSIH1=iRSI(iSymbol,TF[TF_H1],8,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double MFIH1=iMFI(iSymbol,TF[TF_H1],8,0);
    TakeProfit=AverageSpreadNumPeriod(TF_H1);
-   if(MACD_Trend[TF_H1]=="Up"){
-      double Band_Upper=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_HIGH,MODE_UPPER,0);
-      PriceTakeProfit=NormalizeDouble(MathMax(Order_Open_Price,Band_Upper)+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
-   }else{
-      double Band_Lower=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_LOW,MODE_LOWER,0);
-      PriceTakeProfit=NormalizeDouble(MathMin(Order_Open_Price,Band_Lower)-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+   Print("SetTakeProfit RSIH4=",RSIH4,", MFIH4=",MFIH4,", RSIH1=",RSIH1,", MFIH1=",MFIH1);
+   if(MACD_Trend[TF_H1]=="Up" && MathCeil(RSIH4)>=75 && MathCeil(MFIH4)>=70 && MathCeil(RSIH1)>=75 && MathCeil(MFIH1)>=70){
+      //double Band_Upper=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_HIGH,MODE_UPPER,0);
+      //PriceTakeProfit=NormalizeDouble(MathMax(Order_Open_Price,Band_Upper)+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+      PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+   }
+   else if(MACD_Trend[TF_H1]=="Down" && MathFloor(RSIH4)<=25 && MathFloor(MFIH4)<=30 && MathFloor(RSIH1)<=25 && MathFloor(MFIH1)<=30){
+      //double Band_Lower=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_LOW,MODE_LOWER,0);
+      //PriceTakeProfit=NormalizeDouble(MathMin(Order_Open_Price,Band_Lower)-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+      PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
    }
 }
 
@@ -740,7 +748,7 @@ double AverageSpreadNumPeriod(int _MACD_TF,int Periods=1){
       int TotalPeriods=AverageDaysPeriod[_MACD_TF]*24*60/TF[_MACD_TF],CountPeriods=0;
       bool SpreadUp,SpreadDown;
       double MA0=0,MA1=0;
-      double MaxSpread_Divisor=(_MACD_TF<=TF_H4)? 10 : 5;
+      double MaxSpread_Divisor=(_MACD_TF<=TF_H4)? 12 : 6;
       
       if(iBars(iSymbol,TF[_MACD_TF])<TotalPeriods) 
          TotalPeriods=iBars(iSymbol,TF[_MACD_TF]);
@@ -757,13 +765,13 @@ double AverageSpreadNumPeriod(int _MACD_TF,int Periods=1){
          }
          
          if(SpreadUp==true || SpreadDown==true){
-            SpreadPeriod=MathAbs(SpreadNumPeriod(_MACD_TF,Periods,i));
+            SpreadPeriod=MathAbs(SpreadNumPeriod(_MACD_TF,Periods,i,true));
             if(SpreadPeriod>0 && SpreadPeriod>=MaxSpread/MaxSpread_Divisor){
                SumSpread+=SpreadPeriod;
                CountPeriods++;
                AverageSpreadNumPeriod=SumSpread/CountPeriods;
                if(SpreadPeriod>MaxSpread){
-                  MaxSpread=(SpreadPeriod*2+AverageSpreadNumPeriod)/3;
+                  MaxSpread=(SpreadPeriod*3+AverageSpreadNumPeriod*2)/5;
                }
             }
          }
