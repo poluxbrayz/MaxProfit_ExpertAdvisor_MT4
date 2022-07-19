@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://www.mql5.com/en/blogs/post/687043 -->
+<html lang="en" hc="delumine-noimg " style=""><div id="deluminate_fullscreen_workaround" style="position: absolute; top: 0px; left: 0px; width: 1663px; height: 10296px; display: block; z-index: -2147483647; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(246, 248, 253);"></div><div id="deluminate_backdrop" style="position: fixed; top: 0px; left: 0px; height: 100vh; width: 100vw; z-index: -2147483648;"></div><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="dns-prefetch" href="https://c.mql5.com/">
+  <meta name="description" content="Hello dear traders and EA developers, it&#39;s Besso and today we&#39;re going to solve an issue many MQL programmers are stuck with: Metaeditor has no ready-to-use color templates or themes and it&#39;s really">
+  <meta property="og:url" content="https://www.mql5.com/en/blogs/post/687043">
+  <meta property="og:title" content="Metaeditor Dark Theme">
+  <meta property="og:description" content="Hello dear traders and EA developers, it&#39;s Besso and today we&#39;re going to solve an issue many MQL programmers are stuck with: Metaeditor has no ready-to-use color templates or themes and it&#39;s really">
+  <meta property="vk:image" content="https://c.mql5.com/i/og/mql5-logo-vk-2.png">
+  <meta property="og:image" content="https://c.mql5.com/6/764/splash-687043-1485089257.jpg">
+  <meta property="og:image:width" content="1390">
+  <meta property="og:image:height" content="200">
+  <meta property="og:type" content="blog">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@mql5com">
+  <meta name="twitter:image" content="https://c.mql5.com/6/764/splash-687043-1485089257.jpg">
+  <meta name="theme-color" content="#4a76b8">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="shortcut icon" href="https://c.mql5.com/i/favicon.ico">
+  <meta name="msapplication-config" content="none">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta property="qc:admins" content="36367170677651456375">
+  <meta property="wb:webmaster" content="073d7690269bcd81">
+  <link href="./Metaeditor Dark Theme - Traders&#39; Blogs_files/core.918bf4170728457a621b90766ead0982.css" type="text/css" rel="stylesheet" media="all">
+  <link href="./Metaeditor Dark Theme - Traders&#39; Blogs_files/all.70bc0dd0b3dcbb5f7096ea790bbc43f8.css" type="text/css" rel="stylesheet" media="all">
+  <link href="./Metaeditor Dark Theme - Traders&#39; Blogs_files/blogs.1b06e90d8946aac17ccc1dc0b6fdc6e5.css" type="text/css" rel="stylesheet" media="all">
+  <link href="https://www.mql5.com/en/blogs/rss" rel="alternate" type="application/rss+xml" title="Trading blogs and financial markets analysis">
+  <link rel="canonical" href="https://www.mql5.com/en/blogs/post/687043">
+  <title>Metaeditor Dark Theme - Other - 17 January 2017 - Traders' Blogs</title>
+
+
+<script async="" src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/rq"></script><script async="" defer="" src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/core.js.descargar"></script><script type="text/javascript">
+  !function(){window.mqGlobal={};var t=!1,n=!1,e=[],o=[],i=[];function d(t){var n;for(n=0;n<t.length;n+=1)t[n]()}function c(){t||(t=!0,d(e),d(o),o=[],e=[])}function a(){c(),n||(n=!0,d(i),i=[])}if(mqGlobal.AddOnReady=function(n,i){t?n(document):i?e.push(n):o.push(n)},mqGlobal.AddOnLoad=function(t){n?t(document):i.push(t)},mqGlobal.AddOnActiveWindowChange=function(t){this._onvisibility||(this._onvisibility=[]),this._onvisibility[this._onvisibility.length]=t},document.addEventListener)document.addEventListener("DOMContentLoaded",c,!1),window.addEventListener("load",a,!1);else if(document.attachEvent&&(document.attachEvent("onreadystatechange",(function(){switch(document.readyState){case"interactive":c();break;case"complete":a()}})),window.attachEvent("onload",a),document.documentElement.doScroll&&window==window.top)){!function n(){if(!t&&document.body)try{document.documentElement.doScroll("left"),c()}catch(t){setTimeout(n,0)}}()}}();
+  mqGlobal.CookieDomain = ".mql5.com";
+  mqGlobal.Language = 'en';
+  mqGlobal.IsMobile = false;
+  mqGlobal.ClearRteStorage = function (e) { if (window.GStorage || (window.GStorage = globalStorage()), window.GStorage.supported) try { var o = e; window.GStorage.getItem("rte_autosave_uid", function (e, t) { t == o && (window.GStorage.removeItem("rte_autosave_text"), window.GStorage.removeItem("rte_autosave_date"), window.GStorage.removeItem("rte_autosave_uid")) }) } catch (e) { } };
+</script>  
+    <script type="text/javascript">
+    mqGlobal.AddOnReady(function(){window.siteUpdates = new SiteUpdates('/en/updates',10,'en',[1,21],1657721407,0);});
+    </script>
+    <script src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/all.872d96a495cd34c20460f58568dd0682.js.descargar" type="text/javascript" defer="defer"></script>
+  <script src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/chat.3368999aef9e979bdc9274d1b8a993f8.js.descargar" type="text/javascript" defer="defer"></script>
+  <script src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/blogs.885580dfbf2f319d50717e457d9c27b8.js.descargar" type="text/javascript" defer="defer"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="true"><link rel="preconnect" href="https://fonts.gstatic.com/"><link rel="stylesheet" href="./Metaeditor Dark Theme - Traders&#39; Blogs_files/css2"></head>
+<body>
+  <div class="cover" id="cover">
+
+    <div class="head">
+      <a href="https://www.mql5.com/" class="head__logo" title="MQL5 - Language of trade strategies built-in the MetaTrader 5 client terminal" deluminate_imagetype="png"></a>
+      <ul id="mainmenu" class="menu dropdown" style="padding-right: 0px; margin-right: 518px;">
+        <li class="selected">
+              <a id="mainMenuSelected">
+                <span>Home</span>
+              </a>
+          <ul id="mainmenuItems">
+            
+                    <li><a href="https://www.mql5.com/en/forum" data-fz-event="MQL5+Menu+Forum"><span>Forum</span></a></li>
+                    <li><a href="https://www.mql5.com/en/market" data-fz-event="MQL5+Menu+Market"><span>Market</span></a></li>
+                    <li><a href="https://www.mql5.com/en/signals" data-fz-event="MQL5+Menu+Signals"><span>Signals</span></a></li>
+                    <li><a href="https://www.mql5.com/en/job" data-fz-event="MQL5+Menu+Job"><span>Freelance</span></a></li>
+                    <li><a href="https://www.mql5.com/en/quotes/overview" data-fz-event="MQL5+Menu+Overview"><span>Quotes</span></a></li>
+                    <li><a href="https://www.mql5.com/en/trading" data-fz-event="MQL5+Menu+Trading"><span>WebTerminal</span></a></li>
+                    <li><a href="https://www.mql5.com/en/economic-calendar" data-fz-event="MQL5+Menu+Economic+Calendar"><span>Calendar</span></a></li>
+                    <li><a href="https://www.mql5.com/en/vps" data-fz-event="MQL5+Menu+VPS"><span>VPS</span></a></li>
+                    <li><a href="https://www.mql5.com/en/articles" data-fz-event="MQL5+Menu+Articles"><span>Articles</span></a></li>
+                    <li><a href="https://www.mql5.com/en/code" data-fz-event="MQL5+Menu+CodeBase"><span>CodeBase</span></a></li>
+                    <li><a href="https://www.mql5.com/en/docs" data-fz-event="MQL5+Menu+Docs"><span>Documentation</span></a></li>
+                    <li class="mainMenuProfileLink"><a href="https://www.mql5.com/en/users/polux.brayz"><span>Profile</span></a></li>
+                    <li class="main-menu__about-link"><a href="https://www.mql5.com/en/about"><span>About</span></a></li>
+          </ul>
+        </li>
+        <li><input class="blurHandler" id="mainMenuBlurHandler" type="checkbox"></li>
+      </ul>
+      <div class="head__toolbar" id="headerToolbar">
+          <div class="container notifications-toolbar"><ul id="privateAreaMessages" class="notifications-box"><li class="notify-item notify-mobile"><a class="link-notify static link-notify_message-mobile" href="https://www.mql5.com/en/users/polux.brayz/messages" id="notifyMessagesMobile" title="Messages"><i class="notify-icon notify-icon_messages" deluminate_imagetype="png"><i class="notify-icon_count">1</i></i></a></li><li class="notify-item notify-total"><a class="link-notify link-notify_total" id="notify_total"><i class="notify-icon notify-icon_notify-total"><i class="notify-icon_count">2</i></i></a><ul class="notify-total__list" id="notifyTotalList">
+<li class="notify-item"><a href="https://www.mql5.com/en/users/polux.brayz/favorites" class="link-notify link-notify_favorites" title="Updates in favorites"><i class="notify-icon notify-icon_favorites" deluminate_imagetype="png"></i></a></li>
+<li class="notify-item"><a class="link-notify link-notify_jobs" href="https://www.mql5.com/en/job/107800/discussion?id=504451" id="notify_jobs" title="Updates in jobs"><i class="notify-icon notify-icon_jobs" deluminate_imagetype="png"></i></a></li><li class="notify-item notify-desktop"><a class="link-notify link-notify_message" href="https://www.mql5.com/en/users/polux.brayz/messages" id="notifyMessages" title="Messages"><i class="notify-icon notify-icon_messages" deluminate_imagetype="png"><i class="notify-icon_count">1</i></i></a></li>
+<script type="application/json" id="chatTranslates" data-type="chat-translates">{"friendsHeader":"Friends","newMessageHeader":"Add new message","userToLabel":"Part of the user's name or login","gotoMessages":"Go to messages list","gotoMessage":"Go to chat","otherUsersHeader":"Other users","returnToList":"Return to messages list (ESC)","closeChat":"Close chat","attachedFilesHeader":"Attached files","attachFileTitle":"Attach file","sendMessageTitle":"Reply","expandWindow":"Expand chat window","minimizeWindow":"Reduce chat window","searchUserPlaceholder":"Part of the user's name or login","searchChannelPlaceholder":"Channels","errorOccuredMessage":"An error occurred. Please try again later.","systemYouInvited":"You have been invited to chat {0}","systemUserInvited":"{0} invited {1}","systemChatUserLeft":"{0} left the chat","systemChatUserRemoved":"{0} removed {1} from chat","systemChannelUserRemoved":"{0} removed {1} from channel","systemChannelPublic":"{0} made the channel public","systemChannelPrivate":"{0} made the channel private","systemChatLimited":"{0} made the chat limited","systemChatUnlimited":"{0} made the chat not limited","systemChatClosed":"{0} closed the chat","systemChannelClosed":"Channel is now closed","systemChatReopened":"{0} reopened the chat","systemChannelReopened":"Channel reopened","systemChatRename":"{0} changed the chat name to {1}","systemChannelRename":"Channel name changed to {0}","systemChatCreate":"{0} created the chat {1}","systemChannelCreate":"Channel {0} created","systemChatPrivate":"{0} made the chat private","systemChatPublic":"{0} made the chat public","subscribe":"Subscribe","unsubscribe":"Unsubscribe","ofSubscribers":"{0} subscribers","ofUsers":"{0} members","messages":"Messages","users":"Users","channels":"Channels","unreadMessages":"Unread messages","deleteChat":"delete","deleteChatConfirm":"Are you sure want to delete chat?","allChats":"All chats","privateChats":"Private chats","groupChats":"Group chats","allChatsShort":"All","privateChatsShort":"Private","groupChatsShort":"Groups","recommendedChannels":"Recommended channels","members":"Members","popularChannels":"Popular channels","startChat":"Start a chat","createChannel":"Create a channel","createGroup":"Create a group","searchPlaceholder":"Enter part of a name or login of a person you want to chat with","en":"English","ru":"Русский","de":"Deutsch","es":"Español","pt":"Português","ja":"日本語","zh":"中文","ar":"العربية","tr":"Türkçe","it":"Italiano","ko":"한국어","fr":"Français","foundEmpty":"Your search did not match any documents","close":"Close","chatNamePlaceholder":"Set a short and clear name","channelCreation":"Creating a channel","image":"Image","fileDesc":"JPG, GIF or PNG image","chatDesc":"Description","channelDescPlaceholder":"Add a clear channel description","links":"Links","linksPlaceholder":"Comma-separated list of links","channelLanguage":"Channel language","addMembers":"Add members","selectedMembers":"{0} members selected","append":"Add","groupCreation":"Creating a group","publicChannel":"Public channel","privateChannel":"Private channel","publicChannelDesc":"Any user is able to find the channel and subscribe to it","privateChannelDesc":"The channel is available to invited users only","urlChannel":"Channel link","channelAvatar":"Channel avatar","selectFile":"Select a file","delete":"delete","channel":"Channel","group":"Group chat","edit":"edit","editing":"Editing","inviteLinkExists":"This link name is already in use, please set another one","save":"Save","publicChat":"Public chat","privateChat":"Private chat","publicChatDesc":"Any user is able to find and join the chat","privateChatDesc":"The chat is available to invited users only","open":"Open","chatLanguage":"Chat language","isLimited":"Regular chat users can add new members","emptyAddMember":"To add new members, use the search","mql5Members":"MQL5 members","friends":"Friends","friendAddToChat":"Add to friends","friendAddToChatNote":"Add the user as a friend. You can see activity of your friends on the website and communicate with them easily.","admin":"Administrator","owner":"Owner","moderator":"Moderator","notSupportedWebsoket":"WebSocket is not supported by this browser.","cancel":"Cancel","deletion":"Deletion","deletionTextChannel":"Do you really want to delete the {0} channel?","deletionTextGroup":"Do you really want to delete the {0} group?","deleteUpper":"Delete","block":"-","unblock":"-","emptyChatsList":"<p>You have no chats.</p><p>Please use the search or create a new chat on the <a href=\"{0}\">messages</a> page</p>","deletedAccount":"Deleted account","other":"Other","groupDescPlaceholder":"Add a clear chat description","widgetErrorOccured":"An error occurred. Please try again later.","pleaseUploadAvatar":"Please upload the chat avatar","pleaseUploadAvatarChannel":"Please upload the channel avatar","countParticipants":"{0} participants","countFollower":"{0} followers","info":"Info","errorImageEx":"The image does not meet the requirements. The image format should be JPG, GIF or PNG","user":"User","update":"Update","permissions":"Permissions","reader":"Reader","postMessages":"Post messages","read":"Read","canWriteMessages":"The user can write messages","adminDesc":"Administrator permissions allow the user to:\n<ul>\n<li>grant any permissions to users</li>\n<li>remove any users</li>\n<li>delete messages</li>\n<li>edit chat / channel information</li>\n<li>close chat / channel</li>\n</ul>","moderatorDesc":"Moderator permissions allow the user to:\n<ul>\n<li>grant users permissions lower than moderator</li>\n<li>remove users with lower permissions</li>\n<li>delete messages</li>\n</ul>","urlChannelDesc":"The channel link should start with a letter. You can use a-z, 0-9 and the underscore. The minimum length is 5 characters.","chatNotFound":"<h3>Chat not found</h3>\n<p><a href=\"{0}\" onclick=\"{1}\" class=\"{2}\">Main chat page</a></p>","collapse":"Collapse","showOriginal":"Show original","errorLoading":"Unable to download attachment","next":"Next","nexprevioust":"Previous","linkToImg":"Link to the image","linkToVideo":"Link to the video","search":"Search","chats":"Chats","subscribed":"Subscribed","add":"Send","message":"Message","emptyMessageError":"Message cannot be empty","longMessageError":"The message should not exceed {0} characters","invalidType":"Incorrect file type","deleteAllMessagesFromConfirm":"Do you really want to delete all messages from {0}?","complaint":"complain","abuse":"Abuse","advert":"Advertisement","spam":"Spam","complaintTitle":"Complaint","complaintOther":"Other","complaintError":"Error ocured. Try send complaint later.","complaintSuccess":"Your complaint has been successfully sent!","complaintLength":"The length must range from {0} to {1} characters.","characters":"characters","comment":"Comment","complaintContains":"Message contains","back":"Back","new":"New","my":"My","popular":"Popular","recommended":"Recommended","unsubscribeConfirmChannel":"Do you really want to leave the {0} channel?","unsubscribeConfirmGroup":"Do you really want to leave the {0} group?","chatEdit":"Edit","writer":"Author","avatarErrorSize":"The image size should be at least {0}x{1} pixels","friendWaitingPair":"You'll be able to start a chat once the user confirms your friend request","emptyChatsListShort":"<p>You have no chats.</p><p>Please use the search or create a new chat</p>","errorUserNonChatablePrivacyFriends":"The user has enabled incoming personal messages from friends only","privacyOnlyFriendsWithName":"{0} has enabled incoming personal messages from friends only","zoomIn":"zoom in","zoomOut":"zoom out","friendWaitingPairWithName":"You'll be able to start a chat once {0} confirms your friend request","dragAndDrop":"Upload","reportSpam":"Report spam","addingMembers":"Adding members","you":"You","commentAuthor":"Comment author","notAllowedAdd":"Users {0} have disabled the ability to add them to groups and channels","replyMessage":"Reply","editMembers":"Edit members","membersCount":"Members ({0})","searchMembers":"Searching for members","errorUserNotFound":"User not found","membersList":"List of members","urlGroup":"Group URL","usefulLinks":"Useful links","copied":"Copied","type":"Type","management":"Management","closeGroup":"Close group","closeChannel":"Close channel","openGroup":"Open group","openChannel":"Open channel","maxNumberFiles":"Maximum number of attached files: {0}","noMessagesYet":"No messages here yet. Send a message to start a chat.","upload":"Upload","addUsefulLinks":"Add useful links:","nameNSymbols":"Name (up to {0} characters)","descNSymbols":"Description (up to {0} characters)","isLimitedShort":"Users are able to add members"}</script>
+<script type="application/json" id="dragAndDrop" data-type="translate">{"dragAndDrop":"Upload","errorInvalidExtension":"Invalid extension"}</script>
+<script type="application/json" id="lightBoxTranslates" data-type="translate">{"lightBox":{"collapse":"Collapse","showOriginal":"Show original","errorLoading":"Unable to download attachment","next":"Next","previous":"Previous","linkToImg":"Link to the image","linkToVideo":"Link to the video","save":"Save","close":"Close"}}</script>
+    
+</ul></li></ul></div>
+        <div class="container"><div class="toggle-button" id="sidebarToggleButton"><i></i><i></i><i></i></div></div>
+
+        <div class="group-menu" id="groupMenu">
+            <div class="container profileToolbar"><ul id="profile" class="profile-box"><li class="userLinkContainer" id="userLinkContainer"><a href="https://www.mql5.com/en/users/polux.brayz/news" class="userlink" id="userlink" title=""><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B47DEDF-9D54.jpg" alt="" loading="lazy" width="29" height="29"><span class="firstname">Waldorf Bray</span> <span class="lastname">Silva Cubas</span></a><ul class="userLinkMenu" id="userLinkMenu">
+<li class="messages delimiter user-link-menu__item_with-counter user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz/messages"><span>Messages</span><span class="message-new-label" deluminate_imagetype="unknown"></span><span class="user-link-menu__counter" id="counterMessagesMenu"><i>1</i></span></a></li>
+<li class="news user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz/news"><span>News feed</span></a></li>
+<li class="profile user-link-menu__item_with-counter user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz"><span>Profile</span><span title="Friend requests" class="user-link-menu__counter" id="counterOfferedFriendMenu"><i>5</i></span></a></li>
+<li class="favorites user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz/favorites"><span>Favorites</span></a></li>
+<li class="choosein delimiter user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz/accounting/choosein"><span>Top up MQL5 Services</span></a></li>
+<li class="chooseout user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz/accounting/chooseout"><span>Withdraw from account</span></a></li>
+<li class="settings delimiter user-link-menu__item"><a href="https://www.mql5.com/en/users/polux.brayz/edit"><span>Settings</span></a></li>
+<li class="logout delimiter"><a href="https://www.mql5.com/en/auth_logout" onclick="doPost(event,&#39;/en/auth_logout&#39;,&#39;2bd9df52a97c0d82ce67e41bb483c0a2&#39;); return false;"><span>Logout</span></a></li>
+</ul></li></ul></div>
+
+          <div class="container lang-menu-container">
+            <div id="langMenuContainer" class="lang-menu">
+              <input class="blurHandler" id="langmenuBlurHandler" type="checkbox">
+              <ul class="lang-menu__list" id="langmenu">
+                <li class="lang-menu__list-item lang-menu__list-item_selected"><a href="https://www.mql5.com/en/blogs"><i class="icons-languages icons-languages_en" deluminate_imagetype="png"></i><span>English</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/ru/blogs"><i class="icons-languages icons-languages_ru" deluminate_imagetype="png"></i><span>Русский</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/zh/blogs"><i class="icons-languages icons-languages_zh" deluminate_imagetype="png"></i><span>中文</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/es/blogs"><i class="icons-languages icons-languages_es" deluminate_imagetype="png"></i><span>Español</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/pt/blogs"><i class="icons-languages icons-languages_pt" deluminate_imagetype="png"></i><span>Português</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/ja/blogs"><i class="icons-languages icons-languages_ja" deluminate_imagetype="png"></i><span>日本語</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/de/blogs"><i class="icons-languages icons-languages_de" deluminate_imagetype="png"></i><span>Deutsch</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/ko/blogs"><i class="icons-languages icons-languages_ko" deluminate_imagetype="png"></i><span>한국어</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/fr/blogs"><i class="icons-languages icons-languages_fr" deluminate_imagetype="png"></i><span>Français</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/it/blogs"><i class="icons-languages icons-languages_it" deluminate_imagetype="png"></i><span>Italiano</span></a></li>
+<li class="lang-menu__list-item"><a href="https://www.mql5.com/tr/blogs"><i class="icons-languages icons-languages_tr" deluminate_imagetype="png"></i><span>Türkçe</span></a></li>
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="container search-box-container">
+            <div id="searchBoxContainer" class="search-box">
+
+<form action="https://www.mql5.com/en/search" onsubmit="window.fpush(&quot;MQL5+Menu+Search&quot;); document.location.assign((&quot;https://www.mql5.com/en/search&quot;) + ($(&quot;keyword&quot;).value.length&gt;0?(&quot;#!keyword=&quot;+encodeURIComponent($(&quot;keyword&quot;).value)):&quot;&quot;)); if(document.location.href.indexOf(&quot;/en/search#&quot;)&gt;=0)setTimeout(function(){document.location.reload(true);},10);return false;" id="main_search_form" class="header-search" method="post">
+<div class="header-search__box"><div class="header-search__input-wrapper"><input name="keyword" type="text" title="Enter search text" id="keyword" autocomplete="off"></div></div><input type="submit" value="" class="header-search__hidden-submit" deluminate_imagetype="png"><div class="header-search__submit" id="searchSubmit" deluminate_imagetype="png"></div></form>            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-nav__container" style="right: 518px; display: none;" id="subNavContainer">
+        <div class="sub-nav__toggle" id="subNavToggle">...</div>
+        <ul id="subNavList"></ul>
+        <input class="blurHandler" id="blurHandlerSubNav" type="checkbox">
+      </div>
+    </div>
+<div id="bfogggabsofabcpxuzmgaibarmaxasdrj" class="r9uavty7mp65l7y5i ff"><a target="_blank" href="https://www.mql5.com/tz/go?link=https%3A%2F%2Frf-charged.com%2Frf%2Fes%2Flp%2F12-years-promo%2F%3Futm_source%3Dmql5.com%26utm_medium%3Dcpc%26utm_campaign%3DRF_MQL5_PROSP_ES_PE_RF_12_YEARS_PROMO_24012%26utm_content%3D12_YEARS-ES-PE-800x80%26a%3Dohrb&amp;a=owyeqqysxsiutaivshslwdsvdkormtyp&amp;s=bda6f943b814509d4dcfab29a40617bb6cb3431751cd7e622dfeb78930a5424a&amp;v=1&amp;host=https%3A%2F%2Fwww.mql5.com%2Ftz%2F&amp;id=bfogggabsofabcpxuzmgaibarmaxasdrj&amp;uid=yqlgjcrfwphhmftcooqoksjnvyizzwvv&amp;ssn=1657714204553908126&amp;ssn_dr=0&amp;ssn_sr=0&amp;fv_date=1647903364&amp;ref=https%3A%2F%2Fwww.mql5.com%2Fen%2Fblogs%2Fpost%2F687043&amp;back_ref=https%3A%2F%2Fwww.google.com%2F&amp;title=Metaeditor%20Dark%20Theme%20-%20Other%20-%2017%20January%202017%20-%20Traders%27%20Blogs&amp;scr_res=1680x1050&amp;ac=165771420498722033&amp;fz_uniq=5044410669587420959&amp;sv=2303"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/vwp0jb4v13ahq87z2.jpg" width="800" style="width: 800px; overflow: hidden; vertical-align: top; height: auto; border: 0px;" height="80"></a></div>    <div class="body" id="bodyContent">
+      <div class="top-band">
+        
+    
+    <div class="path path__blogs">
+      <div class="shortlinks">
+          <span>
+            <a href="https://www.mql5.com/en/blogs" title="All Blogs"><span>All Blogs</span></a>
+          </span>
+          /
+          <span>
+            <a href="https://www.mql5.com/en/blogs/other" title="Other"><span>Other</span></a>
+          </span>
+      </div>
+    </div>
+      <div class="actions separated">
+        <ul>
+            <li><a href="javascript:complaintInline(687043,6,0,0)">complain</a></li>
+        </ul>
+      </div>
+  <div style="clear:both;"></div>
+
+      </div>
+      
+
+
+<div class="blogs">
+  <div id="left-panel" class="left-panel left-panel_270  column left">
+    
+<div class="treeReadWrapper treeReadWrapper_blogs">
+  <ul class="treeMenuRoot"><li><a href="https://www.mql5.com/en/blogs" class="blogsCategory"><span class="inLink"><i deluminate_imagetype="png"></i>All Blogs</span></a></li></ul>
+<ul class="treeMenuRoot blogs"><li><a href="https://www.mql5.com/en/blogs/analytics" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -48px" deluminate_imagetype="png"></i>Analytics &amp; Forecasts</span></a><ul class="treeMenuRoot nodelim"><li><a href="https://www.mql5.com/en/blogs/analytics/trends" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -48px" deluminate_imagetype="png"></i>Weekly Trends</span></a></li><li><a href="https://www.mql5.com/en/blogs/analytics/forecasts" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -48px" deluminate_imagetype="png"></i>Forecasts</span></a></li><li><a href="https://www.mql5.com/en/blogs/analytics/trading-systems" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -48px" deluminate_imagetype="png"></i>Trading Systems</span></a></li></ul></li><li><a href="https://www.mql5.com/en/blogs/trading" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -64px" deluminate_imagetype="png"></i>My Trading</span></a><ul class="treeMenuRoot nodelim"><li><a href="https://www.mql5.com/en/blogs/trading/charts" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -64px" deluminate_imagetype="png"></i>Charts</span></a></li><li><a href="https://www.mql5.com/en/blogs/trading/strategies" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -64px" deluminate_imagetype="png"></i>Trading Strategies</span></a></li><li><a href="https://www.mql5.com/en/blogs/trading/statistics" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -64px" deluminate_imagetype="png"></i>Statistics</span></a></li></ul></li><li><a href="https://www.mql5.com/en/blogs/ideas" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -80px" deluminate_imagetype="png"></i>Trading Ideas</span></a><ul class="treeMenuRoot nodelim"><li><a href="https://www.mql5.com/en/blogs/ideas/scalping" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -80px" deluminate_imagetype="png"></i>Scalping</span></a></li><li><a href="https://www.mql5.com/en/blogs/ideas/neural-networks" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -80px" deluminate_imagetype="png"></i>Neural Networks</span></a></li><li><a href="https://www.mql5.com/en/blogs/ideas/wave-count" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -80px" deluminate_imagetype="png"></i>Wave Count</span></a></li></ul></li><li><a href="https://www.mql5.com/en/blogs/markets" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -16px" deluminate_imagetype="png"></i>Market News</span></a><ul class="treeMenuRoot nodelim"><li><a href="https://www.mql5.com/en/blogs/markets/currency" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -16px" deluminate_imagetype="png"></i>Currency</span></a></li><li><a href="https://www.mql5.com/en/blogs/markets/metals" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -16px" deluminate_imagetype="png"></i>Metals</span></a></li><li><a href="https://www.mql5.com/en/blogs/markets/crude-oil" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -16px" deluminate_imagetype="png"></i>Crude Oil</span></a></li></ul></li><li><a href="https://www.mql5.com/en/blogs/companies" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -32px" deluminate_imagetype="png"></i>Company News</span></a><ul class="treeMenuRoot nodelim"><li><a href="https://www.mql5.com/en/blogs/companies/events" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -32px" deluminate_imagetype="png"></i>Events</span></a></li><li><a href="https://www.mql5.com/en/blogs/companies/banks" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -32px" deluminate_imagetype="png"></i>Banks</span></a></li><li><a href="https://www.mql5.com/en/blogs/companies/brokers" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -32px" deluminate_imagetype="png"></i>Brokers</span></a></li><li><a href="https://www.mql5.com/en/blogs/companies/law" class="blogsCategory"><span class="inLink"><i style="background-position: 0 -32px" deluminate_imagetype="png"></i>Law/Regulations</span></a></li></ul></li><li class="selected"><a href="https://www.mql5.com/en/blogs/other" class="blogsCategory"><span class="inLink"><i style="background-position: 0 0px" deluminate_imagetype="png"></i>Other</span></a></li></ul>
+
+    <ul class="treeMenuRoot">
+      <li><a class="blogCategory my" href="https://www.mql5.com/en/blogs/my/published"><span class="inLink">My posts</span></a></li>
+      <li><a class="blogCategory drafts" href="https://www.mql5.com/en/blogs/my/drafts"><span class="inLink">Drafts</span></a></li>
+      <li><a class="blogCategory scheduled" href="https://www.mql5.com/en/blogs/my/scheduled"><span class="inLink">Schedule Posts</span></a></li>
+    </ul>
+
+    <ul class="treeMenuRoot">
+      <li><a class="blogCategory terms" href="https://www.mql5.com/en/blogs/terms" target="_blank"><span class="inLink">Rules</span></a></li>
+    </ul>
+</div>
+
+  </div>
+    
+  <div class="column center">
+    <div class="postContent view">
+      <div class="postHead">
+            <div class="blur" style="height: 200px">
+              <div style="background-image: url(https://c.mql5.com/6/764/splash-687043-1485089257.jpg);" class="left"></div>
+              <div style="background-image: url(https://c.mql5.com/6/764/splash-687043-1485089257.jpg);" class="right"></div>
+            </div>
+            <div class="splash" style="height: 200px; max-width: 1390px;">
+              <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/splash-687043-1485089257.jpg" loading="lazy" height="200" width="1390" title="Metaeditor Dark Theme" alt="Metaeditor Dark Theme" style="position: absolute; left: 50%; margin-left: -695px; margin-right: -695px;">
+              <i class="border left"></i>
+              <i class="border right"></i>
+              <div class="caption" style="position: relative">
+                <div class="category"><a href="https://www.mql5.com/en/blogs/other">Other</a></div>
+                <h1>Metaeditor Dark Theme</h1>
+                <div class="date">17 January 2017, 20:11</div>
+              </div>
+            </div>
+        <div class="avatar">
+          <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" title="Besarion Turmanauli" alt="Besarion Turmanauli" loading="lazy" width="60" height="60">
+        </div>
+          <div class="author">
+            <a class="author banned_user" href="https://www.mql5.com/en/users/tobeone">Besarion Turmanauli</a>
+          </div>
+        <div class="counters">
+          <div class="commentsCounter" title="Comments">21<i class="icon comments" deluminate_imagetype="png"></i></div>
+          <div class="viewsCounter" title="Views"><i class="icon views" deluminate_imagetype="png"></i>10 009</div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="content">
+          <p>Hello dear traders and EA developers, it's Besso and today we're going to solve an issue many MQL programmers are stuck with: Metaeditor has no ready-to-use color templates or themes and it's really hard to watch the white screen all day and particularly during nights. Wouldn't it be nice to have a calm classy style which doesn't make you tired even when it's dark around you? &nbsp;Personally I was never able to program on a white glowing screen for a long period of time and therefore I was often changing Metaeditor backgrounds to darker colors, like grey but even then I was limited to relatively lighter colors not to make default text/content difficult to read. One day I decided to really give it a go and changed every single color from options, over the next few days, when I was working during nights, I fine-tuned them to make easier to look and I think it's a lot nicer now, doesn't distract me and often I write the code till 4-5 am. You don't have to change each color separately, of course, here you can copy this text </p><div class="code"><p>[Colors]</p><p>Color0=2302755</p><p>Color1=755384</p><p>Color2=14599344</p><p>Color3=16750899</p><p>Color4=11119017</p><p>Color5=3329434</p><p>Color6=9601129</p><p>Color7=10025880</p><p>Color8=14599344</p><p>Color9=16443110</p><p>Color10=16748574</p><p>Color11=11829830</p><p>Color12=64636</p><p>Color13=55295</p><p>Color14=16711935</p></div><p>&nbsp;and paste it into MT4 installation directory \ config \ metaeditor.ini. (Locate the same section [Colors] and replace it completely.)</p><p>&nbsp;Thanks for attention!</p><p>&nbsp;</p><div class="atten"><h3><p style="text-align:center;"><span style="background-color:rgb(234, 235, 238); color:rgb(227, 173, 0);">IMPORTANT:</span><span style="color:rgb(86, 86, 86); background-color:rgb(234, 235, 238);">&nbsp;</span><a href="https://www.mql5.com/en/market/product/19294" target="_blank">Take Advantage of Current 40% Discount on W12 Quad Turbo v3 (only 10 copies left)</a>&nbsp;<br></p></h3></div><br>
+        </div>
+        <div class="attach">
+        </div>
+      </div>
+          <div class="commands">
+              <div class="tags">#<span itemprop="keywords"><a href="https://www.mql5.com/en/blogs/tags/5377">MT4</a>, <a href="https://www.mql5.com/en/blogs/tags/18260">metaeditor</a>, <a href="https://www.mql5.com/en/blogs/tags/35337">productivity</a>, <a href="https://www.mql5.com/en/blogs/tags/35338">styles</a>, <a href="https://www.mql5.com/en/blogs/tags/35339">dark theme</a></span></div>
+            <div style="float: left;">
+<span class="likeWrapper"><a class="like" id="like_6_0_687043" onclick="likes.Like(&#39;en&#39;,6,0,687043,&#39;7e4348d3ec78bcba9cfeac7bfff6e2a4&#39;,&#39;ef78f49a50d773d553b026330cf5d36b&#39;)">Like </a><span class="likesCount" id="likes_6_0_687043" deluminate_imagetype="png">22</span></span> <i>·</i>                <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" class="newComment" onclick="return toggleNewMessage();" title="New comment">Your comment</a>
+            </div>
+            <div style="clear: both"></div>
+          </div>
+          <div style="border-top: 1px solid #DADADA; text-align: center; padding-top: 10px;">
+            <b>Share it with friends:</b>
+            <ul class="socIconsMobile" id="networkBlock">
+<li class="fb"><a href="https://www.mql5.com/go?link=https%3a%2f%2fwww.facebook.com%2fsharer%2fsharer.php%3fu%3dhttps%253a%252f%252fwww.mql5.com%252fen%252fblogs%252fpost%252f687043%253futm_source%253dwww.facebook.com%2526utm_campaign%253den.blogs.sharing.desktop" rel="nofollow" target="_blank" data-track="MQL5+Share+Facebook" data-social="Facebook" title=" Share on Facebook "><i class="fb" deluminate_imagetype="png"></i></a></li>
+<li class="tw"><a href="https://www.mql5.com/go?link=https%3a%2f%2ftwitter.com%2fintent%2ftweet%3ftext%3dMetaeditor%2bDark%2bTheme%26url%3dhttps%253a%252f%252fwww.mql5.com%252fen%252fblogs%252fpost%252f687043%253futm_source%253dwww.twitter.com%2526utm_campaign%253den.blogs.sharing.desktop" rel="nofollow" target="_blank" data-track="MQL5+Share+Twitter" data-social="Twitter" title=" Share on Twitter "><i class="tw" deluminate_imagetype="png"></i></a></li>
+<li class="rd"><a href="https://www.mql5.com/go?link=https%3a%2f%2fwww.reddit.com%2fsubmit%3furl%3dhttps%253a%252f%252fwww.mql5.com%252fen%252fblogs%252fpost%252f687043%253futm_source%253dwww.reddit.com%2526utm_campaign%253den.blogs.sharing.desktop" rel="nofollow" target="_blank" data-track="MQL5+Share+Reddit" data-social="Reddit" title=" Share on Reddit"><i class="rd" deluminate_imagetype="png"></i></a></li>
+</ul>
+          </div>
+    </div>
+        <div class="commentsBox">
+          
+
+  
+<div class="comments" id="comments">
+        <div class="comment" id="blockComment4801028">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B128A66-BD3E.png" srcset="https://c.mql5.com/avatar/2018/6/5B128A66-BD3E_big.png 2x" alt="Michele Lazzarini" title="Michele Lazzarini" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_oddpip_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">458</span></div>
+<div style="display:none;"><div id="user_avatar_oddpip_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/oddpip/seller" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B128A66-BD3E.png" srcset="https://c.mql5.com/avatar/2018/6/5B128A66-BD3E_big.png 2x" width="60" height="60" alt="Michele Lazzarini" title="Michele Lazzarini" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Michele Lazzarini</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+1 product, 132 comments  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_4801028" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/oddpip" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_oddpip_tooltip&#39;).cloneNode(true))">Michele Lazzarini</a><div style="display:none;"><div id="user_link_oddpip_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/oddpip/seller" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B128A66-BD3E.png" srcset="https://c.mql5.com/avatar/2018/6/5B128A66-BD3E_big.png 2x" width="60" height="60" alt="Michele Lazzarini" title="Michele Lazzarini" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Michele Lazzarini</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+1 product, 132 comments  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_4801028" title="Created"><time datetime="2017-03-31T08:44Z">2017.03.31 03:44</time></span>
+              <span id="date_create_4801028" style="display: none;">2017.03.31 10:44:21</span>
+              <a id="comment_4801028"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_4801028" rel="nofollow" onclick="return false;">#1</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Michele Lazzarini" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;oddpip&#39;,159675,&#39;Michele Lazzarini&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;oddpip&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content4801028"><p>The dark theme I made for myself:</p><p>[Colors]<br>Color0=0<br>Color1=13882323<br>Color2=16777215<br>Color3=11829830<br>Color4=657416<br>Color5=36095<br>Color7=16776960<br>Color8=65535<br>Color9=8454016<br>Color10=16736352<br>Color11=255<br>Color12=16776960<br>Color13=16728224<br>Color14=14524637<br><br></p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_4801028"><a href="javascript:complaintInline(4801028,6,17,6)" rel="nofollow">complain</a></span><span id="reply_4801028"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;4801028&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment7542006">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5AFEBC22-C41D.png" srcset="https://c.mql5.com/avatar/2018/5/5AFEBC22-C41D_big.png 2x" alt="Domenico Mario La Marca" title="Domenico Mario La Marca" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_domenicola_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">281</span></div>
+<div style="display:none;"><div id="user_avatar_domenicola_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/domenicola" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5AFEBC22-C41D.png" srcset="https://c.mql5.com/avatar/2018/5/5AFEBC22-C41D_big.png 2x" width="60" height="60" alt="Domenico Mario La Marca" title="Domenico Mario La Marca" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Domenico Mario La Marca</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+2 comments, 1 topic  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_7542006" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/domenicola" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_domenicola_tooltip&#39;).cloneNode(true))">Domenico Mario La Marca</a><div style="display:none;"><div id="user_link_domenicola_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/domenicola" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5AFEBC22-C41D.png" srcset="https://c.mql5.com/avatar/2018/5/5AFEBC22-C41D_big.png 2x" width="60" height="60" alt="Domenico Mario La Marca" title="Domenico Mario La Marca" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Domenico Mario La Marca</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+2 comments, 1 topic  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_7542006" title="Created"><time datetime="2018-05-23T17:45Z">2018.05.23 12:45</time></span>
+              <span id="date_create_7542006" style="display: none;">2018.05.23 19:45:58</span>
+              <a id="comment_7542006"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_7542006" rel="nofollow" onclick="return false;">#2</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Domenico Mario La Marca" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;domenicola&#39;,3387701,&#39;Domenico Mario La Marca&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;DomenicoLa&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content7542006"><p><a href="https://www.mql5.com/en/users/oddpip" target="_blank" class="user-ref">@ Michele Lazzarini</a> </p>
+<p>Hallo!</p>
+<p>ich finde in der Datei metaeditor.ini kein abschnitt mit [colors] !!</p>
+<p>wie hast Du gemacht?</p>
+<p>Vielen Dank!</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_7542006"><a href="javascript:complaintInline(7542006,6,17,6)" rel="nofollow">complain</a></span><span id="reply_7542006"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;7542006&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment9306022">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5BE5828F-226B.jpg" srcset="https://c.mql5.com/avatar/2018/11/5BE5828F-226B_big.jpg 2x" alt="Ricardo Ferreira" title="Ricardo Ferreira" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_ricardo7307_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">9</span></div>
+<div style="display:none;"><div id="user_avatar_ricardo7307_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/ricardo7307" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5BE5828F-226B.jpg" srcset="https://c.mql5.com/avatar/2018/11/5BE5828F-226B_big.jpg 2x" width="60" height="60" alt="Ricardo Ferreira" title="Ricardo Ferreira" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Ricardo Ferreira</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_9306022" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/ricardo7307" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_ricardo7307_tooltip&#39;).cloneNode(true))">Ricardo Ferreira</a><div style="display:none;"><div id="user_link_ricardo7307_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/ricardo7307" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5BE5828F-226B.jpg" srcset="https://c.mql5.com/avatar/2018/11/5BE5828F-226B_big.jpg 2x" width="60" height="60" alt="Ricardo Ferreira" title="Ricardo Ferreira" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Ricardo Ferreira</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_9306022" title="Created"><time datetime="2018-11-09T11:53Z">2018.11.09 06:53</time></span>
+              <span id="date_create_9306022" style="display: none;">2018.11.09 12:53:10</span>
+              <a id="comment_9306022"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_9306022" rel="nofollow" onclick="return false;">#3</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Ricardo Ferreira" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;ricardo7307&#39;,3920340,&#39;Ricardo Ferreira&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;ricardo7307&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content9306022"><p><a href="https://www.mql5.com/en/users/domenicola" target="_blank" class="user-ref">@Domenico La</a></p>
+<p> In MetaTrader 5 wirst du diesen Abschnitt nicht finden. Du kannst jedoch das Farbschema einfach am Ende des Files hinzufuegen. Speichern und Re-Starten. Es funktioniert super!</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_9306022"><a href="javascript:complaintInline(9306022,6,17,6)" rel="nofollow">complain</a></span><span id="reply_9306022"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;9306022&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment12589147">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5D1F71E7-BA10.jpg" srcset="https://c.mql5.com/avatar/2019/7/5D1F71E7-BA10_big.jpg 2x" alt="Somsri Sarkar" title="Somsri Sarkar" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_somfx_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">17758</span></div>
+<div style="display:none;"><div id="user_avatar_somfx_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/somfx/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5D1F71E7-BA10.jpg" srcset="https://c.mql5.com/avatar/2019/7/5D1F71E7-BA10_big.jpg 2x" width="60" height="60" alt="Somsri Sarkar" title="Somsri Sarkar" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Somsri Sarkar</span>
+<i class="icons-profile icons-profile_achievement-market-100" title="Sold more than 100 products" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating-inactive" deluminate_imagetype="png"></i>
+    </div>
+    <b>4.5</b>
+    <span class="user-tooltip__rating-votes">(28)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+14 products, 48 comments  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_12589147" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/somfx" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_somfx_tooltip&#39;).cloneNode(true))">Somsri Sarkar</a><div style="display:none;"><div id="user_link_somfx_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/somfx/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5D1F71E7-BA10.jpg" srcset="https://c.mql5.com/avatar/2019/7/5D1F71E7-BA10_big.jpg 2x" width="60" height="60" alt="Somsri Sarkar" title="Somsri Sarkar" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Somsri Sarkar</span>
+<i class="icons-profile icons-profile_achievement-market-100" title="Sold more than 100 products" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating-inactive" deluminate_imagetype="png"></i>
+    </div>
+    <b>4.5</b>
+    <span class="user-tooltip__rating-votes">(28)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+14 products, 48 comments  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_12589147" title="Created"><time datetime="2019-07-26T06:52Z">2019.07.26 01:52</time></span>
+              <span id="date_create_12589147" style="display: none;">2019.07.26 08:52:19</span>
+              <a id="comment_12589147"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_12589147" rel="nofollow" onclick="return false;">#4</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Somsri Sarkar" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;somfx&#39;,978980,&#39;Somsri Sarkar&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;SomFx&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content12589147">Knowing which color represent what, could be helpful. It will be good if meta editor comes with an inbuilt dark theme like other software's.</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_12589147"><a href="javascript:complaintInline(12589147,6,17,6)" rel="nofollow">complain</a></span><span id="reply_12589147"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;12589147&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment12706834">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" alt="MichaelJed" title="MichaelJed" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_michaeljed_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">16</span></div>
+<div style="display:none;"><div id="user_avatar_michaeljed_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/michaeljed" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="MichaelJed" title="MichaelJed" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">MichaelJed</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+3 comments, 1 topic  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_12706834" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/michaeljed" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_michaeljed_tooltip&#39;).cloneNode(true))">MichaelJed</a><div style="display:none;"><div id="user_link_michaeljed_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/michaeljed" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="MichaelJed" title="MichaelJed" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">MichaelJed</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+3 comments, 1 topic  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_12706834" title="Created"><time datetime="2019-08-04T10:32Z">2019.08.04 05:32</time></span>
+              <span id="date_create_12706834" style="display: none;">2019.08.04 12:32:51</span>
+              <a id="comment_12706834"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_12706834" rel="nofollow" onclick="return false;">#5</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to MichaelJed" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;michaeljed&#39;,194084,&#39;MichaelJed&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;MichaelJed&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content12706834"><div>
+    Hi,
+</div>
+
+
+<div>
+    <br>
+</div>
+
+
+<div>
+    Thanks for the instructions, really useful!!
+</div>
+
+
+<div>
+    <br>
+</div>
+
+
+<div>
+    I personally use "zenburn" palette (i.e. in Spyder when working with Python, RGB and Hex values you can find on this page (http://colrd.com/palette/23399/?download=css).
+</div>
+
+
+<div>
+    <p><br></p>
+    <p><br></p>
+</div>
+
+
+<div>
+    <p><a href="https://www.mql5.com/en/users/somfx" target="_blank" class="user-ref">@Somsri Sarkar</a>,I found below representation explained 
+    (source FF,&nbsp;
+
+    https://www.forexfactory.com/showthread.php?t=659235)(plus 
+    how to translate RGB values into decimals used in *.ini file)</p>
+    <p><br></p>
+    <p><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">[Colors]</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color0 
+    = Text (background)</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color1 
+    = Text (foreground)</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color2 
+    = Text selection (background)</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color3 
+    = Text selection (foreground)</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color4 
+    = Selection margin (background)</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color5 
+    = Keywords</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color6 
+    = Comments</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color7 
+    = Numbers</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color8 
+    = Operators</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color9 
+    = Strings</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color10 
+    = Macros</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color11 
+    = Functions and entry points</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color12 
+    = Indicators</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color13 
+    = Pre-defined types and variables</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color14 
+    = Input variables</span><br><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">Color15 
+    = Non-ASCII characters</span></p>
+    <p><br></p>
+</div>
+<p><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">RGB 
+into decimal: </span><span style="background-color:rgb(244, 246, 249); color:blue;">Blue*256*256</span><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">+</span><span style="background-color:rgb(244, 246, 249); color:green;">Green*256</span><span style="color:rgb(0, 0, 0); background-color:rgb(244, 246, 249);">+</span><span style="background-color:rgb(244, 246, 249); color:red;">Red</span><span style="background-color:rgb(244, 246, 249);">
+.</span></p>
+<p>Free converter can be downloaded form here:&nbsp;https://sourceforge.net/projects/colorselector/</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_12706834"><a href="javascript:complaintInline(12706834,6,17,6)" rel="nofollow">complain</a></span><span id="reply_12706834"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;12706834&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment13130407">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" alt="Spyros Kalos" title="Spyros Kalos" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_spyrosk_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">22</span></div>
+<div style="display:none;"><div id="user_avatar_spyrosk_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/spyrosk" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="Spyros Kalos" title="Spyros Kalos" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Spyros Kalos</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_13130407" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/spyrosk" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_spyrosk_tooltip&#39;).cloneNode(true))">Spyros Kalos</a><div style="display:none;"><div id="user_link_spyrosk_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/spyrosk" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="Spyros Kalos" title="Spyros Kalos" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Spyros Kalos</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_13130407" title="Created"><time datetime="2019-09-06T17:34Z">2019.09.06 12:34</time></span>
+              <span id="date_create_13130407" style="display: none;">2019.09.06 19:34:16</span>
+              <a id="comment_13130407"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_13130407" rel="nofollow" onclick="return false;">#6</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Spyros Kalos" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;spyrosk&#39;,813119,&#39;Spyros Kalos&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;SpyrosK&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content13130407">Saved my eyes! Thanks!!</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_13130407"><a href="javascript:complaintInline(13130407,6,17,6)" rel="nofollow">complain</a></span><span id="reply_13130407"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;13130407&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment15854090">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="c.mql5.com/avatar/avatar_na2_big.png 2x" "="" loading="lazy" width="60" height="60"></div></div></div>
+          <div class="text">
+            <div>
+              <span id="author_info_15854090" style="font-weight: bold;"><span class="removed_user">[Deleted]</span></span>
+              <span class="comment__date" id="date_15854090" title="Created"><time datetime="2020-04-11T09:20Z">2020.04.11 04:20</time></span>
+              <span id="date_create_15854090" style="display: none;">2020.04.11 11:20:22</span>
+              <a id="comment_15854090"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_15854090" rel="nofollow" onclick="return false;">#7</a>                &nbsp;<span class="commands">
+</span>
+
+            </div>
+            <div class="content" id="content15854090"><p>Here are my settings for now</p>
+<p>[Colors]<br>Color0=4144959<br>Color1=15794175<br>Color2=15794175<br>Color3=13749760<br>Color4=6908265<br>Color5=755384<br>Color6=8363903<br>Color7=13881484<br>Color8=12377327<br>Color9=8363903<br>Color10=36095<br>Color11=9433071<br>Color12=13850042<br>Color13=10724316<br>Color14=13499135</p>
+<p>
+<img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5223926880375.png" width="618" height="394"><br></p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_15854090"><a href="javascript:complaintInline(15854090,6,17,6)" rel="nofollow">complain</a></span><span id="reply_15854090"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;15854090&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment15856890">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" alt="hlucas" title="hlucas" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_hlucas_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">12</span></div>
+<div style="display:none;"><div id="user_avatar_hlucas_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/hlucas" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="hlucas" title="hlucas" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">hlucas</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+1 comment, 1 topic  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_15856890" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/hlucas" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_hlucas_tooltip&#39;).cloneNode(true))">hlucas</a><div style="display:none;"><div id="user_link_hlucas_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/hlucas" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="hlucas" title="hlucas" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">hlucas</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+1 comment, 1 topic  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_15856890" title="Created"><time datetime="2020-04-11T15:59Z">2020.04.11 10:59</time></span>
+              <span id="date_create_15856890" style="display: none;">2020.04.11 17:59:13</span>
+              <a id="comment_15856890"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_15856890" rel="nofollow" onclick="return false;">#8</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to hlucas" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;hlucas&#39;,5282318,&#39;hlucas&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;hlucas&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content15856890"><div class="fquote">
+    <strong><span title="ricardo7307" style="color:#42639c;">Ricardo Ferreira</span>:</strong><br> 
+    <p><a href="https://www.mql5.com/en/users/domenicola" target="_blank" class="user-ref">@Domenico La</a></p>
+    <p>In MetaTrader 5 wirst du diesen Abschnitt nicht finden. Du kannst jedoch das Farbschema einfach am Ende des Files hinzufuegen. 
+    Speichern und Re-Starten. Es funktioniert super!</p>
+</div>
+<p>Hi, </p>
+<p>I sclose all apps mt5.</p>
+<p>Add to&nbsp;metaeditor.ini colour schema and run mt5 and metaeditor.</p>
+<p>Colour do not change and I open&nbsp;metaeditor.ini and what I see? There no lines added. wtf?????????</p>
+<p><br></p>
+<p>Update</p>
+<p>There is section [Colors] need to replace</p>
+
+
+<pre class="code">[Colors]
+Color0=<span class="number">16777215</span>
+Color1=<span class="number">0</span>
+Color2=<span class="number">16777215</span>
+Color3=<span class="number">14120960</span>
+Color4=<span class="number">15790320</span></pre></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_15856890"><a href="javascript:complaintInline(15856890,6,17,6)" rel="nofollow">complain</a></span><span id="reply_15856890"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;15856890&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment15863783">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="c.mql5.com/avatar/avatar_na2_big.png 2x" "="" loading="lazy" width="60" height="60"></div></div></div>
+          <div class="text">
+            <div>
+              <span id="author_info_15863783" style="font-weight: bold;"><span class="removed_user">[Deleted]</span></span>
+              <span class="comment__date" id="date_15863783" title="Created"><time datetime="2020-04-12T15:24Z">2020.04.12 10:24</time></span>
+              <span id="date_create_15863783" style="display: none;">2020.04.12 17:24:36</span>
+              <a id="comment_15863783"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_15863783" rel="nofollow" onclick="return false;">#9</a>                &nbsp;<span class="commands">
+</span>
+
+            </div>
+            <div class="content" id="content15863783"><div class="fquote">
+    <strong><span title="hlucas" style="color:#42639c;">hlucas</span>:</strong><br> 
+    <p>Hi, </p>
+    <p>I sclose all apps mt5.</p>
+    <p>Add to&nbsp;metaeditor.ini colour schema and run mt5 and metaeditor.</p>
+    <p>Colour do not change and I open&nbsp;metaeditor.ini and what I see? There no lines added. wtf?????????</p>
+    <p><br></p>
+    <p>Update</p>
+    <p>There is section [Colors] need to replace</p>
+</div>
+<p>Most of the time, it's because the [Color] section was not found (missing hook for example).</p>
+<p>Here's how to solve your problem</p>
+<p>1. Go to Tools --&gt; Option --&gt; Colors tab and clic on "Reset All"<br>2. Close MetaEditor (no need to close MetaTrader 
+itself)<br>3. Open ou metaeditor.ini file and paste again your color scheme setting (at the beginning or at the end), then save your 
+metaeditor.ini file<br>4. ReOpen MetaEditor and it should be ok now</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_15863783"><a href="javascript:complaintInline(15863783,6,17,6)" rel="nofollow">complain</a></span><span id="reply_15863783"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;15863783&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment15983963">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5EA8516C-753B.jpg" srcset="https://c.mql5.com/avatar/2020/4/5EA8516C-753B_big.jpg 2x" alt="N. Amin" title="N. Amin" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_noramin83_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">9</span></div>
+<div style="display:none;"><div id="user_avatar_noramin83_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/noramin83" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5EA8516C-753B.jpg" srcset="https://c.mql5.com/avatar/2020/4/5EA8516C-753B_big.jpg 2x" width="60" height="60" alt="N. Amin" title="N. Amin" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">N. Amin</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_15983963" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/noramin83" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_noramin83_tooltip&#39;).cloneNode(true))">N. Amin</a><div style="display:none;"><div id="user_link_noramin83_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/noramin83" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5EA8516C-753B.jpg" srcset="https://c.mql5.com/avatar/2020/4/5EA8516C-753B_big.jpg 2x" width="60" height="60" alt="N. Amin" title="N. Amin" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">N. Amin</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_15983963" title="Created"><time datetime="2020-04-20T13:18Z">2020.04.20 08:18</time></span>
+              <span id="date_create_15983963" style="display: none;">2020.04.20 15:18:48</span>
+              <a id="comment_15983963"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_15983963" rel="nofollow" onclick="return false;">#10</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to N. Amin" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;noramin83&#39;,6009224,&#39;N. Amin&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;noramin83&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content15983963"><p>I use MT5. I do not see any [color] section in metaeditor.ini. Should I just create the section?</p>
+<p><b>Update :</b>&nbsp;Section created and it works.</p>
+<p>Anyone kind enough to share reference for the color code?</p>
+<p><b>Update :</b>&nbsp;Menu → Tools → Option → Color</p>
+<p>Lol. Why am I so lazy in the 1st place. hahaha</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_15983963"><a href="javascript:complaintInline(15983963,6,17,6)" rel="nofollow">complain</a></span><span id="reply_15983963"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;15983963&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment16026206">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5BDA115D-5AA4.jpg" srcset="https://c.mql5.com/avatar/2018/10/5BDA115D-5AA4_big.jpg 2x" alt="Diego Paladino" title="Diego Paladino" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_diegopaladino_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">15</span></div>
+<div style="display:none;"><div id="user_avatar_diegopaladino_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/diegopaladino" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5BDA115D-5AA4.jpg" srcset="https://c.mql5.com/avatar/2018/10/5BDA115D-5AA4_big.jpg 2x" width="60" height="60" alt="Diego Paladino" title="Diego Paladino" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Diego Paladino</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_16026206" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/diegopaladino" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_diegopaladino_tooltip&#39;).cloneNode(true))">Diego Paladino</a><div style="display:none;"><div id="user_link_diegopaladino_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/diegopaladino" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5BDA115D-5AA4.jpg" srcset="https://c.mql5.com/avatar/2018/10/5BDA115D-5AA4_big.jpg 2x" width="60" height="60" alt="Diego Paladino" title="Diego Paladino" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Diego Paladino</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_16026206" title="Created"><time datetime="2020-04-22T17:22Z">2020.04.22 12:22</time></span>
+              <span id="date_create_16026206" style="display: none;">2020.04.22 19:22:45</span>
+              <a id="comment_16026206"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_16026206" rel="nofollow" onclick="return false;">#11</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Diego Paladino" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;diegopaladino&#39;,3889865,&#39;Diego Paladino&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;DiegoPaladino&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content16026206"><div class="fquote">
+    <strong><span title="Laurent_S" style="color:#42639c;">Laurent Soudron</span>:</strong><br> 
+    <p>Most of the time, it's because the [Color] section was not found (missing hook for example).</p>
+    <p>Here's how to solve your problem</p>
+    <p>1. Go to Tools --&gt; Option --&gt; Colors tab and clic on "Reset All"<br>2. Close MetaEditor (no need to close 
+    MetaTrader itself)<br>3. Open ou metaeditor.ini file and paste again your color scheme setting (at the beginning or at the end), then 
+    save your metaeditor.ini file<br>4. ReOpen MetaEditor and it should be ok now</p>
+</div>
+very good explanation, probably your codes on git/github are very good commented</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_16026206"><a href="javascript:complaintInline(16026206,6,17,6)" rel="nofollow">complain</a></span><span id="reply_16026206"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;16026206&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment16513790">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/62C3943F-8855.png" srcset="https://c.mql5.com/avatar/2022/7/62C3943F-8855_big.png 2x" alt="Yohana Parmi" title="Yohana Parmi" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_yohana_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">10760</span></div>
+<div style="display:none;"><div id="user_avatar_yohana_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/yohana/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/62C3943F-8855.png" srcset="https://c.mql5.com/avatar/2022/7/62C3943F-8855_big.png 2x" width="60" height="60" alt="Yohana Parmi" title="Yohana Parmi" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Yohana Parmi</span>
+<i class="icons-profile icons-profile_achievement-market-1000" title="Sold more than 1000 products" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_achievement-signals-10" title="More than 10 signal subscriptions" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i>    </div>
+    <b>4.6</b>
+    <span class="user-tooltip__rating-votes">(117)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+7 products, 736 comments  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_16513790" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/yohana" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_yohana_tooltip&#39;).cloneNode(true))">Yohana Parmi</a><div style="display:none;"><div id="user_link_yohana_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/yohana/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/62C3943F-8855.png" srcset="https://c.mql5.com/avatar/2022/7/62C3943F-8855_big.png 2x" width="60" height="60" alt="Yohana Parmi" title="Yohana Parmi" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Yohana Parmi</span>
+<i class="icons-profile icons-profile_achievement-market-1000" title="Sold more than 1000 products" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_achievement-signals-10" title="More than 10 signal subscriptions" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i>    </div>
+    <b>4.6</b>
+    <span class="user-tooltip__rating-votes">(117)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+7 products, 736 comments  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_16513790" title="Created"><time datetime="2020-05-23T11:34Z">2020.05.23 06:34</time></span>
+              <span id="date_create_16513790" style="display: none;">2020.05.23 13:34:31</span>
+              <a id="comment_16513790"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_16513790" rel="nofollow" onclick="return false;">#12</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Yohana Parmi" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;yohana&#39;,212558,&#39;Yohana Parmi&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;yohana&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content16513790"><p>Thank you very much,&nbsp;<a href="https://www.mql5.com/en/users/tobeone" target="_blank" class="user-ref">@Besarion Turmanauli</a></p>
+<p>It is useful for me, I like it<i> !</i><br>-- I appreciate the time you made it<i> :)</i></p>
+<p><br></p>
+<hr>
+<p><br></p>
+<p><i>* Update:&nbsp;</i></p>
+
+
+<table cellspacing="0" cellpadding="2" width="80%" class="no-borders">
+ <thead></thead>
+
+
+ <tbody>
+ <tr>
+ <td>
+ <p>[Colors]</p>
+ <p>Color0=2302755<br>Color1=9470064<br>Color2=0<br>Color3=12632256<br>Color4=0<br>Color5=14772545<br>Color6=6908265<br>Color7=65280<br>Color8=11119017<br>Color9=16748574<br>Color10=6053069<br>Color11=15624315<br>Color12=64636<br>Color14=8721863</p></td>
+ <td>
+ <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/metaeditor_-_mydarkmode.gif" width="654" height="556" loading="lazy" alt="" style="vertical-align:middle;"><br></td>
+ </tr>
+ </tbody>
+</table></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_16513790"><a href="javascript:complaintInline(16513790,6,17,6)" rel="nofollow">complain</a></span><span id="reply_16513790"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;16513790&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment16514624">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/59873997-3E52.jpg" srcset="https://c.mql5.com/avatar/2017/8/59873997-3E52_big.jpg 2x" alt="Donald Reeves Sihombing" title="Donald Reeves Sihombing" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_dspro_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">10596</span></div>
+<div style="display:none;"><div id="user_avatar_dspro_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/dspro/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/59873997-3E52.jpg" srcset="https://c.mql5.com/avatar/2017/8/59873997-3E52_big.jpg 2x" width="60" height="60" alt="Donald Reeves Sihombing" title="Donald Reeves Sihombing" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Donald Reeves Sihombing</span>
+<i class="icons-profile icons-profile_achievement-market-10" title="Sold more than 10 products" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_achievement-freelance-100" title="Completed more than 100 orders" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i>    </div>
+    <b>4.9</b>
+    <span class="user-tooltip__rating-votes">(125)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+6 products, 27 comments  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_16514624" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/dspro" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_dspro_tooltip&#39;).cloneNode(true))">Donald Reeves Sihombing</a><div style="display:none;"><div id="user_link_dspro_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/dspro/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/59873997-3E52.jpg" srcset="https://c.mql5.com/avatar/2017/8/59873997-3E52_big.jpg 2x" width="60" height="60" alt="Donald Reeves Sihombing" title="Donald Reeves Sihombing" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Donald Reeves Sihombing</span>
+<i class="icons-profile icons-profile_achievement-market-10" title="Sold more than 10 products" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_achievement-freelance-100" title="Completed more than 100 orders" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i>    </div>
+    <b>4.9</b>
+    <span class="user-tooltip__rating-votes">(125)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+6 products, 27 comments  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_16514624" title="Created"><time datetime="2020-05-23T14:04Z">2020.05.23 09:04</time></span>
+              <span id="date_create_16514624" style="display: none;">2020.05.23 16:04:09</span>
+              <a id="comment_16514624"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_16514624" rel="nofollow" onclick="return false;">#13</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Donald Reeves Sihombing" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;dspro&#39;,2529900,&#39;Donald Reeves Sihombing&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;DSPro&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content16514624"><p>Thank you.</p>
+<p>This is really helpful.</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_16514624"><a href="javascript:complaintInline(16514624,6,17,6)" rel="nofollow">complain</a></span><span id="reply_16514624"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;16514624&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment16523067">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5CA6D1D8-BA22.jpg" srcset="https://c.mql5.com/avatar/2019/4/5CA6D1D8-BA22_big.jpg 2x" alt="Bulltrader" title="Bulltrader" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_balrogg_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">20</span></div>
+<div style="display:none;"><div id="user_avatar_balrogg_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/balrogg" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5CA6D1D8-BA22.jpg" srcset="https://c.mql5.com/avatar/2019/4/5CA6D1D8-BA22_big.jpg 2x" width="60" height="60" alt="Bulltrader" title="Bulltrader" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Bulltrader</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+8 comments  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_16523067" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/balrogg" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_balrogg_tooltip&#39;).cloneNode(true))">Bulltrader</a><div style="display:none;"><div id="user_link_balrogg_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/balrogg" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5CA6D1D8-BA22.jpg" srcset="https://c.mql5.com/avatar/2019/4/5CA6D1D8-BA22_big.jpg 2x" width="60" height="60" alt="Bulltrader" title="Bulltrader" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Bulltrader</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+8 comments  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_16523067" title="Created"><time datetime="2020-05-24T15:16Z">2020.05.24 10:16</time></span>
+              <span id="date_create_16523067" style="display: none;">2020.05.24 17:16:03</span>
+              <a id="comment_16523067"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_16523067" rel="nofollow" onclick="return false;">#14</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Bulltrader" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;balrogg&#39;,1303549,&#39;Bulltrader&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;balrogg&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content16523067">Nice and sweet theme thank you</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_16523067"><a href="javascript:complaintInline(16523067,6,17,6)" rel="nofollow">complain</a></span><span id="reply_16523067"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;16523067&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment18648009">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" alt="kehrman" title="kehrman" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_kehrman_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">64</span></div>
+<div style="display:none;"><div id="user_avatar_kehrman_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/kehrman" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="kehrman" title="kehrman" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">kehrman</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+1 comment  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_18648009" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/kehrman" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_kehrman_tooltip&#39;).cloneNode(true))">kehrman</a><div style="display:none;"><div id="user_link_kehrman_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/kehrman" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="kehrman" title="kehrman" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">kehrman</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+1 comment  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_18648009" title="Created"><time datetime="2020-10-08T08:54Z">2020.10.08 03:54</time></span>
+              <span id="date_create_18648009" style="display: none;">2020.10.08 10:54:13</span>
+              <a id="comment_18648009"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_18648009" rel="nofollow" onclick="return false;">#15</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to kehrman" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;kehrman&#39;,7787533,&#39;kehrman&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;kehrman&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content18648009"><p>Hi Guys,</p> <p>is it possible to change the colours of MT4's or MT5's interface? - The Charts I know. But everything around would be nice if it just fits my dark windows surrounding....</p> <p>Installed all different themes, nothing helps :/</p> <p><br></p> <p>Any ideas?</p> <p><br></p> <div class="fquote"> <strong><span style="color:#42639C;">Michele Lazzarini</span>:</strong><br> <p>The dark theme I made for myself:</p> <p>[Colors]<br>Color0=0<br>Color1=13882323<br>Color2=16777215<br>Color3=11829830<br>Color4=657416<br>Color5=36095<br>Color7=16776960<br>Color8=65535<br>Color9=8454016<br>Color10=16736352<br>Color11=255<br>Color12=16776960<br>Color13=16728224<br>Color14=14524637<br><br></p> </div></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_18648009"><a href="javascript:complaintInline(18648009,6,17,6)" rel="nofollow">complain</a></span><span id="reply_18648009"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;18648009&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment21301228">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/602C48FE-1FAA.jpg" srcset="https://c.mql5.com/avatar/2021/2/602C48FE-1FAA_big.jpg 2x" alt="Jacek Pawel Bialek" title="Jacek Pawel Bialek" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_jacekbialek_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">1510</span></div>
+<div style="display:none;"><div id="user_avatar_jacekbialek_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/jacekbialek/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/602C48FE-1FAA.jpg" srcset="https://c.mql5.com/avatar/2021/2/602C48FE-1FAA_big.jpg 2x" width="60" height="60" alt="Jacek Pawel Bialek" title="Jacek Pawel Bialek" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Jacek Pawel Bialek</span>
+<i class="icons-profile icons-profile_achievement-freelance-10" title="Completed more than 10 orders" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i>    </div>
+    <b>4.9</b>
+    <span class="user-tooltip__rating-votes">(11)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+3 products, 1 comment  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_21301228" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/jacekbialek" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_jacekbialek_tooltip&#39;).cloneNode(true))">Jacek Pawel Bialek</a><div style="display:none;"><div id="user_link_jacekbialek_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/jacekbialek/seller" class="user-tooltip user-tooltip__seller">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/602C48FE-1FAA.jpg" srcset="https://c.mql5.com/avatar/2021/2/602C48FE-1FAA_big.jpg 2x" width="60" height="60" alt="Jacek Pawel Bialek" title="Jacek Pawel Bialek" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Jacek Pawel Bialek</span>
+<i class="icons-profile icons-profile_achievement-freelance-10" title="Completed more than 10 orders" deluminate_imagetype="png"></i>  </div>  <div class="user-tooltip__line user-tooltip__rating" title="Overall rating for all Market products, Signals and Freelance orders">
+    <div class="user-tooltip__rating-stars">
+<i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i><i class="icons-profile icons-profile_rating" deluminate_imagetype="png"></i>    </div>
+    <b>4.9</b>
+    <span class="user-tooltip__rating-votes">(11)</span>
+  </div>
+  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+3 products, 1 comment  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_21301228" title="Created"><time datetime="2021-03-14T18:54Z">2021.03.14 13:54</time></span>
+              <span id="date_create_21301228" style="display: none;">2021.03.14 19:54:21</span>
+              <a id="comment_21301228"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_21301228" rel="nofollow" onclick="return false;">#16</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Jacek Pawel Bialek" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;jacekbialek&#39;,7670413,&#39;Jacek Pawel Bialek&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;jacekbialek&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content21301228">Thank you, great job!</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_21301228"><a href="javascript:complaintInline(21301228,6,17,6)" rel="nofollow">complain</a></span><span id="reply_21301228"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;21301228&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment21382052">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5E0B6336-640D.png" srcset="https://c.mql5.com/avatar/2019/12/5E0B6336-640D_big.png 2x" alt="Mr.Magic" title="Mr.Magic" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_mr.magic_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">15</span></div>
+<div style="display:none;"><div id="user_avatar_mr.magic_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/mr.magic" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5E0B6336-640D.png" srcset="https://c.mql5.com/avatar/2019/12/5E0B6336-640D_big.png 2x" width="60" height="60" alt="Mr.Magic" title="Mr.Magic" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Mr.Magic</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+2 comments, 3 topics  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_21382052" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/mr.magic" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_mr.magic_tooltip&#39;).cloneNode(true))">Mr.Magic</a><div style="display:none;"><div id="user_link_mr.magic_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/mr.magic" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5E0B6336-640D.png" srcset="https://c.mql5.com/avatar/2019/12/5E0B6336-640D_big.png 2x" width="60" height="60" alt="Mr.Magic" title="Mr.Magic" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Mr.Magic</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+2 comments, 3 topics  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_21382052" title="Created"><time datetime="2021-03-18T16:05Z">2021.03.18 11:05</time></span>
+              <span id="date_create_21382052" style="display: none;">2021.03.18 17:05:51</span>
+              <a id="comment_21382052"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_21382052" rel="nofollow" onclick="return false;">#17</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Mr.Magic" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;mr.magic&#39;,5333908,&#39;Mr.Magic&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;Mr.Magic&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content21382052">I dont understand where I should paste this colors. Can someone help me ?</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_21382052"><a href="javascript:complaintInline(21382052,6,17,6)" rel="nofollow">complain</a></span><span id="reply_21382052"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;21382052&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment22658257">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5639EF01-0B41.jpg" srcset="https://c.mql5.com/avatar/2015/11/5639EF01-0B41_big.jpg 2x" alt="Aras Lumendita" title="Aras Lumendita" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_rex_loner_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">155</span></div>
+<div style="display:none;"><div id="user_avatar_rex_loner_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/rex_loner" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5639EF01-0B41.jpg" srcset="https://c.mql5.com/avatar/2015/11/5639EF01-0B41_big.jpg 2x" width="60" height="60" alt="Aras Lumendita" title="Aras Lumendita" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Aras Lumendita</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+38 comments, 7 topics  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_22658257" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/rex_loner" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_rex_loner_tooltip&#39;).cloneNode(true))">Aras Lumendita</a><div style="display:none;"><div id="user_link_rex_loner_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/rex_loner" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5639EF01-0B41.jpg" srcset="https://c.mql5.com/avatar/2015/11/5639EF01-0B41_big.jpg 2x" width="60" height="60" alt="Aras Lumendita" title="Aras Lumendita" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Aras Lumendita</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+38 comments, 7 topics  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_22658257" title="Created"><time datetime="2021-06-03T08:00Z">2021.06.03 03:00</time></span>
+              <span id="date_create_22658257" style="display: none;">2021.06.03 10:00:27</span>
+              <a id="comment_22658257"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_22658257" rel="nofollow" onclick="return false;">#18</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Aras Lumendita" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;rex_loner&#39;,147221,&#39;Aras Lumendita&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;Rex_Loner&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content22658257">Thank you so much.. add comfortable to my eyes</div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_22658257"><a href="javascript:complaintInline(22658257,6,17,6)" rel="nofollow">complain</a></span><span id="reply_22658257"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;22658257&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment22658351">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5639EF01-0B41.jpg" srcset="https://c.mql5.com/avatar/2015/11/5639EF01-0B41_big.jpg 2x" alt="Aras Lumendita" title="Aras Lumendita" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_rex_loner_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">155</span></div>
+<div style="display:none;"><div id="user_avatar_rex_loner_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/rex_loner" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5639EF01-0B41.jpg" srcset="https://c.mql5.com/avatar/2015/11/5639EF01-0B41_big.jpg 2x" width="60" height="60" alt="Aras Lumendita" title="Aras Lumendita" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Aras Lumendita</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+38 comments, 7 topics  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_22658351" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/rex_loner" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_rex_loner_tooltip&#39;).cloneNode(true))">Aras Lumendita</a><div style="display:none;"><div id="user_link_rex_loner_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/rex_loner" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5639EF01-0B41.jpg" srcset="https://c.mql5.com/avatar/2015/11/5639EF01-0B41_big.jpg 2x" width="60" height="60" alt="Aras Lumendita" title="Aras Lumendita" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">Aras Lumendita</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+38 comments, 7 topics  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_22658351" title="Created"><time datetime="2021-06-03T08:10Z">2021.06.03 03:10</time></span>
+              <span id="date_create_22658351" style="display: none;">2021.06.03 10:10:19</span>
+              <a id="comment_22658351"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_22658351" rel="nofollow" onclick="return false;">#19</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to Aras Lumendita" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;rex_loner&#39;,147221,&#39;Aras Lumendita&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;Rex_Loner&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content22658351"><div class="fquote"> <strong><span style="color:#42639C;">Mr.Magic</span>:</strong><br> I dont understand where I should paste this colors. Can someone help me ? </div> <p>Explanation is clear as crystal.. you open 'metaeditor.ini' file inside '\config' folder.</p> <p>In case you're wondering where the file is:</p> <p> <img width="618" height="378" src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/image_2021-06-03_150319.png" loading="lazy" title="system file" alt="system file" style="vertical-align:middle;"></p> <p><br></p> <p>Close your MetaEditor first before editing the system file.</p> <p>Then open your 'metaeditor.ini' file, well, the extension won't show behind the file name ('.ini') as long you set hid known extensions through your explorer settings. If there's nothing wrong, your Notepad will open your 'metaeditor.ini' just like this:</p> <p> <img width="219" height="456" src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/image_2021-06-03_151145.png" loading="lazy" title="inside system" alt="inside system" style="vertical-align:middle;"><br></p> <p>As you can see, I'm using semicolon (;) to make the old color codes as a string or comments but you can delete them or just replace them by paste it.</p></div>
+            <div class="attach">
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_22658351"><a href="javascript:complaintInline(22658351,6,17,6)" rel="nofollow">complain</a></span><span id="reply_22658351"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;22658351&#39;);">reply</a></span></div>
+
+        </div>
+        <div class="comment" id="blockComment27541297">
+<div class="user"><div class="frame"><div class="bg"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" alt="MT4isbest" title="MT4isbest" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_avatar_mt4isbest_tooltip&#39;).cloneNode(true))" loading="lazy" width="60" height="60"></div></div><span title="Rating">5</span></div>
+<div style="display:none;"><div id="user_avatar_mt4isbest_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/mt4isbest" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="MT4isbest" title="MT4isbest" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">MT4isbest</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div>          <div class="text">
+            <div>
+              <span id="author_info_27541297" style="font-weight: bold;"><a class="author" href="https://www.mql5.com/en/users/mt4isbest" onmouseover="window.tooltip &amp;&amp; window.tooltip(this,$(&#39;user_link_mt4isbest_tooltip&#39;).cloneNode(true))">MT4isbest</a><div style="display:none;"><div id="user_link_mt4isbest_tooltip"><a target="_blank" href="https://www.mql5.com/en/users/mt4isbest" class="user-tooltip">
+  <div class="user-tooltip__avatar">
+    <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" srcset="https://c.mql5.com/avatar/avatar_na2_big.png 2x" width="60" height="60" alt="MT4isbest" title="MT4isbest" loading="lazy">
+  </div>
+  <div class="user-tooltip__line user-tooltip__name">
+    <span class="author">MT4isbest</span>
+  </div>  <div class="user-tooltip__line"><span class="user-tooltip__counters">
+  </span></div>
+</a>
+</div></div></span>
+              <span class="comment__date" id="date_27541297" title="Created"><time datetime="2022-02-06T00:11Z">2022.02.05 19:11</time></span>
+              <span id="date_create_27541297" style="display: none;">2022.02.06 01:11:13</span>
+              <a id="comment_27541297"></a>
+<a class="permalink" title="Permanent link" href="https://www.mql5.com/en/blogs/post/687043#comment_27541297" rel="nofollow" onclick="return false;">#20</a>                &nbsp;<span class="commands">
+<span class="command newMessageLink"><a title="Send a private message to MT4isbest" href="https://www.mql5.com/en/users/polux.brayz/messages" onclick="if(window.openChatWith){window.openChatWith(&#39;mt4isbest&#39;,13019269,&#39;MT4isbest&#39;);return false;}if(window.doPost) { window.doPost(null,&#39;/en/users/polux.brayz/messages&#39;,null,{&#39;user&#39;:&#39;MT4isbest&#39;}); return false; }" deluminate_imagetype="png"></a></span>
+</span>
+
+            </div>
+            <div class="content" id="content27541297"><p>Thank you for this thread, it is very helpful.</p> <p>I have a question regarding the color scheme on the MT4 platform itself, and wanted to change the colors and get rid of the Navigator background as well as the Trade and Account Areas which usually appear at the bottom of the platform.</p></div>
+            <div class="attach">
+<div id="cb_27541297" class="attachBlock">
+    <b>Files:</b>
+  <div class="attach-block__list">
+      <div class="attachItem">
+          <a title="Download 1.JPG" href="https://c.mql5.com/6/901/1.JPG"><i class="attach-icon attach-icon_JPG" deluminate_imagetype="png"></i>1.JPG</a>
+&nbsp;<span class="attachSize">133 kb</span>      </div>
+      <div class="attachItem">
+          <a title="Download 2.JPG" href="https://c.mql5.com/6/901/2.JPG"><i class="attach-icon attach-icon_JPG" deluminate_imagetype="png"></i>2.JPG</a>
+&nbsp;<span class="attachSize">219 kb</span>      </div>
+  </div>
+</div>
+            </div>
+          </div>
+
+
+          <div class="options">
+<span id="complain_27541297"><a href="javascript:complaintInline(27541297,6,17,6)" rel="nofollow">complain</a></span><span id="reply_27541297"> | <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" rel="nofollow" onclick="quoteInline(&#39;27541297&#39;);">reply</a></span></div>
+
+        </div>
+</div>
+
+<div class="ui complaint-window" id="complaint_window" style="display: none;">
+<script type="text/javascript">/*<![CDATA[*/ if(! window.V) var V=[]; /*]]>*/</script>
+<form method="POST" action="https://www.mql5.com/en/blogs/post/687043" id="complaintForm" onsubmit="var result = Validate(this); if(result) { preventDoubleSubmit(this); } return result;" autocomplete="off">    <div class="complaint-window__item">
+      <div class="complaint-window__title">Message contains:</div>
+      <div class="select">
+        <select name="complaint_reason_select" id="complaint_reason_select" onchange="$(&#39;complaint_reason&#39;).value=&#39;&#39;;$(&#39;complaint_reason&#39;).disabled=this.value==500?null:&#39;disabled&#39;;CalculateFieldLength($(&#39;complaint_reason&#39;),&#39;complaint_char_counter&#39;,3,150,$(&#39;complaint_reason_select&#39;).value==500);">
+            <option value="0">Spam</option>
+            <option value="1">Abuse</option>
+            <option value="2">Advertisement</option>
+            <option value="500">Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="complaint-window__item">
+      <div class="complaint-window__title">Comment:</div>
+      <div class="complaint-window__count"><span id="complaint_char_counter"></span>&nbsp;characters</div>
+      <div class="complaint-window__editor">
+        <textarea id="complaint_reason" name="complaint_reason" disabled="disabled" rows="3" onkeyup="CalculateFieldLength(this,&#39;complaint_char_counter&#39;,3,150,$(&#39;complaint_reason_select&#39;).value==500);" onchange="CalculateFieldLength(this,&#39;complaint_char_counter&#39;,3,150,$(&#39;complaint_reason_select&#39;).value==500);" title="Complaint"></textarea>
+      </div>
+      <div id="complaint_info">
+        <script type="text/javascript" id="validate_complaint_reason">/*<![CDATA[*/ mqGlobal.AddOnReady(function() {V.push(['complaint_reason',2,'The length must range from 3 to 150 characters.',3,150]);}); /*]]>*/</script>
+        <span id="complaint_error" class="field-validation-error" style="display: none;">Error ocured. Try send complaint later.</span>
+      </div>
+    </div>
+    <div class="complaint-window__item complaint-window__btns">
+
+      <input type="submit" class="button button_green" value="Save" onclick="SendComplaint(); return false;">
+
+      <button type="button" class="button button_white" value="Cancel" onclick="CloseComplaintForm();">Cancel</button>
+    </div>
+</form></div>
+
+
+  
+
+          <div style="margin: 6px 0 -3px 0; position: relative;">
+            <a href="https://www.mql5.com/en/blogs" class="forum-root" title="Root" deluminate_imagetype="png"></a>/<a href="https://www.mql5.com/en/blogs/other" class="forum-category" title="Category: Other" deluminate_imagetype="png"></a>              /
+              <span class="paginatorEx" style="margin-left: 4px;"><a class="selected" href="https://www.mql5.com/en/blogs/post/687043">1</a><a href="https://www.mql5.com/en/blogs/post/687043/page2">2</a>      
+</span>
+            <div style="position: absolute; top: 1px; right: 0;">
+                <a href="https://www.mql5.com/en/blogs/post/687043#edit_form" class="newComment" style="text-decoration: none; border-bottom: 1px dotted;" onclick="return toggleNewMessage();" title="New comment">Your comment</a>
+            </div>
+          </div>
+        </div>
+        <div style="margin: 0 8px">
+          <a id="edit_form"></a>
+          <div id="newmessage" style="display: none; padding: 0 8px; margin: 10px -8px 0 -8px; overflow: hidden">
+            
+
+<script type="text/javascript">/*<![CDATA[*/ if(! window.V) var V=[]; /*]]>*/</script>
+<form method="POST" action="https://www.mql5.com/en/comments/6/687043/0/handleComment/page1/20-21" onsubmit="var result = Validate(this); if(result) { preventDoubleSubmit(this); } return result;" autocomplete="off" enctype="multipart/form-data"><input type="hidden" name="__signature" value="e721a406c1b3741e9ca4082f62057af8">
+  <div>
+    <input type="hidden" value="0" id="edit_id" name="id">
+    <input type="hidden" value="12733" name="parent_id">
+    <input type="hidden" value="" name="return_path">
+<script type="text/javascript" src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/dalet.en.12e2ae246bc523b35039efc8cd9304e3.js.descargar"></script><div class="dalet__container dalet-https" style="width: 100%; height: 400px;"><div class="dalet__editor-area"><textarea id="body" autocomplete="off" name="body" style="display: none;" class="dalet__textarea" spellcheck="false"></textarea><div id="body_toolbar_panel" class="dalet__float-panel dalet__float-panel_toolbar"><div class="patch"></div><form action="javascript:void(0);"></form><div class="dalet__button-area"><input type="button" value="Cancel" class="button button_white"><input type="button" name="DaletInsertButton" id="body_dalet-btn-insertbutton" value="Insert" class="button"></div></div><div id="body_toolbar_panel_storage" style="display: none;"></div><iframe id="dalet_body" class="dalet__editor" frameborder="0" src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/saved_resource.html"></iframe><input type="hidden" name="rte_frame_uid" value="PGLZB"><div class="autosave-indicator" style="display: none;"></div><div class="dalet__drag-and-drop dalet__drag-and-drop_hidden"><span class="dalet__drag-and-drop__title">Upload image</span></div></div><div class="dalet__toolbar" id="toolbar_body"><div id="body_dalet-btn-undo" class="dalet__btn_disabled dalet__btn dalet__btn_undo" title="Undo (Ctrl+Z)"><i class="dalet__icon dalet__icon_undo" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-redo" class="dalet__btn_disabled dalet__btn dalet__btn_redo" title="Redo (Ctrl+Y)"><i class="dalet__icon dalet__icon_redo" deluminate_imagetype="png"></i></div><span class="dalet__separator"></span><div class="dalet__group"><div id="body_dalet-btn-unorderedlist" class="dalet__group__btn-active dalet__btn dalet__btn_unorderedlist" title="Bulleted list"><i class="dalet__icon dalet__icon_unorderedlist" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-orderedlist" class="dalet__btn dalet__btn_orderedlist" title="Numbered list"><i class="dalet__icon dalet__icon_orderedlist" deluminate_imagetype="png"></i></div><div class="dalet__group__arrow"><div class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></div></div></div><div class="dalet__group"><div id="body_dalet-btn-indent" class="dalet__group__btn-active dalet__btn dalet__btn_indent" title="Increase indent"><i class="dalet__icon dalet__icon_indent" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-outdent" class="dalet__btn dalet__btn_outdent" title="Decrease indent"><i class="dalet__icon dalet__icon_outdent" deluminate_imagetype="png"></i></div><div class="dalet__group__arrow"><div class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></div></div></div><span class="dalet__separator"></span><div id="body_dalet-btn-hr" class="dalet__btn dalet__btn_hr" title="Horizontal line (Ctrl+H)"><i class="dalet__icon dalet__icon_hr" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-link" class="dalet__btn dalet__btn_link" title="Link (Ctrl+K)"><i class="dalet__icon dalet__icon_link" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-user" class="dalet__btn dalet__btn_user" title="User link (Alt+U)"><i class="dalet__icon dalet__icon_user" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-image" class="dalet__btn dalet__btn_image" title="Image (Alt+I)"><i class="dalet__icon dalet__icon_image" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-video" class="dalet__btn dalet__btn_video" title="Video"><i class="dalet__icon dalet__icon_video" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-table" class="dalet__btn dalet__btn_table" title="Insert table (Alt+T)"><i class="dalet__icon dalet__icon_table" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-sourcecode" class="dalet__btn dalet__btn_sourcecode" title="Code (Alt+S)"><i class="dalet__icon dalet__icon_sourcecode" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-chart" class="dalet__btn dalet__btn_chart" title="Chart"><i class="dalet__icon dalet__icon_chart" deluminate_imagetype="png"></i></div><span class="dalet__separator"></span><div class="dalet__btn_list dalet__btn_styles" id="body_dalet-btn-styles" title="Style"><i class="dalet__icon dalet__icon_styles" deluminate_imagetype="png"></i><span class="dalet__btn-arrow"><i class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></i></span></div><div class="dalet__group"><div id="body_dalet-btn-bold" class="dalet__group__btn-active dalet__btn dalet__btn_bold" title="Bold (Ctrl+B)"><i class="dalet__icon dalet__icon_bold" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-italic" class="dalet__btn dalet__btn_italic" title="Italic Ctrl+I"><i class="dalet__icon dalet__icon_italic" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-underline" class="dalet__btn dalet__btn_underline" title="Underline Ctrl+U"><i class="dalet__icon dalet__icon_underline" deluminate_imagetype="png"></i></div><div class="dalet__group__arrow"><div class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></div></div></div><div id="body_dalet-btn-fontcolor" class="dalet__btn_list dalet__btn_fontcolor" title="Text color"><span class="dalet_color-mark" style="background-color: rgb(0, 0, 0);"></span><i class="dalet__icon dalet__icon_fontcolor" deluminate_imagetype="png"></i><span class="dalet__btn-arrow"><i class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></i></span></div><div id="body_dalet-btn-backgroundcolor" class="dalet__btn_list dalet__btn_backgroundcolor" title="Background color"><span class="dalet_color-mark" style="background-color: rgb(255, 255, 255);"></span><i class="dalet__icon dalet__icon_backgroundcolor" deluminate_imagetype="png"></i><span class="dalet__btn-arrow"><i class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></i></span></div><span class="dalet__separator"></span><div class="dalet__group"><div id="body_dalet-btn-alignleft" class="dalet__group__btn-active dalet__btn dalet__btn_alignleft" title="Left justify (Ctrl+L)"><i class="dalet__icon dalet__icon_alignleft" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-aligncenter" class="dalet__btn dalet__btn_aligncenter" title="Center justify (Ctrl+E)"><i class="dalet__icon dalet__icon_aligncenter" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-alignright" class="dalet__btn dalet__btn_alignright" title="Right justify (Ctrl+R)"><i class="dalet__icon dalet__icon_alignright" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-alignjustify" class="dalet__btn dalet__btn_alignjustify" title="Block justify(Ctrl+J)"><i class="dalet__icon dalet__icon_alignjustify" deluminate_imagetype="png"></i></div><div class="dalet__group__arrow"><div class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></div></div></div><span class="dalet__separator"></span><div class="dalet__group"><div id="body_dalet-btn-clearstyles" class="dalet__group__btn-active dalet__btn dalet__btn_clearstyles" title="Clear styles"><i class="dalet__icon dalet__icon_clearstyles" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-insertfrompocket" class="dalet__btn dalet__btn_insertfrompocket" title="Insert from pocket/internal clipboard"><i class="dalet__icon dalet__icon_insertfrompocket" deluminate_imagetype="png"></i></div><div id="body_dalet-btn-autosave" class="dalet__btn_list dalet__btn_autosave" title="Autosaving"><i class="dalet__icon dalet__icon_autosave" deluminate_imagetype="png"></i><span class="dalet__btn-arrow"><i class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></i></span></div><div class="dalet__group__arrow"><div class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></div></div></div><span class="dalet__separator"></span><div class="dalet__btn dalet__btn_translate" id="body_dalet-btn-translate" title="Translate the content into another language"><div class="dalet__translate__btn"><span class="dalet__translate__label">Translate into</span><span class="dalet__translate__caption">EN</span></div><span class="dalet__btn-arrow"><i class="dalet__icon dalet__icon_arrow" deluminate_imagetype="png"></i></span></div><span class="dalet__separator"></span><div id="body_dalet-btn-mode" class="dalet__btn dalet__btn_mode" title="Editing mode (F12)"><i class="dalet__icon dalet__icon_mode" deluminate_imagetype="png"></i></div><span class="dalet__separator"></span><div id="body_dalet-btn-fullscreen" class="dalet__btn dalet__btn_fullscreen" title="Expand"><i class="dalet__icon dalet__icon_fullscreen" deluminate_imagetype="png"></i></div></div><div class="dalet__float-panel dalet__float-panel_styles" style="display: none;"><div class="dalet__styles-panel__col"><div class="dalet__styles-panel__item" data-index="-1">Normal text<span class="dalet__float-panel__hotkey">(Ctrl+1)</span></div><div data-index="0" class="dalet__styles-panel__item"><h3>Heading</h3><span class="dalet__float-panel__hotkey">(Ctrl+2)</span></div><div data-index="4" class="dalet__styles-panel__item"><span class="stroke">Strikeout</span><span class="dalet__float-panel__hotkey">(Ctrl+6)</span></div><div data-index="5" class="dalet__styles-panel__item"><span class="important">Important</span><span class="dalet__float-panel__hotkey">(Ctrl+7)</span></div><div data-index="6" class="dalet__styles-panel__item"><span class="small">Small</span><span class="dalet__float-panel__hotkey">(Ctrl+8)</span></div></div><div class="dalet__styles-panel__col dalet__styles-panel__col_right"><div data-index="1" class="dalet__styles-panel__item"><div class="fquote">Quotation</div><span class="dalet__float-panel__hotkey">(Ctrl+3)</span></div><div data-index="2" class="dalet__styles-panel__item"><div class="atten">Warning</div><span class="dalet__float-panel__hotkey">(Ctrl+4)</span></div><div data-index="3" class="dalet__styles-panel__item"><div class="code">Code</div><span class="dalet__float-panel__hotkey">(Ctrl+5)</span></div></div></div><div class="dalet__float-panel dalet__float-panel_translate" style="display: none;"><div class="dalet__translate__item"><i class="dalet__float-panel__label">EN</i> English</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">CN</i> Chinese</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">RU</i> Russian</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">ES</i> Spanish</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">PT</i> Portuguese</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">JA</i> Japanese</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">DE</i> German</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">KO</i> Korean</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">FR</i> French</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">IT</i> Italian</div><div class="dalet__translate__item"><i class="dalet__float-panel__label">TR</i> Turkish</div></div></div><script type="text/javascript">if(! window.RTE) window.RTE = [];window.RTE.push({id:'body',style:['https://c.mql5.com/styles/core.918bf4170728457a621b90766ead0982.css'],formatBlock:true,styleAlign:true,imageWidth:750,movieUpload:null,noMedia:false,userSearch:true,uid:'PGLZB',addUserClick:true,staticHost:'https://c.mql5.com',https:true,toolbar:['Undo','Redo','-',['UnorderedList','OrderedList'],['Indent','Outdent'],'-','Hr','Link','User','Image','Video','Table','SourceCode','Chart','-','Styles',['Bold','Italic','Underline'],'FontColor','BackgroundColor','-',['AlignLeft','AlignCenter','AlignRight','AlignJustify'],'-',['ClearStyles','InsertFromPocket','AutoSave'],'-','Translate','-','Mode','-','FullScreen'],symbols:[['EURUSD','Euro vs US Dollar'],['GBPUSD','Great Britain Pound vs US Dollar'],['USDJPY','US Dollar vs Japanese Yen'],['AUDUSD','Australian Dollar vs US Dollar'],['USDCAD','US Dollar vs Canadian Dollar'],['USDCHF','US Dollar vs Swiss Franc'],['EURJPY','Euro vs Japanese Yen'],['XAUUSD','Gold vs US Dollar'],['EURGBP','Euro vs Great Britain Pound '],['NZDUSD','New Zealand Dollar vs US Dollar']],symbolsUrl:'/en/quotes/symbols/quick',chartsHost:'trade.mql5.com'});</script>      <div class="editorError">
+        <script type="text/javascript" id="validate_body">/*<![CDATA[*/ mqGlobal.AddOnReady(function() {V.push(['body',1,'Enter the text of your post']);});mqGlobal.AddOnReady(function() {V.push(['body',17,'Enter the text of your post']);});mqGlobal.AddOnReady(function() {V.push(['body',2,'Message may not exceed 64000 characters',0,64000]);});mqGlobal.AddOnReady(function() {V.push(['body',13,'MQL5.com is upgrading... Do not refresh the page and try to save your changes a few minutes later.']);}); /*]]>*/</script>
+      </div>
+  <div class="comment-edit__bottom ui">
+    <div id="multiattaches" style="text-align: left;" class="floatedAttaches">
+  
+  <a id="newAttaches_link" href="javascript: void(openAttachments(&#39;multiattaches&#39;,&#39;newAttaches&#39;))" class="attachLink" title="Attach a file" deluminate_imagetype="png">Attach file</a><div id="newAttaches" style="display: none;"><div id="at_1"><input type="file" name="attachedFile" id="_1" class="attachInput" size="63" accept=".zip,.txt,.log,.mqh,.ex5,.mq5,.mq4,.ex4,.mt5,.set,.tpl,.cl,.py,.sqlite,.csv,.ipynb,.gif,.png,.jpg,.jpeg"></div></div>
+  <p id="newAttaches_info" class="new-attaches__info">Attach up to 32 files maximum 16 Mb per upload&nbsp;(.zip .txt .log .mqh .ex5 .mq5 .mq4 .ex4 .mt5 .set .tpl .cl .py .sqlite .csv .ipynb .gif .png .jpg .jpeg)</p>
+</div>
+
+<script type="text/javascript">
+        mqGlobal.AddOnLoad(function() {
+              window.deleteLabel = "delete";
+              Attach.AllowedExtensions = '.zip,.txt,.log,.mqh,.ex5,.mq5,.mq4,.ex4,.mt5,.set,.tpl,.cl,.py,.sqlite,.csv,.ipynb,.gif,.png,.jpg,.jpeg';
+              Attach.alowedExtensionsLabel = 'Invalid file format';
+              Attach.MaxSize = 16 * 1024 * 1024;
+              Attach.maxSizeLabel = "The file size exceeds the maximum allowed value";
+              Attach.createNewContainer();
+            });
+</script>
+
+    <div style="text-align: left;"><script type="text/javascript" id="validate_attachedFile">/*<![CDATA[*/ mqGlobal.AddOnReady(function() {V.push(['attachedFile',16,'The \'{filename}\' file size ({filesize}) exceeds the maximum allowed value',16777216]);}); /*]]>*/</script></div>
+    <span style="display: block;" id="edit_cnew_cmd">
+        <span class="followRules">Please follow the <a href="https://www.mql5.com/en/about/terms" target="_blank">rules</a></span>
+      <input type="submit" name="addComment" class="button button_green button_small" value="Add your comment" title="Add your comment">
+    </span>
+    <span style="display: none;" id="edit_csave_cmd">
+      <input type="submit" name="updateComment" class="buttonActive" style="width: 150px;" value="Update" deluminate_imagetype="png">
+      <input type="button" onclick="return toggleNewMessage();" class="buttonInactive" style="width: 150px;" value="Cancel" deluminate_imagetype="png">
+    </span>
+  </div>
+    <div style="clear: both;"></div>
+  </div>
+    
+</form>
+
+          </div>
+        </div>
+        <div class="twoColumns limited">
+          
+
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749816">User Manual: RSI Divergence Trader PRO 1.65</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics/trading-systems">Trading Systems</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>10</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5470B175-AD0C.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749430">Magic Moving DEMO</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics">Analytics &amp; Forecasts</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>98</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>3</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/62389C1D-04BE.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749486">My forex funds. "My forex funds" - how to properly distribute and manage?</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/trading/strategies">Trading Strategies</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>84</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5D5AD1CC-08B9.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/748749">Input Parameters of PZ Mean Reversion Indicator</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/other">Other</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>246</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>2</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/61D7051E-2D1E.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/748381">Quasimodo forex trading or H&amp;S automation – [QM indicator mt4 mt5]</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/trading/strategies">Trading Strategies</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>300</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>4</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/747691">Mt4 Indicator For Forex</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/trading/strategies">Trading Strategies</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>109</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/625C2BE2-CE8F.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/747533">USER GUIDE - PLUTUS GRID EA</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/trading">My Trading</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>474</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5F48220E-672D.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/747070">Trade Assistant for MT4</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/other">Other</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>141</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/avatar_na2.png" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/744791">Trade With M5 Trend Trading System</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics">Analytics &amp; Forecasts</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>57</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/56D58E26-6A47.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/742394">Detroit Trade EA V.2.2 - TESTING ON A REAL TICK STORY!</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/trading/statistics">Statistics</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>390</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/52E29441-6BDD.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749834">Trade with Regularity in the Financial Market</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics/trading-systems">Trading Systems</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>51</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B02EA61-EC82.gif" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749833">Rating analyzes by robot «SM01Forex» on ﴾1401/04/21 20:11:07 S.H.GMT﴿</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics">Analytics &amp; Forecasts</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>59</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B02EA61-EC82.gif" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749831">﴾1401/04/22 03:45:45 S.H.GMT﴿EA:SM01Forex predicted:38%Scalp∫MN1→Buy≈تسه9905(Rank=23%-Weighted ave.=28%)</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics">Analytics &amp; Forecasts</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>73</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/52E29441-6BDD.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749822">Powerful Non Repainting Supply Demand Zone MetaTrader Indicator</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics/trading-systems">Trading Systems</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>76</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/52E29441-6BDD.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749821">Advanced Harmonic Pattern Detection Indicator</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics/trading-systems">Trading Systems</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>68</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5E258A0C-AA59.PNG" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749806">AIS GRID MACHINE MT5 =LIVE DEMO VERSION=</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/other">Other</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>62</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/52E29441-6BDD.jpg" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749820">Volume Spread Analysis Indicator List</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics/trading-systems">Trading Systems</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>67</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+    <div class="blogPostItem short">
+      <div class="container">
+        <div class="avatar"><img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/5B02EA61-EC82.gif" alt="" loading="lazy" width="60" height="60"></div>
+        <h2><a href="https://www.mql5.com/en/blogs/post/749818">﴾1401/04/20 21:47:07 S.H.GMT﴿EA:SM01Forex predicted:24%Scalp∫M6→Buy≈فنورد(Rank=96%-Weighted ave.=72%)</a></h2>
+
+          <div class="blogPostInfo">
+            <a class="category" href="https://www.mql5.com/en/blogs/analytics">Analytics &amp; Forecasts</a>
+            <ul class="info">
+              <li title="Views"><i class="icon views" deluminate_imagetype="png"></i>101</li>
+              <li title="Comments"><i class="icon comments" deluminate_imagetype="png"></i>0</li>
+                <li title="Like"><i class="icon likes" deluminate_imagetype="png"></i>1</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+
+        </div>
+    <div style="height: 1px; overflow: hidden; clear: both;"></div>
+  </div>    <div class="column right">
+      
+  <ul class="thumbs">
+      <li>
+        <a href="https://www.mql5.com/en/blogs/post/749831" class="image">
+            <i class="views" title="Views">73</i>
+            <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/splash-preview-749831.jpg" alt="﴾1401/04/22 03:45:45 S.H.GMT﴿EA:SM01Forex predicted:38%Scalp∫MN1→Buy≈تسه9905(Rank=23%-Weighted ave.=28%)" title="﴾1401/04/22 03:45:45 S.H.GMT﴿EA:SM01Forex predicted:38%Scalp∫MN1→Buy≈تسه9905(Rank=23%-Weighted ave.=28%)" loading="lazy" width="280" height="180"><br>
+          ﴾1401/04/22 03:45:45 S.H.GMT﴿EA:SM01Forex predicted:38%Scalp∫MN1→Buy≈تسه9905(Rank=23%-Weighted ave.=28%)
+        </a>
+      </li>
+      <li>
+        <a href="https://www.mql5.com/en/blogs/post/749833" class="image">
+            <i class="views" title="Views">59</i>
+            <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/splash-preview-749833.png" alt="Rating analyzes by robot «SM01Forex» on ﴾1401/04/21 20:11:07 S.H.GMT﴿" title="Rating analyzes by robot «SM01Forex» on ﴾1401/04/21 20:11:07 S.H.GMT﴿" loading="lazy" width="280" height="180"><br>
+          Rating analyzes by robot «SM01Forex» on ﴾1401/04/21 20:11:07 S.H.GMT﴿
+        </a>
+      </li>
+      <li>
+        <a href="https://www.mql5.com/en/blogs/post/749818" class="image">
+            <i class="views" title="Views">101</i>
+            <img src="./Metaeditor Dark Theme - Traders&#39; Blogs_files/splash-preview-749818.jpg" alt="﴾1401/04/20 21:47:07 S.H.GMT﴿EA:SM01Forex predicted:24%Scalp∫M6→Buy≈فنورد(Rank=96%-Weighted ave.=72%)" title="﴾1401/04/20 21:47:07 S.H.GMT﴿EA:SM01Forex predicted:24%Scalp∫M6→Buy≈فنورد(Rank=96%-Weighted ave.=72%)" loading="lazy" width="280" height="180"><br>
+          ﴾1401/04/20 21:47:07 S.H.GMT﴿EA:SM01Forex predicted:24%Scalp∫M6→Buy≈فنورد(Rank=96%-Weighted ave.=72%)
+        </a>
+      </li>
+  </ul>
+
+  <ul class="tags">
+      <li><a href="https://www.mql5.com/en/blogs/tags/technicalanalysis">technical analysis</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/gold">gold</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/175">eurusd</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/eurusd">EUR/USD</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/fed">Fed</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/forex">forex</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/forexnews">forex news</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/gbpusd">GBP/USD</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/usdjpy">usd/jpy</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/ecb">ECB</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/trading">Trading</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/crude-oil">crude oil</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/metals">metals</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/ichimoku">Ichimoku</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/china">China</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/sp500">S&amp;P 500</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/fundamentalanalysis">fundamental analysis</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/15742">Mql5 News</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/584">AUD/USD</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/15745">Mql5 Signals</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/202">forecast</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/14">news</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/15743">Mql5 Analysis</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/16445">VistaBrokers</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/1860">usd</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/stocks">stocks</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/176">gbpusd</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/179">usdjpy</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/bitcoin">bitcoin</a></li>
+      <li><a href="https://www.mql5.com/en/blogs/tags/support">support</a></li>
+  </ul>
+
+    </div>
+</div>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://www.mql5.com/en/blogs","name":"All Blogs"}},{"@type":"ListItem","position":2,"item":{"@id":"https://www.mql5.com/en/blogs/other","name":"Other"}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.mql5.com/en/blogs/post/687043"},"thumbnailUrl":"https://c.mql5.com/6/764/splash-preview-687043-1485089257.jpg","headline":"Metaeditor Dark Theme","articleSection":"Other","keywords":["MT4","metaeditor","productivity","styles","dark theme"],"image":{"@type":"ImageObject","url":"https://c.mql5.com/6/764/splash-preview-687043-1485089257.jpg","width":1390,"height":200},"datePublished":"2017-01-17T20:11:24","dateModified":"2017-01-17T20:11:24","author":{"@type":"Person","name":"Besarion Turmanauli","url":"https://www.mql5.com/en/users/tobeone"},"publisher":{"@type":"Organization","name":"Besarion Turmanauli","url":"https://www.mql5.com/en/users/tobeone/blog","logo":{"@type":"ImageObject","url":"https://c.mql5.com/avatar/avatar_na2.png"}}}
+</script>
+
+    
+
+    </div>
+
+
+<div class="footer  desktop" id="footer">
+  <ul class="links  links_desktop">
+      <li id="navFooterCommunity">
+        <b>MQL5.community</b>
+        <ul>
+          <li><a href="https://www.mql5.com/en/trading" data-fz-event="MQL5+Footer+Trading">Online trading / WebTerminal</a></li>
+          <li><a href="https://www.mql5.com/en/code" data-fz-event="MQL5+Footer+CodeBase">Free technical indicators and robots</a></li>
+          <li><a href="https://www.mql5.com/en/articles" data-fz-event="MQL5+Footer+Articles">Articles about programming and trading</a></li>
+          <li><a href="https://www.mql5.com/en/job" data-fz-event="MQL5+Footer+Job">Order trading robots on the Freelance</a></li>
+          <li><a href="https://www.mql5.com/en/market" data-fz-event="MQL5+Footer+Market">Market of Expert Advisors and applications	</a></li>
+          <li><a href="https://www.mql5.com/en/signals" data-fz-event="MQL5+Footer+Signals">Follow forex signals</a></li>
+          <li><a href="https://www.mql5.com/en/vps" data-fz-event="MQL5+Footer+VPS">Low latency forex VPS</a></li>
+          <li><a href="https://www.mql5.com/en/forum" data-fz-event="MQL5+Footer+Forum">Traders forum</a></li>
+          <li><a href="https://www.mql5.com/en/blogs" data-fz-event="MQL5+Footer+Blogs">Trading blogs</a></li>
+          <li><a href="https://www.mql5.com/en/charts" data-fz-event="MQL5+Footer+Charts">Charts</a></li>
+        </ul>
+      </li>
+      <li id="navFooterMt5">
+        <b>MetaTrader 5</b>
+        <ul>
+          <li><a href="https://www.metatrader5.com/" data-fz-event="MQL5+Footer+MetaTrader+5"><span class="nobr">MetaTrader 5</span> Trading Platform</a></li>
+          <li><a href="https://www.metatrader5.com/en/releasenotes" data-fz-event="MQL5+Footer+MetaTrader+5"><span class="nobr">MetaTrader 5</span> latest updates</a></li>
+          <li><a href="https://www.metatrader5.com/en/news" data-fz-event="MQL5+Footer+MetaTrader+5">News, implementations and technology</a></li>
+          <li><a href="https://www.metatrader5.com/en/terminal/help" data-fz-event="MQL5+Footer+MetaTrader+5"><span class="nobr">MetaTrader 5</span> User Manual</a></li>
+          <li><a href="https://www.mql5.com/en/docs" data-fz-event="MQL5+Footer+Docs">MQL5 language of trading strategies</a></li>
+          <li><a href="https://cloud.mql5.com/" data-fz-event="MQL5+Footer+Cloud">MQL5 Cloud Network</a></li>
+          <li><a href="https://www.finteza.com/?utm_source=www.mql5.com&amp;utm_medium=cpc&amp;utm_term=cross-link&amp;utm_content=visit.finteza.com&amp;utm_campaign=0791.finteza.cross-link" data-fz-event="MQL5+Footer+Finteza" target="_blank">End-to-End Analytics</a></li>
+            <li><a href="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe?utm_source=www.mql5.com&amp;utm_campaign=download" data-fz-event="MetaTrader+5+Desktop+Download">Download <span class="nobr">MetaTrader 5</span></a></li>
+            <li><a href="https://www.metatrader5.com/en/terminal/help/start_advanced/installation" data-fz-event="MQL5+Footer+MetaTrader+5">Install Platform</a></li>
+            <li><a href="https://www.metatrader5.com/en/terminal/help/start_advanced/deinstallation" data-fz-event="MQL5+Footer+MetaTrader+5">Uninstall Platform</a></li>
+        </ul>
+
+      </li>
+    <li id="navFooterWebsite">
+        <b>Website</b>
+        <ul>
+          <li><a href="https://www.mql5.com/en/about" data-fz-event="MQL5+Footer+About">About</a></li>
+            <li><a href="https://www.mql5.com/en/wall" data-fz-event="MQL5+Footer+Wall">Timeline</a></li>
+          <li><a href="https://www.mql5.com/en/about/terms" data-fz-event="MQL5+Footer+About">Terms and Conditions</a></li>
+          <li><a href="https://www.mql5.com/en/about/autopayments" data-fz-event="MQL5+Footer+About">Recurring Payment Agreement</a></li>
+          <li><a href="https://www.mql5.com/en/about/agencyagreement" data-fz-event="MQL5+Footer+About">Agency Agreement – Offer</a></li>
+          <li><a href="https://www.mql5.com/en/about/privacy" data-fz-event="MQL5+Footer+About">Privacy and Data Protection Policy</a></li>
+          <li><a href="https://www.mql5.com/en/about/cookies" data-fz-event="MQL5+Footer+About">Cookies Policy</a></li>
+          <li>
+              <a href="https://www.mql5.com/en/contact" data-fz-event="MQL5+Footer+Contacts">Contacts and requests</a>
+          </li>
+        </ul>
+    </li>
+      <li id="navFooterDownload">
+        <b>Join us — download <span class="nobr">MetaTrader 5!</span></b>
+        <ul>
+            <li class="icon windows"><a href="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe?utm_source=www.mql5.com&amp;utm_campaign=download" data-fz-event="MetaTrader+5+Desktop+Download" title="Download MetaTrader 5 for Windows Free!">Windows</a></li>
+            <li class="icon ios"><a href="https://download.mql5.com/cdn/mobile/mt5/ios?utm_source=www.mql5.com&amp;utm_campaign=install.metaquotes" data-fz-event="MetaTrader+5+iOS+Download" target="_blank" rel="nofollow noopener" title="Download MetaTrader 5 for iPhone Free!">iPhone/iPad</a></li>
+            <li class="icon macos"><a href="https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg?utm_source=www.mql5.com&amp;utm_campaign=download" data-fz-event="MetaTrader+5+Desktop+Download" title="Download MetaTrader 5 for Mac OS Free!">Mac OS</a></li>
+            <li class="icon android"><a href="https://download.mql5.com/cdn/mobile/mt5/android?utm_source=www.mql5.com&amp;utm_campaign=install.metaquotes" data-fz-event="MetaTrader+5+Android+Download" target="_blank" rel="nofollow noopener" title="Download MetaTrader 5 Android from Google Play Free!"><span>Android</span></a></li>
+            <li class="icon huawei"><a href="https://download.mql5.com/cdn/mobile/mt5/android/app-gallery?utm_source=www.mql5.com&amp;utm_campaign=install.metaquotes" data-fz-event="MetaTrader+5+Android+Download" target="_blank" rel="nofollow noopener" title="MetaTrader 5 Android (Huawei AppGallery)"><span>Huawei</span></a></li>
+            <li class="icon linux"><a href="https://www.mql5.com/en/articles/625" data-fz-event="MetaTrader+5+Desktop+Download" target="_blank" title="MetaTrader 5 on Linux"><span>Linux</span></a></li>
+          <li class="icon tradays"><a href="https://www.tradays.com/en/download?utm_source=www.mql5.com&amp;utm_campaign=download" data-fz-event="MQL5+Footer+Download+Tradays" target="_blank" title="Tradays Economic Calendar"><span>Tradays Economic Calendar</span></a></li>
+        </ul>
+
+        <div class="footer__other">
+          <div class="footer__not-a-broker">Not a broker, no real trading accounts</div>
+          <div class="copyright">13 Anastasi Sioukri, 3105, Limassol, Cyprus</div>
+          <div class="copyright">Copyright 2000-2022, <span class="nobr">MetaQuotes Ltd</span></div>
+        </div>
+      </li>
+  </ul>
+</div>
+
+
+    <div class="shadow-layer" id="layer"></div>
+  </div>
+  <script type="text/javascript">
+  (function(a,e,f,g,b,c,d){a[b]||(a.FintezaCoreObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=!0,c.defer=!0,c.src=g,d&&d.parentNode&&d.parentNode.insertBefore(c,d))})
+    (window,document,"script","/tz/core.js","fz");
+  window.fz("register", "website", {
+    id: "sqjxkxkswybhifrohpyooonwgbvsfzmayq",
+    trackLinks: true
+  });
+  </script>
+  <script type="text/javascript">
+mqGlobal.AddOnReady(function () {
+        if (!window.likes) {
+          window.likes = new Likes();
+        }
+      });function editCommentInline(commentId)
+        {
+        if(!window.editComment)
+          return false;
+        return editComment(commentId);
+        }
+      function quoteInline(commentId)
+        {
+        if(!window.quote_forum)
+          return false;
+        return quote_forum(commentId);
+        }
+      function complaintInline(itemId,moduleId,typeId,parentModuleId)
+        {
+        if(!window.showComplaintForm)
+          return false;
+        return showComplaintForm(itemId,moduleId,typeId,parentModuleId,'06655e83c98f0ee2ee1759dcdfb8ef21');
+        }
+      mqGlobal.AddOnReady(function () {
+          if (!window.translateManager) {
+              window.translateManager = new Translate();
+          }
+
+          TimeTagProcessor();
+          if (!window.shareManager) {
+              window.shareManager = new Share();
+              }
+          window.Pocket = new PocketManager();
+          if (document.querySelectorAll) {
+              var translateElements = document.querySelectorAll(".translateMenu");
+              if (translateElements) {
+                  var i =0, count = translateElements.length;
+                  for (i; i< count; i++) {
+                      (function (i) {
+                          var contentid = dataset(translateElements[i],"contentid"),
+                              sourcelang = dataset(translateElements[i], "sourcelang"),
+                              targetlang = dataset(translateElements[i], "targetlang"),
+                              moduleid = parseInt(dataset(translateElements[i], "moduleid")),
+                              typeid = parseInt(dataset(translateElements[i], "typeid")),
+                              entityid = parseInt(dataset(translateElements[i], "entityid"));
+                          Core.AddHandler(translateElements[i], "mouseover", function()
+                          {
+                              return translateManager.SetMenu(this, contentid, sourcelang, targetlang, moduleid, typeid, entityid);
+                          });
+                      })(i);
+                  }
+              }
+          }
+          });function FriendsShort(title) {
+        this.showFriendWindow = function (linkObj, userLogin, fullName, worksAt, rating, imagePath, country, position, website) {
+          var container = createElement(null, "DIV", { className: "friendInfoContainer ui complaint-window" });
+            var leftContainer = createElement(container, "DIV", { className: "leftContainer" });
+            var avatarBlock = createElement(leftContainer, "DIV", { className: "user" });
+            createElement(avatarBlock, "IMG", { src: imagePath, width: "60", height: "60", title: fullName, loading: "lazy" });
+            var ratingBlock = createElement(avatarBlock, "SPAN", { className: "rating" });
+            ratingBlock.innerHTML = rating;
+            var detailsContainer = createElement(container, "DIV", { className: "detailsContainer" });
+            var nameBlock = createElement(detailsContainer, "P", { className: "name" });
+            nameBlock.innerHTML = fullName;
+            var worksBlock = createElement(detailsContainer, "P", { className: "works" });
+            if (position != "" || worksAt != "")
+                worksBlock.innerHTML += "Works: ";
+                    if (position != "")
+                        worksBlock.innerText += position;
+                    if (worksAt != "") {
+                        if (position != "")
+                            worksBlock.innerHTML += " ";
+                        worksBlock.innerText += "at ";
+                      if(website != "")
+                        {
+                        createElement(worksBlock, "A", { target: "_blank", href: website }).innerText = worksAt;
+                        }
+                    }
+                    var livesBlock = createElement(detailsContainer, "P", { className: "lives" });
+                    if (country != "")
+                        livesBlock.innerHTML = "Lives: " + country;
+                    createElement(container, "DIV", { className: "splitter" });
+          var operationsContainer = createElement(container, "DIV", { className: "complaint-window__item complaint-window__btns" });
+                    createElement(operationsContainer, "button",
+                        {
+                            className: "button button_green",
+                            innerText: "Add",
+                            onclick: function () { addFriendRequest(linkObj, userLogin); }
+                        });
+                    //var offset = getOffset(linkObj);
+                    //offset.top += linkObj.offsetHeight + 4;
+                    var initialWidth = 360;
+                    var initialHeight = 105;
+          window.Dialog.show(title, container, initialWidth, initialHeight, function () { Dialog.hide(); }, null, false, " ui no-bottom-margin", false, 'fixed');
+                    //var renderedSizes = getElementSize(container);
+                    //if (renderedSizes.height != initialHeight)
+                    //    Dialog.show(title, container, initialWidth, renderedSizes.height, function () { Dialog.hide(); }, offset);
+
+                };
+                    function addFriendRequest(linkObj, friendLogin) {
+                      Ajax.post('/en/users/polux.brayz/friends',{
+                        user : friendLogin,
+                        act : "add",
+                        __signature : '6ac3840127d8ef847e99accea455d087'
+                      },false,
+                      {
+                        onready : function ()
+                          {
+                          linkObj.parentNode.style.display = "none";
+                          Dialog.hide();
+                          }
+                      });
+                      };
+            }
+            window.friendShort = new FriendsShort('Do you want to add user to friends?');if(!window.paginatorOnLoad)
+        {
+          mqGlobal.AddOnLoad(function()
+          {
+            setHotKeysPaginator(
+              '',
+              '',
+              '/en/blogs/post/687043/page2'
+            );
+          });
+          window.paginatorOnLoad = true;
+        }mqGlobal.AddOnLoad(function () {
+        MQTE.HotKey("body", 13, true, false, false, function () {
+          MQTE.Flush("body");
+          var buttons = $('newmessage').getElementsByTagName("input");
+          if (!buttons || !buttons.length)
+            return;
+          for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].type == "submit" && (buttons[i].clientWidth || buttons[i].offsetWidth)) {
+              buttons[i].click();
+              break;
+            }
+          }
+        });
+      });mqGlobal.AddOnReady(function () {
+        shareBlock();
+      });mqGlobal.AddOnReady(function () {
+        var chatSettings = {
+          'mode': 'prod',
+          'complaintKey': "2df825c423509788a2a95014d01f33d8",
+          'userId': "A0FB190000000000",
+          'userLogin': 'polux.brayz',
+          'language': 'en',
+          'playSounds': true,
+          'accessLevel': 1,
+          'friendlyHosts': [".gov.uk",".wikipedia.org",".zerohedge.com",".metatrader4.com",".metatrader5.com",".mql4.com",".mql5.com",".mql5.com",".mql5.dev",".metaquotes.net",".teamwox.com",".forex-tsd.com",".finteza.com",".adp.com",".bakerhughes.com",".bankofcanada.ca",".bankofengland.co.uk",".bba.org.uk",".boj.or.jp",".brc.org.uk",".cao.go.jp",".chicagofed.org",".cmhc-schl.gc.ca",".conference-board.org",".consilium.europa.eu",".customs.go.jp",".dallasfed.org",".ec.europa.eu",".ecb.europa.eu",".halifax.co.uk",".iea.org",".imf.org",".instituteforsupplymanagement.org",".ivey.uwo.ca",".kansascityfed.org",".markiteconomics.com",".meti.go.jp",".mhlw.go.jp",".mni-indicators.com",".mof.go.jp",".nahb.org",".nar.realtor",".newyorkfed.org",".niesr.ac.uk",".opec.org",".parliament.uk",".philadelphiafed.org",".rics.org",".stat.go.jp",".statcan.gc.ca",".us.spindices.com",".zew.de",".youtube.com",".lst.to",".tradays.com"],
+          'readonly': false,
+          'type': 0,
+          'token': '9ef564605ac40e216488545e0d9679947717095aef2c97c698c06ea9fa1c2ec43d50d2702dda79a464dd536cb034551562297a57bd7dc7b4d481243204e110cd65f049ee5f8a9f08aada5c71a69b32a4a8f3a83583f00b2bc89f54c8794f7fbc',
+          'url': 'msg2.mql5.com',
+          'version': 26,
+          'uniq': "460158C70DF2D71F",
+        };
+
+            window.initChatWidget(chatSettings);
+                });
+      if(!window.dateToTextLocalization) window.dateToTextLocalization = {'m1':'{0} minute ago','m2':'{0} minutes ago','m3':'{0} minutes ago','h1':'{0} hour ago','h2':'{0} hours ago','h3':'{0} hours ago','lang':'en'};mqGlobal.AddOnLoad(function(){window.keywordMainFormSuggests = new Suggestions("keyword","https://search.mql5.com/api/suggest","en",function(){$('main_search_form').onsubmit();});});window.fz("show","bfogggabsofabcpxuzmgaibarmaxasdrj");function complaintInline(itemId, moduleId, typeId, parentModuleId) {
+        if (!window.showComplaintForm)
+          return false;
+        return showComplaintForm(itemId, moduleId, typeId, parentModuleId,'6a921d460ff281016147106dddab1486');
+      }      mqGlobal.AddOnLoad(function () {
+             Mql5Cookie.init('mql5.com','5044410669587420959');
+      });
+      if (typeof Attach !== "undefined")
+        Attach.setAcceptFilter(".zip, .txt, .log, .mqh, .ex5, .mq5, .mq4, .ex4, .mt5, .set, .tpl, .cl, .py, .sqlite, .csv, .ipynb, .gif, .png, .jpg, .jpeg");
+  </script>
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.mql5.com",
+      "logo": "https://c.mql5.com/i/community/logo_mql5-2.png",
+      "sameAs": [
+        "https://www.facebook.com/mql5.community",
+        "https://www.twitter.com/mql5com",
+        "https://www.youtube.com/user/MetaQuotesOfficial"
+       ]
+    }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MQL5.Community",
+  "url": "https://www.mql5.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.mql5.com/en/search?keyword={keyword}",
+    "query-input": "required name=keyword"
+  }
+}
+  </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"SiteNavigationElement","position":1,"name":"Forum","description":"Discussions of trading strategies and algorithmic trading. MQL5.community  the largest forex forum","url":"https://www.mql5.com/en/forum"},{"@type":"SiteNavigationElement","position":2,"name":"Market","description":"MetaTrader Market - a Market of trading robots, indicators, trading books and magazines","url":"https://www.mql5.com/en/market"},{"@type":"SiteNavigationElement","position":3,"name":"Signals","description":"Social trading, copy trading and account monitoring with MetaTrader - Trading Signals on MQL5.com","url":"https://www.mql5.com/en/signals"},{"@type":"SiteNavigationElement","position":4,"name":"Freelance","description":"Order trading robots, technical indicators and algorithmic trading applications. Forex jobs. Freelance on MQL5.com","url":"https://www.mql5.com/en/job"},{"@type":"SiteNavigationElement","position":5,"name":"Quotes","description":"","url":"https://www.mql5.com/en/quotes/overview"},{"@type":"SiteNavigationElement","position":6,"name":"WebTerminal","description":"WebTerminal for the MetaTrader trading platform. Online forex trading.","url":"https://www.mql5.com/en/trading"},{"@type":"SiteNavigationElement","position":7,"name":"Calendar","description":"","url":"https://www.mql5.com/en/economic-calendar"},{"@type":"SiteNavigationElement","position":8,"name":"VPS","description":"","url":"https://www.mql5.com/en/vps"},{"@type":"SiteNavigationElement","position":9,"name":"Articles","description":"","url":"https://www.mql5.com/en/articles"},{"@type":"SiteNavigationElement","position":10,"name":"CodeBase","description":"Download trading robots, technical indicators and scripts with source code - MQL5 Code Base for MetaTrader 5","url":"https://www.mql5.com/en/code"},{"@type":"SiteNavigationElement","position":11,"name":"Documentation","description":"MetaQuotes Language 5 (MQL5) Reference - Documentation on MQL5.com","url":"https://www.mql5.com/en/docs"}]}
+</script>
+
+
+</body></html>

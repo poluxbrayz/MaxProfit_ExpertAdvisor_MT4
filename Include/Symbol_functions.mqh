@@ -144,21 +144,22 @@ bool FirstBar(){
    _OpenSell[0]=OpenSell;
    _OpenBuy[1]=false;
    _OpenSell[1]=false;
-   int CountPeriodsH4=MathMax(CountPeriodsH4ofD1,CountPeriodsTrend[TF_H4]);
+   int CountPeriodsH4=MathMax(CountPeriodsH4ofD1_PrevPeriodsH4,CountPeriodsTrend[TF_H4]);
    //int CountPeriodsH4=CountPeriodsTrend[TF_H4];
    
    if(ArraySearch(StartedSymbols,iSymbol)==false){
-      if(CountPeriodsTrend[TF_D1]==1 && CountPeriodsH4ofD1==1){
+      if(CountPeriodsTrend[TF_D1]==1 && CountPeriodsH4ofD1_PrevPeriodsH4==1){
          ArrayResize(StartedSymbols,ArraySize(StartedSymbols)+1);
          StartedSymbols[ArraySize(StartedSymbols)-1]=iSymbol;
       }else{
+         //Print("FirstBar=false: ArraySearch(StartedSymbols,iSymbol)==false; CountPeriodsTrend[TF_D1]=",CountPeriodsTrend[TF_D1],", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4); 
          _FirstBar=false;
          return _FirstBar;
       }
    }
       
    if(_OpenBuy[0]==false && _OpenSell[0]==false){
-   
+       //Print("FirstBar=false: _OpenBuy[0]==",_OpenBuy[0]," && _OpenSell[0]",_OpenSell[0]);
        _FirstBar=false;
       
    }else if(IsTesting()==true){

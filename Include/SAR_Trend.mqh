@@ -55,8 +55,8 @@ void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
       }
    }else if(_MACD_TF<=TF_D1){
       Get_SAR_TF=TF_H4;
-      SAR_Step=0.06;  // 1/18
-      SAR_Maximun=0.06;
+      SAR_Step=0.08;  // 1/12
+      SAR_Maximun=0.08;
    }else if(_MACD_TF==TF_W1){
       SAR_Step=0.14;  // 1/7
       SAR_Maximun=0.14;
