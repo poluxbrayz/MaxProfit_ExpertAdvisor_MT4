@@ -178,7 +178,11 @@ void SetLimits(int ShiftM1=0){
    D1_Limit_RSI=iRSI(iSymbol,TF[TF_D1],D1_Limit_Periods,PRICE_CLOSE,ShiftD1);
    H4_Limit_RSI=iRSI(iSymbol,TF[TF_H4],H4_Limit_Periods,PRICE_CLOSE,ShiftH4);
    
-   bool IsTrend=!(CountPeriodsTrend[TF_D1]==1 && CountPeriodsH4ofD1==1 && CountPeriodsTrend[TF_H4]==1 && CountPeriodsH1ofH4<=4);
+   bool IsTrend=!(CountPeriodsTrend[TF_D1]==1 && CountPeriodsH4ofD1_PrevPeriodsH4==1 && CountPeriodsTrend[TF_H4]==1 && CountPeriodsH1ofH4_PrevPeriodsH1<=3);
+   
+   if(!IsTrend){
+      Print("SetLimits=false, IsTrend=",IsTrend,", CountPeriodsTrend[TF_D1]=",CountPeriodsTrend[TF_D1],", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", CountPeriodsTrend[TF_H4]=",CountPeriodsTrend[TF_H4],", CountPeriodsH1ofH4_PrevPeriodsH1=",CountPeriodsH1ofH4_PrevPeriodsH1);
+   }
    
    UnderLimitBuy=MathFloor(D1_Limit_RSI)<=D1_Limit_Up && CountPeriodsTrend[TF_H4]<=MaxPeriodsH4 && IsTrend==true;
    OverLimitSell=MathCeil(D1_Limit_RSI)>=D1_Limit_Down && CountPeriodsTrend[TF_H4]<=MaxPeriodsH4 && IsTrend==true;
@@ -548,16 +552,16 @@ void SetTakeProfit(double Order_Open_Price){
    PriceTakeProfit=0;  
    double RSIH4=iRSI(iSymbol,TF[TF_H4],4,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double MFIH4=iMFI(iSymbol,TF[TF_H4],4,0);
-   double RSIH1=iRSI(iSymbol,TF[TF_H1],8,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
-   double MFIH1=iMFI(iSymbol,TF[TF_H1],8,0);
+   double RSIH1=iRSI(iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double MFIH1=iMFI(iSymbol,TF[TF_H1],4,0);
    TakeProfit=AverageSpreadNumPeriod(TF_H1);
    Print("SetTakeProfit RSIH4=",RSIH4,", MFIH4=",MFIH4,", RSIH1=",RSIH1,", MFIH1=",MFIH1);
-   if(MACD_Trend[TF_H1]=="Up" && MathCeil(RSIH4)>=75 && MathCeil(MFIH4)>=70 && MathCeil(RSIH1)>=75 && MathCeil(MFIH1)>=70){
+   if(MACD_Trend[TF_H1]=="Up" && MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=65 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=65){
       //double Band_Upper=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_HIGH,MODE_UPPER,0);
       //PriceTakeProfit=NormalizeDouble(MathMax(Order_Open_Price,Band_Upper)+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
    }
-   else if(MACD_Trend[TF_H1]=="Down" && MathFloor(RSIH4)<=25 && MathFloor(MFIH4)<=30 && MathFloor(RSIH1)<=25 && MathFloor(MFIH1)<=30){
+   else if(MACD_Trend[TF_H1]=="Down" && MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=35 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=35){
       //double Band_Lower=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_LOW,MODE_LOWER,0);
       //PriceTakeProfit=NormalizeDouble(MathMin(Order_Open_Price,Band_Lower)-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
@@ -748,7 +752,7 @@ double AverageSpreadNumPeriod(int _MACD_TF,int Periods=1){
       int TotalPeriods=AverageDaysPeriod[_MACD_TF]*24*60/TF[_MACD_TF],CountPeriods=0;
       bool SpreadUp,SpreadDown;
       double MA0=0,MA1=0;
-      double MaxSpread_Divisor=(_MACD_TF<=TF_H4)? 12 : 6;
+      double MaxSpread_Divisor=20;
       
       if(iBars(iSymbol,TF[_MACD_TF])<TotalPeriods) 
          TotalPeriods=iBars(iSymbol,TF[_MACD_TF]);
