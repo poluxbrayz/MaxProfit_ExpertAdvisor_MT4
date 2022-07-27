@@ -752,8 +752,7 @@ double AverageSpreadNumPeriod(int _MACD_TF,int Periods=1){
       int TotalPeriods=AverageDaysPeriod[_MACD_TF]*24*60/TF[_MACD_TF],CountPeriods=0;
       bool SpreadUp,SpreadDown;
       double MA0=0,MA1=0;
-      double MaxSpread_Divisor=20;
-      
+          
       if(iBars(iSymbol,TF[_MACD_TF])<TotalPeriods) 
          TotalPeriods=iBars(iSymbol,TF[_MACD_TF]);
          
@@ -770,13 +769,14 @@ double AverageSpreadNumPeriod(int _MACD_TF,int Periods=1){
          
          if(SpreadUp==true || SpreadDown==true){
             SpreadPeriod=MathAbs(SpreadNumPeriod(_MACD_TF,Periods,i,true));
-            if(SpreadPeriod>0 && SpreadPeriod>=MaxSpread/MaxSpread_Divisor){
+            if(SpreadPeriod>0 && SpreadPeriod>=MaxSpread/20 && (CountPeriods==0 || (CountPeriods>=1 && SpreadPeriod<=AverageSpreadNumPeriod*10))){
                SumSpread+=SpreadPeriod;
                CountPeriods++;
                AverageSpreadNumPeriod=SumSpread/CountPeriods;
-               if(SpreadPeriod>MaxSpread){
+               
+            }
+            if(SpreadPeriod>MaxSpread){
                   MaxSpread=(SpreadPeriod*3+AverageSpreadNumPeriod*2)/5;
-               }
             }
          }
       }

@@ -134,8 +134,8 @@ string ValidateMFI(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,stri
    //ForceH4Trend
    ForceH4Trend=false;
    if(_MACD_TF<=TF_D1){
-      double RSI_H4=iRSI(_iSymbol,TF[TF_H4],4,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H4]));
-      double RSI_H1=iRSI(_iSymbol,TF[TF_H1],4,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H1]));
+      double RSI_H4=iRSI(_iSymbol,TF[TF_H4],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H4]));
+      double RSI_H1=iRSI(_iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_H1]));
       double RSI_M30=iRSI(_iSymbol,TF[TF_M30],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),Get_Shift(ShiftM1,TF[TF_M30]));
       double MFI_H4=iMFI(_iSymbol,TF[TF_H4],4,Get_Shift(ShiftM1,TF[TF_H4]));
       double MFI_H1=iMFI(_iSymbol,TF[TF_H1],4,Get_Shift(ShiftM1,TF[TF_H1]));
