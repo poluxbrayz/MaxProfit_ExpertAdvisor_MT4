@@ -129,7 +129,7 @@ string SAR_Trend_By_Change(int _MACD_TF,int ShiftM1=0,string _iSymbol=NULL){
    Set_SAR_Params(_MACD_TF,ShiftM1);
    SAR_Params=StringConcatenate(SAR_Step,",",SAR_Maximun);
    string ExtraVars;   
-   string _ValidateMFI;
+   string _ValidateForce;
    Get_SAR_TF=_MACD_TF;
    
       
@@ -175,12 +175,12 @@ string SAR_Trend_By_Change(int _MACD_TF,int ShiftM1=0,string _iSymbol=NULL){
    
    
    //ValidateTrend
-   _ValidateMFI=ValidateMFI(Trend,_MACD_TF,Count_Periods,ShiftM1,_iSymbol);
+   _ValidateForce=ValidateForce(Trend,_MACD_TF,Count_Periods,ShiftM1,_iSymbol);
    
    
    Signal[_MACD_TF]=Trend;
    
-   Vars_MACD_Trend_By_Change[_MACD_TF]=StringConcatenate(TF_Label[_MACD_TF],"SARTrend=",Trend,", SAR_Trend(",SAR_Params,")=",MACD_Trend[_MACD_TF],", ShiftM1=",ShiftM1,", Count_Periods=",Count_Periods,", ValidateMFI : ",_ValidateMFI,ExtraVars);
+   Vars_MACD_Trend_By_Change[_MACD_TF]=StringConcatenate(TF_Label[_MACD_TF],"SARTrend=",Trend,", SAR_Trend(",SAR_Params,")=",MACD_Trend[_MACD_TF],", ShiftM1=",ShiftM1,", Count_Periods=",Count_Periods,", ValidateForce : ",_ValidateForce,ExtraVars);
       
    
    return Trend;

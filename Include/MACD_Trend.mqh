@@ -192,7 +192,7 @@ string MACD_Trend_By_Change(int _MACD_TF,int ShiftM1=0,string _iSymbol=NULL){
    string ExtraVars;   
    double Bears,Bulls;
    int PowerPeriods=0;
-   string _ValidateMFI;
+   string _ValidateForce;
    Get_MACD_TF=_MACD_TF;
    
    //TF_W1
@@ -286,12 +286,12 @@ string MACD_Trend_By_Change(int _MACD_TF,int ShiftM1=0,string _iSymbol=NULL){
    
    
    //ValidateTrend
-   _ValidateMFI=ValidateMFI(Trend,_MACD_TF,Count_Periods,ShiftM1,_iSymbol);
+   _ValidateForce=ValidateForce(Trend,_MACD_TF,Count_Periods,ShiftM1,_iSymbol);
    
    
    Signal[_MACD_TF]=Trend;
    
-   Vars_MACD_Trend_By_Change[_MACD_TF]=StringConcatenate(TF_Label[_MACD_TF],"MACDTrend=",Trend,", MACD_Trend(",MACD_Params,")=",MACD_Trend[_MACD_TF],", ShiftM1=",ShiftM1,", Count_Periods=",Count_Periods,", Bulls=",Bulls,", Bears=",Bears,", PowerPeriods=",PowerPeriods,", ValidateMFI : ",_ValidateMFI,ExtraVars);
+   Vars_MACD_Trend_By_Change[_MACD_TF]=StringConcatenate(TF_Label[_MACD_TF],"MACDTrend=",Trend,", MACD_Trend(",MACD_Params,")=",MACD_Trend[_MACD_TF],", ShiftM1=",ShiftM1,", Count_Periods=",Count_Periods,", Bulls=",Bulls,", Bears=",Bears,", PowerPeriods=",PowerPeriods,", ValidateForce : ",_ValidateForce,ExtraVars);
       
    return Trend;
 }
