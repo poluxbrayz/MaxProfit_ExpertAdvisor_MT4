@@ -372,7 +372,16 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       //CheckZigZagPrev
       if(CheckZigZagPrev(Trend,ShiftM1,iSymbol)==false) return false;
       
-      if(CheckZigZag(MACD_Trend[TF_H4],TF_H4,CountPeriodsH4ofD1_PrevPeriodsH4+7,ShiftM1)==false) return false;
+      int CountPeriodsH4ofD1_HighestLowest;
+      if(Trend=="Up"){ 
+         CountPeriodsH4ofD1_HighestLowest=iHighest(iSymbol,TF[TF_H4],MODE_HIGH,16,Get_Shift(ShiftM1,TF[TF_H4]))+1;
+      }else{
+         CountPeriodsH4ofD1_HighestLowest=iLowest(iSymbol,TF[TF_H4],MODE_LOW,16,Get_Shift(ShiftM1,TF[TF_H4]))+1;
+      }
+      CountPeriodsH4ofD1_HighestLowest=MathMax(CountPeriodsH4ofD1_PrevPeriodsH4,CountPeriodsH4ofD1_HighestLowest);
+      CountPeriodsH4ofD1_HighestLowest=MathMin(CountPeriodsH4ofD1_HighestLowest+4,16);
+      
+      if(CheckZigZag(MACD_Trend[TF_H4],TF_H4,CountPeriodsH4ofD1_HighestLowest,ShiftM1)==false) return false;
       
       int _MACD_TF,CountPeriodsTF=0;
       double SpreadTrend,MinSpread=0;
@@ -386,9 +395,9 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       for(_MACD_TF=TF_H4;_MACD_TF>=TF_M15;_MACD_TF--){
             switch(_MACD_TF){
                case TF_H4: CountPeriodsTF=MathMin(MathMax(CountPeriodsH4ofD1_PrevPeriodsH4,7),15); MinSpread=AverageH1Spread*3.6; break;
-               case TF_H1: CountPeriodsTF=24; MinSpread=AverageH1Spread*2.7; break;
-               case TF_M30: CountPeriodsTF=16; MinSpread=AverageH1Spread*1.8; break;
-               case TF_M15: CountPeriodsTF=12; MinSpread=AverageH1Spread*0.9; break;
+               case TF_H1: CountPeriodsTF=16; MinSpread=AverageH1Spread*2.7; break;//H4*4
+               case TF_M30: CountPeriodsTF=16; MinSpread=AverageH1Spread*1.8; break;//H4*2
+               case TF_M15: CountPeriodsTF=12; MinSpread=AverageH1Spread*0.9; break;//H1*3
             }
             SpreadTrend=MathAbs(SpreadNumPeriod(_MACD_TF,CountPeriodsTF,Get_Shift(ShiftM1,TF[_MACD_TF]),true));
             
