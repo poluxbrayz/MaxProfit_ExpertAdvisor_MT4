@@ -184,6 +184,14 @@ void SetLimits(int ShiftM1=0){
       Print("SetLimits=false, IsTrend=",IsTrend,", CountPeriodsTrend[TF_D1]=",CountPeriodsTrend[TF_D1],", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", CountPeriodsTrend[TF_H4]=",CountPeriodsTrend[TF_H4],", CountPeriodsH1ofH4_PrevPeriodsH1=",CountPeriodsH1ofH4_PrevPeriodsH1);
    }
    
+   bool IsJump=Jump(MACD_Trend[TF_H4],PERIOD_H4,4,0);
+   
+   IsTrend=(IsTrend==true && ForceH4Trend==true && IsJump==false);
+   
+   if(!IsTrend){
+      Print("SetLimits=false, IsTrend=",IsTrend,", ForceH4Trend=",ForceH4Trend,", IsJump=",IsJump);
+   }
+   
    UnderLimitBuy=MathFloor(D1_Limit_RSI)<=D1_Limit_Up && CountPeriodsTrend[TF_H4]<=MaxPeriodsH4 && IsTrend==true;
    OverLimitSell=MathCeil(D1_Limit_RSI)>=D1_Limit_Down && CountPeriodsTrend[TF_H4]<=MaxPeriodsH4 && IsTrend==true;
       
@@ -550,21 +558,36 @@ void SetStopLoss(){
 
 void SetTakeProfit(double Order_Open_Price){
    PriceTakeProfit=0;  
+   double ForceRSIH4=iRSI(iSymbol,TF[TF_H4],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double ForceMFIH4=iMFI(iSymbol,TF[TF_H4],3,0);
+   double ForceRSIH1=iRSI(iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double ForceMFIH1=iMFI(iSymbol,TF[TF_H1],4,0);
    double RSIH4=iRSI(iSymbol,TF[TF_H4],4,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double MFIH4=iMFI(iSymbol,TF[TF_H4],2,0);
    double RSIH1=iRSI(iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
-   double MFIH1=iMFI(iSymbol,TF[TF_H1],4,0);
-   TakeProfit=AverageSpreadNumPeriod(TF_H1)*0.9;
+   double MFIH1=iMFI(iSymbol,TF[TF_H1],3,0);
+   double AverageSpreadH1=AverageSpreadNumPeriod(TF_H1);
+   
+   Print("SetTakeProfit ForceRSIH4=",ForceRSIH4,", ForceMFIH4=",ForceMFIH4,", ForceRSIH1=",ForceRSIH1,", ForceMFIH1=",MFIH1);
    Print("SetTakeProfit RSIH4=",RSIH4,", MFIH4=",MFIH4,", RSIH1=",RSIH1,", MFIH1=",MFIH1);
-   if(MACD_Trend[TF_H1]=="Up" && MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60){
-      //double Band_Upper=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_HIGH,MODE_UPPER,0);
-      //PriceTakeProfit=NormalizeDouble(MathMax(Order_Open_Price,Band_Upper)+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
-      PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+   
+   if(MACD_Trend[TF_H1]=="Up"){ 
+      if(MathCeil(ForceRSIH4)>=70 && MathCeil(ForceMFIH4)>=70 && MathCeil(ForceRSIH1)>=70 && MathCeil(ForceMFIH1)>=70 && SumSpread4Bars[TF_H4-TF_H1]>=AverageSpreadH1*3){
+         TakeProfit=AverageSpreadH1*1.5;
+         PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+      }else if(MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60){
+         TakeProfit=AverageSpreadH1*1;
+         PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+      }
    }
-   else if(MACD_Trend[TF_H1]=="Down" && MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40){
-      //double Band_Lower=iBands(iSymbol,PERIOD_H4,12,2,0,PRICE_LOW,MODE_LOWER,0);
-      //PriceTakeProfit=NormalizeDouble(MathMin(Order_Open_Price,Band_Lower)-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
-      PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+   else if(MACD_Trend[TF_H1]=="Down"){
+      if(MathFloor(ForceRSIH4)<=30 && MathFloor(ForceMFIH4)<=30 && MathFloor(ForceRSIH1)<=30 && MathFloor(ForceMFIH1)<=30 && SumSpread4Bars[TF_H4-TF_H1]<=-AverageSpreadH1*3){
+         TakeProfit=AverageSpreadH1*1.5;
+         PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+      }else if(MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40){
+         TakeProfit=AverageSpreadH1*1;
+         PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
+      }
    }
 }
 
@@ -619,28 +642,31 @@ bool Jump(string Trend,int Period_TF,int CountPeriodTrend,int Shift=0){
    if(CurrentFunction!="CheckForOpen") return false;
    bool Step=true;
    CountPeriodTrend=CountPeriodTrend<2? 2 : CountPeriodTrend;
-   double StepM1,SpreadH4=AverageSpreadNumPeriod(TF_H4,1)*2;
-   double OpenPriceM1,ClosePriceM1;
+   double SpreadJump=AverageSpreadNumPeriod(TF_H1,1)*2;
+   //double StepM1,OpenPriceM1,ClosePriceM1;
    int i;
    
-   for(i=0;i<=Period_TF*(CountPeriodTrend);i++){//M1
+   /*for(i=0;i<=Period_TF*(CountPeriodTrend);i++){//M1
       OpenPriceM1=iOpen(iSymbol,PERIOD_M1,Shift*Period_TF+i);
       ClosePriceM1=iClose(iSymbol,PERIOD_M1,Shift*Period_TF+i+1);
       StepM1=(OpenPriceM1>0 && ClosePriceM1>0)? MathAbs(OpenPriceM1-ClosePriceM1) : 0;
-      Step=Step && (StepM1<=SpreadH4);
+      Step=Step && (StepM1<=SpreadJump);
       if(Step==false){
          if(Minutes==0 || Minutes % PERIOD_H4 == 0)
-            Print("Jump: OpenPriceM1=",OpenPriceM1,", ClosePriceM1=",ClosePriceM1,", StepM1=",StepM1,", SpreadH4=",SpreadH4);
+            Print("Jump: OpenPriceM1=",OpenPriceM1,", ClosePriceM1=",ClosePriceM1,", StepM1=",StepM1,", SpreadJump=",SpreadJump);
          break;
       }         
-   }
+   }*/
          
    for(i=0;i<CountPeriodTrend;i++){
       if(Trend=="Up"){
-         Step=Step && iLow(iSymbol,Period_TF,Shift+i)<=iHigh(iSymbol,Period_TF,Shift+i+1)+SpreadH4;
+         Step=Step && iLow(iSymbol,Period_TF,Shift+i)<=iHigh(iSymbol,Period_TF,Shift+i+1)+SpreadJump;
       }else if(Trend=="Down"){
-         Step=Step && iHigh(iSymbol,Period_TF,Shift+i)>=iLow(iSymbol,Period_TF,Shift+i+1)-SpreadH4;
+         Step=Step && iHigh(iSymbol,Period_TF,Shift+i)>=iLow(iSymbol,Period_TF,Shift+i+1)-SpreadJump;
       }
+      if(Step==false){
+         Print("Jump=true: Trend=",Trend,", index=",i);
+      }  
    }
    return !Step;
 }
