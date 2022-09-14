@@ -406,9 +406,9 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       //Verifica el Spread en cada TimeFrame
       for(_MACD_TF=TF_H4;_MACD_TF>=TF_M15;_MACD_TF--){
             switch(_MACD_TF){
-               case TF_H4: CountPeriodsTF=MathMin(MathMax(CountPeriodsH4ofD1_PrevPeriodsH4,7),15); MinSpread=AverageH1Spread*3.6; break;//D1- D1*2.5
-               case TF_H1: CountPeriodsTF=16; MinSpread=AverageH1Spread*2.7; break;//H4*4
-               case TF_M30: CountPeriodsTF=16; MinSpread=AverageH1Spread*1.8; break;//H4*2
+               case TF_H4: CountPeriodsTF=MathMin(MathMax(CountPeriodsH4ofD1_PrevPeriodsH4,7),15); MinSpread=AverageH1Spread*3.5; break;//D1- D1*2.5
+               case TF_H1: CountPeriodsTF=16; MinSpread=AverageH1Spread*2.6; break;//H4*4
+               case TF_M30: CountPeriodsTF=16; MinSpread=AverageH1Spread*1.7; break;//H4*2
                case TF_M15: CountPeriodsTF=12; MinSpread=AverageH1Spread*0.9; break;//H1*3
             }
             SpreadTrend=MathAbs(SpreadNumPeriod(_MACD_TF,CountPeriodsTF,Get_Shift(ShiftM1,TF[_MACD_TF]),true));
