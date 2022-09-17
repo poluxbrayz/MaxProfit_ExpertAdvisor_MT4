@@ -420,6 +420,23 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
         
       }
       
+      
+      //Verifica el spread de la ultima barra
+      double SpreadLastBar;
+      for(_MACD_TF=TF_H1;_MACD_TF<=TF_H4;_MACD_TF++){
+         MinSpread=(_MACD_TF==TF_H4)? AverageH1Spread*0.3 : AverageH1Spread*0.3;
+         SpreadLastBar=SpreadNumPeriod(_MACD_TF,1,Get_Shift(ShiftM1,TF[_MACD_TF]),true);
+         
+         if(Trend=="Up" && SpreadLastBar<MinSpread){
+            Print("IsConstantTrend=false: Trend=",Trend,", _MACD_TF=",_MACD_TF,", SpreadLastBar=",SpreadLastBar," < MinSpread=",MinSpread);
+            return false;
+         }else if(Trend=="Down" && SpreadLastBar>-MinSpread){
+            Print("IsConstantTrend=false: Trend=",Trend,", _MACD_TF=",_MACD_TF,", SpreadLastBar=",SpreadLastBar," > -MinSpread=",-MinSpread);
+            return false;
+         }
+      }
+      
+            
       //Verifica la sumatoria del Spread de las ultimas 4 barras
       int index;
       for(_MACD_TF=TF_H1;_MACD_TF<=TF_H4;_MACD_TF++){
