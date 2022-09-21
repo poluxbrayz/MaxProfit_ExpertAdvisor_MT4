@@ -249,11 +249,12 @@ void CheckForOpen()
          {
                Order_Open_Price=MarketInfo(iSymbol,MODE_ASK);
                
+               Order_Lots=Lots();
+               
                SetStopLoss();
                
                SetTakeProfit(Order_Open_Price);
                
-               Order_Lots=Lots();
                
                if(Order_Lots<MarketInfo(iSymbol,MODE_MINLOT))
                   return;
@@ -288,11 +289,12 @@ void CheckForOpen()
          {
                   Order_Open_Price=MarketInfo(iSymbol,MODE_BID);
                   
+                  Order_Lots=Lots();
+                  
                   SetStopLoss();
                   
                   SetTakeProfit(Order_Open_Price);
                      
-                  Order_Lots=Lots();
                   
                   if(Order_Lots<MarketInfo(iSymbol,MODE_MINLOT))
                      return;
@@ -413,7 +415,12 @@ void CheckForClose()
                      }
                   }
                   
-                  if(MACD_Trend[TF_H4]==Order_Trend && (CheckBBollinger(TF_H4,5,0,iSymbol)==true || CheckBBollinger(TF_H1,5,0,iSymbol)==true)){
+                  double SpreadLastBarH4=MathAbs(SpreadNumPeriod(TF_H4,1,0,true));
+                  double SpreadLastBarH1=MathAbs(SpreadNumPeriod(TF_H1,1,0,true));
+                  bool CheckBBollingerH4=(CheckBBollinger(TF_H4,5,0,iSymbol)==true && SpreadLastBarH4>=AverageSpreadNumPeriod(TF_H1,1)*2.5);
+                  bool CheckBBollingerH1=(CheckBBollinger(TF_H1,5,0,iSymbol)==true && SpreadLastBarH1>=AverageSpreadNumPeriod(TF_H1,1)*2);
+                  
+                  if(MACD_Trend[TF_H4]==Order_Trend && (CheckBBollingerH4==true || CheckBBollingerH1==true)){
                      double SpreadM1=AverageSpreadNumPeriod(TF_M1,1);
                      Print("Order_Spread=",MathAbs(Order_Spread),", SpreadM1=",SpreadM1,", ClosePrice=",ClosePrice,", OpenOrder.Order_iClose_Price=",OpenOrder.Order_iClose_Price);
                      if(MathAbs(Order_Spread)>=SpreadM1){
@@ -558,7 +565,8 @@ void SetStopLoss(){
 
 void SetTakeProfit(double Order_Open_Price){
    PriceTakeProfit=0;  
-   double ForceRSIH4=iRSI(iSymbol,TF[TF_H4],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),0);
+   double AverageSpreadH1=AverageSpreadNumPeriod(TF_H1);
+   /*double ForceRSIH4=iRSI(iSymbol,TF[TF_H4],5,(MACD_Trend[TF_H4]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double ForceMFIH4=iMFI(iSymbol,TF[TF_H4],3,0);
    double ForceRSIH1=iRSI(iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double ForceMFIH1=iMFI(iSymbol,TF[TF_H1],4,0);
@@ -566,28 +574,33 @@ void SetTakeProfit(double Order_Open_Price){
    double MFIH4=iMFI(iSymbol,TF[TF_H4],2,0);
    double RSIH1=iRSI(iSymbol,TF[TF_H1],5,(MACD_Trend[TF_H1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double MFIH1=iMFI(iSymbol,TF[TF_H1],3,0);
-   double AverageSpreadH1=AverageSpreadNumPeriod(TF_H1);
+   bool ForceTakeProfit=false;*/
    
-   Print("SetTakeProfit ForceRSIH4=",ForceRSIH4,", ForceMFIH4=",ForceMFIH4,", ForceRSIH1=",ForceRSIH1,", ForceMFIH1=",MFIH1);
-   Print("SetTakeProfit RSIH4=",RSIH4,", MFIH4=",MFIH4,", RSIH1=",RSIH1,", MFIH1=",MFIH1);
+   //Print("SetTakeProfit ForceRSIH4=",ForceRSIH4,", ForceMFIH4=",ForceMFIH4,", ForceRSIH1=",ForceRSIH1,", ForceMFIH1=",MFIH1);
+   //Print("SetTakeProfit RSIH4=",RSIH4,", MFIH4=",MFIH4,", RSIH1=",RSIH1,", MFIH1=",MFIH1);
    
    if(MACD_Trend[TF_H1]=="Up"){ 
-      if(MathCeil(ForceRSIH4)>=70 && MathCeil(ForceMFIH4)>=70 && MathCeil(ForceRSIH1)>=70 && MathCeil(ForceMFIH1)>=70 && SumSpread4Bars[TF_H4-TF_H1]>=AverageSpreadH1*3){
+      //if(MathCeil(ForceRSIH4)>=70 && MathCeil(ForceMFIH4)>=70 && MathCeil(ForceRSIH1)>=70 && MathCeil(ForceMFIH1)>=70 && SumSpread4Bars[TF_H4-TF_H1]>=AverageSpreadH1*3){
+      if(ForceLotUp==true){
          TakeProfit=AverageSpreadH1*1.5;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
-      }else if(MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60){
+      }else /*if(MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60)*/{
          TakeProfit=AverageSpreadH1*1;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
+      //Print("SetTakeProfit: ForceTakeProfit=",ForceTakeProfit,", ForceRSIH4=",ForceRSIH4," >=70, ForceMFIH4=",ForceMFIH4," >=70, ForceRSIH1=",ForceRSIH1," >=70, ForceMFIH1=",MFIH1);
+      Print("SetTakeProfit: ForceLotUp=",ForceLotUp);
    }
    else if(MACD_Trend[TF_H1]=="Down"){
-      if(MathFloor(ForceRSIH4)<=30 && MathFloor(ForceMFIH4)<=30 && MathFloor(ForceRSIH1)<=30 && MathFloor(ForceMFIH1)<=30 && SumSpread4Bars[TF_H4-TF_H1]<=-AverageSpreadH1*3){
+      //if(MathFloor(ForceRSIH4)<=30 && MathFloor(ForceMFIH4)<=30 && MathFloor(ForceRSIH1)<=30 && MathFloor(ForceMFIH1)<=30 && SumSpread4Bars[TF_H4-TF_H1]<=-AverageSpreadH1*3){
+      if(ForceLotDown==true){
          TakeProfit=AverageSpreadH1*1.5;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
-      }else if(MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40){
+      }else /*if(MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40)*/{
          TakeProfit=AverageSpreadH1*1;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
+      Print("SetTakeProfit: ForceLotDown=",ForceLotDown);
    }
 }
 

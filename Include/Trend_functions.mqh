@@ -425,7 +425,7 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       double SpreadLastBar;
       for(_MACD_TF=TF_H1;_MACD_TF<=TF_H4;_MACD_TF++){
          MinSpread=(_MACD_TF==TF_H4)? AverageH1Spread*0.1 : AverageH1Spread*0.1;
-         SpreadLastBar=SpreadNumPeriod(_MACD_TF,1,Get_Shift(ShiftM1,TF[_MACD_TF]),true);
+         SpreadLastBar=SpreadNumPeriod(_MACD_TF,1,Get_Shift(ShiftM1,TF[_MACD_TF]),false);
          
          if(Trend=="Up" && SpreadLastBar<MinSpread){
             Print("IsConstantTrend=false: Trend=",Trend,", _MACD_TF=",_MACD_TF,", SpreadLastBar=",SpreadLastBar," < MinSpread=",MinSpread);

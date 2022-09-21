@@ -37,6 +37,14 @@ void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
    if(_MACD_TF<=TF_M15){
          SAR_Step=0.25;//1/4
          SAR_Maximun=0.25;
+   }else if(_MACD_TF<=TF_M30){
+      if(CurrentFunction=="CheckForOpen"){
+         SAR_Step=0.14;//1/7
+         SAR_Maximun=0.14;
+      }else{
+         SAR_Step=0.25;
+         SAR_Maximun=0.25;
+      }
    }else if(_MACD_TF<=TF_H1){
       if(CurrentFunction=="CheckForOpen"){
          SAR_Step=0.14;//1/7
