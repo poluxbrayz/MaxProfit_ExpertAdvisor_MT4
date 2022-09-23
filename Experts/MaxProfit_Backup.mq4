@@ -417,8 +417,8 @@ void CheckForClose()
                   
                   double SpreadLastBarH4=MathAbs(SpreadNumPeriod(TF_H4,1,0,true));
                   double SpreadLastBarH1=MathAbs(SpreadNumPeriod(TF_H1,1,0,true));
-                  bool CheckBBollingerH4=(CheckBBollinger(TF_H4,5,0,iSymbol)==true && SpreadLastBarH4>=AverageSpreadNumPeriod(TF_H1,1)*2.5);
-                  bool CheckBBollingerH1=(CheckBBollinger(TF_H1,5,0,iSymbol)==true && SpreadLastBarH1>=AverageSpreadNumPeriod(TF_H1,1)*2);
+                  bool CheckBBollingerH4=(CheckBBollinger(TF_H4,5,0,iSymbol)==true && SpreadLastBarH4>=AverageSpreadNumPeriod(TF_H1,1)*2.4);
+                  bool CheckBBollingerH1=(CheckBBollinger(TF_H1,5,0,iSymbol)==true && SpreadLastBarH1>=AverageSpreadNumPeriod(TF_H1,1)*1.8);
                   
                   if(MACD_Trend[TF_H4]==Order_Trend && (CheckBBollingerH4==true || CheckBBollingerH1==true)){
                      double SpreadM1=AverageSpreadNumPeriod(TF_M1,1);
