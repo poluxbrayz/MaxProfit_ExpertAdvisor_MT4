@@ -157,10 +157,10 @@ void SetTrends(int ShiftM1=0){
    
    M30Trend=SAR_Trend_By_Change(TF_M30,ShiftM1);
    
-   if(CurrentFunction=="CheckForOpen"){
-      M15Trend=SAR_Trend_By_Change(TF_M15,ShiftM1);
-   }else{
-      M15Trend=MACD_Trend_By_Change(TF_M15,ShiftM1);
+   M15Trend=SAR_Trend_By_Change(TF_M15,ShiftM1); 
+   
+   if(CurrentFunction=="CheckForClose"){
+      M5Trend=SAR_Trend_By_Change(TF_M5,ShiftM1);
    }
          
 }
@@ -171,7 +171,7 @@ void SetLimits(int ShiftM1=0){
    int D1_Limit_Periods=5;
    H4_Limit_Up=80; H4_Limit_Down=20;
    int H4_Limit_Periods=12;
-   int MaxPeriodsH4=30;
+   //int MaxPeriodsH4=30;
    int ShiftH4=Get_Shift(ShiftM1,PERIOD_H4);
    int ShiftD1=Get_Shift(ShiftM1,PERIOD_D1);
       
@@ -192,8 +192,8 @@ void SetLimits(int ShiftM1=0){
       Print("SetLimits=false, IsTrend=",IsTrend,", ForceH4Trend=",ForceH4Trend,", IsJump=",IsJump);
    }
    
-   UnderLimitBuy=MathFloor(D1_Limit_RSI)<=D1_Limit_Up && CountPeriodsTrend[TF_H4]<=MaxPeriodsH4 && IsTrend==true;
-   OverLimitSell=MathCeil(D1_Limit_RSI)>=D1_Limit_Down && CountPeriodsTrend[TF_H4]<=MaxPeriodsH4 && IsTrend==true;
+   UnderLimitBuy=MathFloor(D1_Limit_RSI)<=D1_Limit_Up && IsTrend==true;
+   OverLimitSell=MathCeil(D1_Limit_RSI)>=D1_Limit_Down && IsTrend==true;
       
    OpenBuy=( (H4Trend=="Up" && (D1Trend=="Up" || W1Trend=="Up")) || 
              (H1Trend=="Up" && (D1Trend=="Up" || W1Trend=="Up"))  ) && 
@@ -370,7 +370,7 @@ void CheckForClose()
             Price=Order_Type==OP_BUY? MarketInfo(iSymbol,MODE_BID) : MarketInfo(iSymbol,MODE_ASK);
             ClosePrice=iClose(iSymbol,TF[TF_H1],0);
             Order_Spread=ClosePrice-OpenOrder.Order_iClose_Price;//+Buy -Sell
-            MinSpreadCloseH4=AverageSpreadNumPeriod(TF_H4,1)*3;
+            MinSpreadCloseH4=AverageSpreadNumPeriod(TF_H1,1)*4;
             
             
             SetTrends();
@@ -398,11 +398,26 @@ void CheckForClose()
                                
              if(OpenOrder.Get_Order_Profit()>=0){
                
+               
+               double SpreadLastBarH4=MathAbs(SpreadNumPeriod(TF_H4,1,0,true));
+               double SpreadLastBarH2=MathAbs(SpreadNumPeriod(TF_H1,2,0,true));
+               double SpreadLastBarH1=MathAbs(SpreadNumPeriod(TF_H1,1,0,true));
+               double AverageSpreadH1=AverageSpreadNumPeriod(TF_H1,1);
+               bool CheckBBollingerH4=(CheckBBollinger(TF_H4,5,0,iSymbol)==true && SpreadLastBarH4>=AverageSpreadH1*2);
+               bool CheckBBollingerH1=(CheckBBollinger(TF_H1,5,0,iSymbol)==true && (SpreadLastBarH1>=AverageSpreadH1*1.5 || (SpreadLastBarH2>=AverageSpreadH1*2 && SpreadLastBarH1>=AverageSpreadH1*0.7)));
+               Print("CheckBBollingerH4=",CheckBBollingerH4,", SpreadLastBarH4=",SpreadLastBarH4,", AverageSpreadH1*2=",AverageSpreadH1*2);
+               Print("CheckBBollingerH1=",CheckBBollingerH1,", SpreadLastBarH1=",SpreadLastBarH1,", AverageSpreadH1*1.5=",AverageSpreadH1*1.5,", SpreadLastBarH2=",SpreadLastBarH2,", AverageSpreadH1*2=",AverageSpreadH1*2);
+               
+               
                //Short Trend
-               if(!(H1Trend==Order_Trend && D1Trend==Order_Trend && W1Trend==Order_Trend) && MathAbs(Order_Spread)<MinSpreadCloseH4){
+               if(!(M5Trend==Order_Trend && M15Trend==Order_Trend && M30Trend==Order_Trend && H1Trend==Order_Trend && CheckBBollingerH4==false && CheckBBollingerH1==false) && MathAbs(Order_Spread)<MinSpreadCloseH4){
                   
-                  if(M30Trend!=Order_Trend || H1Trend!=Order_Trend){
-                     if( (Order_Type==OP_BUY && M15Trend=="Down" && MACD_Trend[TF_M30]=="Down") || (Order_Type==OP_SELL && M15Trend=="Up" && MACD_Trend[TF_M30]=="Up") ){
+                  if(M5Trend!=Order_Trend || M15Trend!=Order_Trend || M30Trend!=Order_Trend || H1Trend!=Order_Trend || H4Trend!=Order_Trend){
+                     if( (Order_Type==OP_BUY && M5Trend=="Down") || (Order_Type==OP_SELL && M5Trend=="Up") ){
+                          Close_TF=TF_M5;
+                     }
+                     
+                     if( (Order_Type==OP_BUY && M15Trend=="Down") || (Order_Type==OP_SELL && M15Trend=="Up") ){
                           Close_TF=TF_M15;
                      }
                      
@@ -413,17 +428,17 @@ void CheckForClose()
                      if( (Order_Type==OP_BUY && H1Trend=="Down" ) || (Order_Type==OP_SELL && H1Trend=="Up") ){
                           Close_TF=TF_H1;
                      }
+                     
+                     if( (Order_Type==OP_BUY && H4Trend=="Down" ) || (Order_Type==OP_SELL && H4Trend=="Up") ){
+                          Close_TF=TF_H4;
+                     }
                   }
                   
-                  double SpreadLastBarH4=MathAbs(SpreadNumPeriod(TF_H4,1,0,true));
-                  double SpreadLastBarH1=MathAbs(SpreadNumPeriod(TF_H1,1,0,true));
-                  bool CheckBBollingerH4=(CheckBBollinger(TF_H4,5,0,iSymbol)==true && SpreadLastBarH4>=AverageSpreadNumPeriod(TF_H1,1)*2.4);
-                  bool CheckBBollingerH1=(CheckBBollinger(TF_H1,5,0,iSymbol)==true && SpreadLastBarH1>=AverageSpreadNumPeriod(TF_H1,1)*1.8);
                   
                   if(MACD_Trend[TF_H4]==Order_Trend && (CheckBBollingerH4==true || CheckBBollingerH1==true)){
-                     double SpreadM1=AverageSpreadNumPeriod(TF_M1,1);
-                     Print("Order_Spread=",MathAbs(Order_Spread),", SpreadM1=",SpreadM1,", ClosePrice=",ClosePrice,", OpenOrder.Order_iClose_Price=",OpenOrder.Order_iClose_Price);
-                     if(MathAbs(Order_Spread)>=SpreadM1){
+                     double SpreadM5=AverageSpreadNumPeriod(TF_M5,1);
+                     Print("Order_Spread=",MathAbs(Order_Spread),", SpreadM5=",SpreadM5,", ClosePrice=",ClosePrice,", OpenOrder.Order_iClose_Price=",OpenOrder.Order_iClose_Price);
+                     if(MathAbs(Order_Spread)>=SpreadM5){
                         SAR_Trend[TF_M1]=Get_SAR_Trend(TF_M1,CountPeriodsTrend[TF_M1],0,iSymbol,1.0,1.0);
                         MACD_Trend[TF_M1]=Get_MACD_Trend(TF_M1,CountPeriodsTrend[TF_M1],5,15,4,0,iSymbol);
                         Print("CheckForClose: SAR_Trend[TF_M1]=",SAR_Trend[TF_M1],", MACD_Trend[TF_M1]=",MACD_Trend[TF_M1]);
@@ -434,11 +449,11 @@ void CheckForClose()
                         }
                      }
                   }
-                  
-               }
+               }   
+               
                
                //Long Trend
-               if( (Order_Type==OP_BUY && H4Trend=="Down" && M30Trend=="Down") || (Order_Type==OP_SELL && H4Trend=="Up" && M30Trend=="Up") ){
+               if( (Order_Type==OP_BUY && (H4Trend=="Down" || H1Trend=="Down") && M30Trend=="Down") || (Order_Type==OP_SELL && (H4Trend=="Up" || H1Trend=="Up") && M30Trend=="Up") ){
                     Close_TF=TF_H4;
                }
                 
@@ -585,11 +600,11 @@ void SetTakeProfit(double Order_Open_Price){
          TakeProfit=AverageSpreadH1*1.5;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }else /*if(MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60)*/{
-         TakeProfit=AverageSpreadH1*1;
+         TakeProfit=AverageSpreadH1*0.8;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
       //Print("SetTakeProfit: ForceTakeProfit=",ForceTakeProfit,", ForceRSIH4=",ForceRSIH4," >=70, ForceMFIH4=",ForceMFIH4," >=70, ForceRSIH1=",ForceRSIH1," >=70, ForceMFIH1=",MFIH1);
-      Print("SetTakeProfit: ForceLotUp=",ForceLotUp);
+      Print("SetTakeProfit: ForceLotUp=",ForceLotUp,", TakeProfit=",TakeProfit,", PriceTakeProfit=",PriceTakeProfit);
    }
    else if(MACD_Trend[TF_H1]=="Down"){
       //if(MathFloor(ForceRSIH4)<=30 && MathFloor(ForceMFIH4)<=30 && MathFloor(ForceRSIH1)<=30 && MathFloor(ForceMFIH1)<=30 && SumSpread4Bars[TF_H4-TF_H1]<=-AverageSpreadH1*3){
@@ -597,10 +612,10 @@ void SetTakeProfit(double Order_Open_Price){
          TakeProfit=AverageSpreadH1*1.5;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }else /*if(MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40)*/{
-         TakeProfit=AverageSpreadH1*1;
+         TakeProfit=AverageSpreadH1*0.8;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
-      Print("SetTakeProfit: ForceLotDown=",ForceLotDown);
+      Print("SetTakeProfit: ForceLotDown=",ForceLotDown,", TakeProfit=",TakeProfit,", PriceTakeProfit=",PriceTakeProfit);
    }
 }
 
@@ -769,6 +784,7 @@ double SpreadNumPeriod(int _MACD_TF,int CountPeriods=1,int Shift=0,bool HighLow=
    if(iBars(iSymbol,TF[_MACD_TF])<CountPeriods+Shift) return 0;
    
    double SpreadPeriod=iClose(iSymbol,TF[_MACD_TF],Shift)-iOpen(iSymbol,TF[_MACD_TF],CountPeriods-1+Shift);
+   //Print("SpreadNumPeriod: _MACD_TF=",_MACD_TF,", CountPeriods=",CountPeriods,", HighLow=",HighLow,", SpreadPeriod=",SpreadPeriod,", iClose=",iClose(iSymbol,TF[_MACD_TF],Shift),", iOpen=",iOpen(iSymbol,TF[_MACD_TF],CountPeriods-1+Shift));
    if(HighLow==true){
       double HighPrice=iHigh(iSymbol,TF[_MACD_TF],(Trend(SpreadPeriod)=="Up"? Shift : iHighest(iSymbol,TF[_MACD_TF],MODE_HIGH,CountPeriods,Shift)));
       double LowPrice=iLow(iSymbol,TF[_MACD_TF],(Trend(SpreadPeriod)=="Up"? iLowest(iSymbol,TF[_MACD_TF],MODE_LOW,CountPeriods,Shift) : Shift));

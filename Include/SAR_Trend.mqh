@@ -25,7 +25,7 @@ int Count_Periods_SAR_Trend(string Trend,int _MACD_TF,double _SAR_Step,double _S
       }else{
          break;
       }
-      
+      //Print("Count_Periods_SAR_Trend: _MACD_TF=",_MACD_TF,", Trend=",Trend,"(",_SAR_Step,",",_SAR_Maximun,"), Count_Periods=",Count_Periods,", SAR=",SAR,", ClosePrice=",ClosePrice); 
    }
    
    return Count_Periods;
@@ -34,29 +34,42 @@ int Count_Periods_SAR_Trend(string Trend,int _MACD_TF,double _SAR_Step,double _S
 void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
    Get_SAR_TF=_MACD_TF;
    
-   if(_MACD_TF<=TF_M15){
-         SAR_Step=0.25;//1/4
-         SAR_Maximun=0.25;
+   if(_MACD_TF<=TF_M5){
+      if(CurrentFunction=="CheckForOpen"){
+         SAR_Step=0.03;//1/36
+         SAR_Maximun=0.03;
+      }else{
+         SAR_Step=0.03;
+         SAR_Maximun=0.03;
+      }
+   }else if(_MACD_TF<=TF_M15){
+      if(CurrentFunction=="CheckForOpen"){
+         SAR_Step=0.08;//1/12
+         SAR_Maximun=0.08;
+      }else{
+         SAR_Step=0.08;
+         SAR_Maximun=0.08;
+      }
    }else if(_MACD_TF<=TF_M30){
       if(CurrentFunction=="CheckForOpen"){
-         SAR_Step=0.14;//1/7
-         SAR_Maximun=0.14;
+         SAR_Step=0.17;//1/6
+         SAR_Maximun=0.17;
       }else{
-         SAR_Step=0.25;
-         SAR_Maximun=0.25;
+         SAR_Step=0.17;
+         SAR_Maximun=0.17;
       }
    }else if(_MACD_TF<=TF_H1){
       if(CurrentFunction=="CheckForOpen"){
-         SAR_Step=0.14;//1/7
-         SAR_Maximun=0.14;
+         SAR_Step=0.33;//1/3
+         SAR_Maximun=0.33;
       }else{
-         SAR_Step=1;
-         SAR_Maximun=1;
+         SAR_Step=0.5;
+         SAR_Maximun=0.5;
       }
    }else if(_MACD_TF<=TF_H4){
       if(CurrentFunction=="CheckForOpen"){
-         SAR_Step=0.5;//1/2
-         SAR_Maximun=0.5;
+         SAR_Step=1;//1
+         SAR_Maximun=1;
       }else{
          SAR_Step=1;
          SAR_Maximun=1;

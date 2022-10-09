@@ -34,7 +34,7 @@ double Order_Profit;
 datetime Order_Open_Time;
 string BBollinger_TF[TF_D1+1],Signal[TF_W1+1];
 string Vars_BBollinger[TF_D1+1],Vars_MACD_Trend_By_Change[TF_W1+1];
-string W1Trend,D1Trend,H4Trend,H1Trend,M30Trend,M15Trend;
+string W1Trend,D1Trend,H4Trend,H1Trend,M30Trend,M15Trend,M5Trend;
 int MACD_Close_FastEMAPeriod=20,MACD_Close_SlowEMAPeriod=60,MACD_Close_SignalLinePeriod=6;
 int CountPeriodsTrend[TF_W1+1],CountPeriodsD1ofW1,CountPeriodsH4ofD1,CountPeriodsH1ofH4,CountPeriodsH4ofD1_PrevPeriodsH4,CountPeriodsH1ofH4_PrevPeriodsH1;
 string MFI_Trend[TF_W1+1],RSI_Trend[TF_W1+1];
