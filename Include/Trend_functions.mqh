@@ -164,9 +164,9 @@ string ValidateForce(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,st
          double MFI_H1=iMFI(_iSymbol,TF[TF_H1],2,Get_Shift(ShiftM1,TF[TF_H1]));
          double MFI_M30=iMFI(_iSymbol,TF[TF_M30],2,Get_Shift(ShiftM1,TF[TF_M30]));
          if(MACD_Trend[TF_H4]=="Up"){
-            ForceH4Trend=(MathCeil(RSI_H4)>=60 && (MathCeil(MFI_H4)>=53 || MathCeil(RSI0_H4)>=65) && (MathCeil(MFI1_H4)>=49 || MathCeil(RSI1_H4)>=51) && (MathCeil(MFI2_H4)>=47 || MathCeil(RSI2_H4)>=47) && MathCeil(RSI_H1)>=60 && MathCeil(MFI_H1)>=53 && MathCeil(RSI_M30)>=60 && MathCeil(MFI_M30)>=53)? true:false;         
+            ForceH4Trend=(MathCeil(RSI_H4)>=60 && (MathCeil(MFI_H4)>=52 || MathCeil(RSI0_H4)>=65) && (MathCeil(MFI1_H4)>=40 || MathCeil(RSI1_H4)>=51) && (MathCeil(MFI2_H4)>=47 || MathCeil(RSI2_H4)>=47) && MathCeil(RSI_H1)>=60 && MathCeil(MFI_H1)>=52 && MathCeil(RSI_M30)>=60 && MathCeil(MFI_M30)>=52)? true:false;         
          }else if(MACD_Trend[TF_H4]=="Down"){
-            ForceH4Trend=(MathFloor(RSI_H4)<=40 && (MathFloor(MFI_H4)<=47 || MathCeil(RSI0_H4)<=35) && (MathFloor(MFI1_H4)<=51 || MathFloor(RSI1_H4)<=49) && (MathFloor(MFI2_H4)<=53 || MathFloor(RSI2_H4)<=53) && MathFloor(RSI_H1)<=40 && MathFloor(MFI_H1)<=47 && MathFloor(RSI_M30)<=40 && MathFloor(MFI_M30)<=47)? true:false;
+            ForceH4Trend=(MathFloor(RSI_H4)<=40 && (MathFloor(MFI_H4)<=48 || MathCeil(RSI0_H4)<=35) && (MathFloor(MFI1_H4)<=51 || MathFloor(RSI1_H4)<=49) && (MathFloor(MFI2_H4)<=53 || MathFloor(RSI2_H4)<=53) && MathFloor(RSI_H1)<=40 && MathFloor(MFI_H1)<=48 && MathFloor(RSI_M30)<=40 && MathFloor(MFI_M30)<=48)? true:false;
          }
          
          if(_MACD_TF==TF_D1){
@@ -454,7 +454,7 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       for(_MACD_TF=TF_H1;_MACD_TF<=TF_H4;_MACD_TF++){
          index=_MACD_TF-TF_H1;//5-5,6-5
          SumSpread4Bars[index]=0;
-         MinSpread4Bars[index]=(_MACD_TF==TF_H4)? AverageH1Spread*1.8 : AverageH1Spread*0.8;
+         MinSpread4Bars[index]=(_MACD_TF==TF_H4)? AverageH1Spread*1.8 : AverageH1Spread*0.7;
          for(int i=0;i<=3;i++){
             SpreadTrend=SpreadNumPeriod(_MACD_TF,1,i+Get_Shift(ShiftM1,TF[_MACD_TF]),true);
             SumSpread4Bars[index]+=SpreadTrend;
