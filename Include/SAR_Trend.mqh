@@ -39,7 +39,7 @@ void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
          SAR_Step=0.03;//1/36
          SAR_Maximun=0.03;
       }else{
-         SAR_Step=0.03;
+         SAR_Step=0.03;//1/30
          SAR_Maximun=0.03;
       }
    }else if(_MACD_TF<=TF_M15){
@@ -47,23 +47,23 @@ void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
          SAR_Step=0.08;//1/12
          SAR_Maximun=0.08;
       }else{
-         SAR_Step=0.08;
-         SAR_Maximun=0.08;
+         SAR_Step=0.1;//1/10
+         SAR_Maximun=0.1;
       }
    }else if(_MACD_TF<=TF_M30){
       if(CurrentFunction=="CheckForOpen"){
          SAR_Step=0.17;//1/6
          SAR_Maximun=0.17;
       }else{
-         SAR_Step=0.17;
-         SAR_Maximun=0.17;
+         SAR_Step=0.2;//1/5
+         SAR_Maximun=0.2;
       }
    }else if(_MACD_TF<=TF_H1){
       if(CurrentFunction=="CheckForOpen"){
          SAR_Step=0.33;//1/3
          SAR_Maximun=0.33;
       }else{
-         SAR_Step=0.5;
+         SAR_Step=0.5;//1/2
          SAR_Maximun=0.5;
       }
    }else if(_MACD_TF<=TF_H4){
@@ -76,8 +76,8 @@ void Set_SAR_Params(int _MACD_TF,int ShiftM1=0){
       }
    }else if(_MACD_TF<=TF_D1){
       Get_SAR_TF=TF_H4;
-      SAR_Step=0.08;  // 1/12
-      SAR_Maximun=0.08;
+      SAR_Step=0.1;  // 1/10
+      SAR_Maximun=0.1;
    }else if(_MACD_TF==TF_W1){
       SAR_Step=0.14;  // 1/7
       SAR_Maximun=0.14;

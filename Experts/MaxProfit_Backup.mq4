@@ -600,7 +600,7 @@ void SetTakeProfit(double Order_Open_Price){
          TakeProfit=AverageSpreadH1*1.5;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }else /*if(MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60)*/{
-         TakeProfit=AverageSpreadH1*0.8;
+         TakeProfit=AverageSpreadH1*0.75;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
       //Print("SetTakeProfit: ForceTakeProfit=",ForceTakeProfit,", ForceRSIH4=",ForceRSIH4," >=70, ForceMFIH4=",ForceMFIH4," >=70, ForceRSIH1=",ForceRSIH1," >=70, ForceMFIH1=",MFIH1);
@@ -612,7 +612,7 @@ void SetTakeProfit(double Order_Open_Price){
          TakeProfit=AverageSpreadH1*1.5;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }else /*if(MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40)*/{
-         TakeProfit=AverageSpreadH1*0.8;
+         TakeProfit=AverageSpreadH1*0.75;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
       Print("SetTakeProfit: ForceLotDown=",ForceLotDown,", TakeProfit=",TakeProfit,", PriceTakeProfit=",PriceTakeProfit);
