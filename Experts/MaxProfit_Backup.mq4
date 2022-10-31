@@ -597,10 +597,10 @@ void SetTakeProfit(double Order_Open_Price){
    if(MACD_Trend[TF_H1]=="Up"){ 
       //if(MathCeil(ForceRSIH4)>=70 && MathCeil(ForceMFIH4)>=70 && MathCeil(ForceRSIH1)>=70 && MathCeil(ForceMFIH1)>=70 && SumSpread4Bars[TF_H4-TF_H1]>=AverageSpreadH1*3){
       if(ForceLotUp==true){
-         TakeProfit=AverageSpreadH1*1.5;
+         TakeProfit=AverageSpreadH1*1.4;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }else /*if(MathCeil(RSIH4)>=70 && MathCeil(MFIH4)>=51 && MathCeil(RSIH1)>=70 && MathCeil(MFIH1)>=60)*/{
-         TakeProfit=AverageSpreadH1*0.75;
+         TakeProfit=AverageSpreadH1*0.7;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price+TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
       //Print("SetTakeProfit: ForceTakeProfit=",ForceTakeProfit,", ForceRSIH4=",ForceRSIH4," >=70, ForceMFIH4=",ForceMFIH4," >=70, ForceRSIH1=",ForceRSIH1," >=70, ForceMFIH1=",MFIH1);
@@ -609,10 +609,10 @@ void SetTakeProfit(double Order_Open_Price){
    else if(MACD_Trend[TF_H1]=="Down"){
       //if(MathFloor(ForceRSIH4)<=30 && MathFloor(ForceMFIH4)<=30 && MathFloor(ForceRSIH1)<=30 && MathFloor(ForceMFIH1)<=30 && SumSpread4Bars[TF_H4-TF_H1]<=-AverageSpreadH1*3){
       if(ForceLotDown==true){
-         TakeProfit=AverageSpreadH1*1.5;
+         TakeProfit=AverageSpreadH1*1.4;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }else /*if(MathFloor(RSIH4)<=30 && MathFloor(MFIH4)<=49 && MathFloor(RSIH1)<=30 && MathFloor(MFIH1)<=40)*/{
-         TakeProfit=AverageSpreadH1*0.75;
+         TakeProfit=AverageSpreadH1*0.7;
          PriceTakeProfit=NormalizeDouble(Order_Open_Price-TakeProfit,(int)MarketInfo(iSymbol,MODE_DIGITS));
       }
       Print("SetTakeProfit: ForceLotDown=",ForceLotDown,", TakeProfit=",TakeProfit,", PriceTakeProfit=",PriceTakeProfit);
