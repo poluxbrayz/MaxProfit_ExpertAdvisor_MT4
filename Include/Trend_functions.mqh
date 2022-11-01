@@ -75,8 +75,8 @@ string ValidateForce(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,st
          MFITotal_TF=TF_D1; MFILastPeriod_TF=TF_D1; 
          
          if(MACD_Trend[TF_W1]==MACD_Trend[TF_H4]){
-            MFITotal_Periods=4; MFITotal_Up=52; MFITotal_Down=48; RSITotal_Up=52; RSITotal_Down=48;
-            MFILastPeriod_Periods=3; MFILastPeriod_Up=52; MFILastPeriod_Down=48; RSILastPeriod_Up=55; RSILastPeriod_Down=45;
+            MFITotal_Periods=4; MFITotal_Up=52; MFITotal_Down=48; RSITotal_Up=55; RSITotal_Down=45;
+            MFILastPeriod_Periods=3; MFILastPeriod_Up=52; MFILastPeriod_Down=48; RSILastPeriod_Up=58; RSILastPeriod_Down=42;
          }else{//MACD_Trend[TF_W1] en contra de tendencia de apertura MACD_Trend[TF_H4]
             MFITotal_Periods=5; MFITotal_Up=60; MFITotal_Down=40; RSITotal_Up=60; RSITotal_Down=40;
             MFILastPeriod_Periods=3; MFILastPeriod_Up=60; MFILastPeriod_Down=40; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
@@ -459,7 +459,7 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       for(_MACD_TF=TF_H1;_MACD_TF<=TF_D1;_MACD_TF++){
          index=_MACD_TF-TF_H1;//5-5,6-5,7-5
          SumSpread4Bars[index]=0;
-         MinSpread4Bars[index]=(_MACD_TF==TF_H4)? AverageH1Spread*1.7 : AverageH1Spread*0.7;
+         MinSpread4Bars[index]=(_MACD_TF==TF_H4)? AverageH1Spread*1.6 : AverageH1Spread*0.6;
          for(int i=0;i<=3;i++){
             SpreadTrend=SpreadNumPeriod(_MACD_TF,1,i+Get_Shift(ShiftM1,TF[_MACD_TF]),true);
             SumSpread4Bars[index]+=(_MACD_TF==TF_D1 && i>=2)? 0 : SpreadTrend;
@@ -472,7 +472,21 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
             return false;
          }
       }
-         
+      
+      //Verifica la sumatoria del Spread de las ultimas 10 barras H4  
+      double SumSpread10BarsH4=0;
+      double MinSpread10BarsH4=AverageH1Spread*0.6;
+      for(int i=0;i<10;i++){
+         SpreadTrend=SpreadNumPeriod(TF_H4,1,i+Get_Shift(ShiftM1,TF[TF_H4]),true);
+         SumSpread10BarsH4+=SpreadTrend;
+      }
+      if(Trend=="Up" && SumSpread10BarsH4<MinSpread10BarsH4){
+         Print("IsConstantTrend=false: Trend=",Trend,", _MACD_TF=",TF_H4,", SumSpread10BarsH4=",SumSpread10BarsH4," < MinSpread10BarsH4=",MinSpread10BarsH4);
+         return false;
+      }else if(Trend=="Down" && SumSpread10BarsH4>-MinSpread10BarsH4){
+         Print("IsConstantTrend=false: Trend=",Trend,", _MACD_TF=",TF_H4,", SumSpread10BarsH4=",SumSpread10BarsH4," > -MinSpread10BarsH4=",-MinSpread10BarsH4);
+         return false;
+      }
       
       
       _MACD_TF=TF_D1;
@@ -596,7 +610,7 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
       
             if(iBullsBears(Trend,_MACD_TF,Periods,ShiftM1)==false) return false;
          }else{
-            Max_Periods=(MACD_Trend[TF_D1]==MACD_Trend[TF_W1] || (MACD_Trend[TF_D1]!=MACD_Trend[TF_W1] && CountPeriodsTrend[TF_W1]==1) || (ForceH4Trend==true))? 23*TF[TF_H4]/TF[_MACD_TF] : 23*TF[TF_H4]/TF[_MACD_TF];
+            Max_Periods=(MACD_Trend[TF_D1]==MACD_Trend[TF_W1] || (MACD_Trend[TF_D1]!=MACD_Trend[TF_W1] && CountPeriodsTrend[TF_W1]==1) || (ForceH4Trend==true))? 21*TF[TF_H4]/TF[_MACD_TF] : 21*TF[TF_H4]/TF[_MACD_TF];
             Print("ForceH4Trend=",ForceH4Trend,", Max_Periods=",Max_Periods);
             Periods=BullBearsPower(Trend,_MACD_TF,Max_Periods,ShiftM1);
             if(iBullsBears(Trend,_MACD_TF,Periods,ShiftM1)==false) return false;

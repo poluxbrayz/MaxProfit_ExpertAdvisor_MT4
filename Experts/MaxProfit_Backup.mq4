@@ -642,23 +642,23 @@ void ModifyTakeProfit(){
          ClosePrice=iClose(iSymbol,TF[TF_H4],0);
                            
          if(Order_Type==OP_BUY){
-            if(ClosePrice-OpenOrder.Order_Open_Price>AverageH1Spread){
+            if(ClosePrice-OpenOrder.Order_Open_Price>=AverageH1Spread){
                if(OrderClose(Order_Ticket,OpenOrder.Order_Lots,MarketInfo(iSymbol,MODE_BID),3,White)){
                }
-            }else{
+            }/*else{
                PriceTakeProfit=OpenOrder.Order_Open_Price+AverageH1Spread;
                if(OrderModify(Order_Ticket,OpenOrder.Order_Open_Price,OpenOrder.Order_StopLoss,PriceTakeProfit,0,Green)){
                }
-            }   
+            }*/   
          }else if(Order_Type==OP_SELL){
-            if(OpenOrder.Order_Open_Price-ClosePrice>AverageH1Spread){
+            if(OpenOrder.Order_Open_Price-ClosePrice>=AverageH1Spread){
                if(OrderClose(Order_Ticket,OpenOrder.Order_Lots,MarketInfo(iSymbol,MODE_ASK),3,White)){
                }
-            }else{
+            }/*else{
                PriceTakeProfit=OpenOrder.Order_Open_Price-AverageH1Spread;
                if(OrderModify(Order_Ticket,OpenOrder.Order_Open_Price,OpenOrder.Order_StopLoss,PriceTakeProfit,0,Red)){
                }
-            }
+            }*/
          }
          
       }

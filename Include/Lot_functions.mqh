@@ -43,9 +43,10 @@ double TotalLot(){
    double MFI2H1=iMFI(iSymbol,TF[TF_H1],4,2);
    double RSIH1=iRSI(iSymbol,TF[TF_H1],5,(MACD_Trend[TF_D1]=="Up"? PRICE_HIGH : PRICE_LOW),0);
    double SpreadD1=SpreadNumPeriod(TF_H4,7,0,true);
+   double SpreadH12=SpreadNumPeriod(TF_H4,3,0,true);
    double AverageH1Spread=AverageSpreadNumPeriod(TF_H1,1);
-   ForceLotUp=(MACD_Trend[TF_D1]=="Up" && MFIH4>=60 && MFI1H4>=54 && MFI2H4>=49 && RSIH4>=65 && MFIH1>=65 && MFI1H1>=60 && MFI2H1>=55 && RSIH1>=65 && SpreadD1>=AverageH1Spread*3.4);
-   ForceLotDown=(MACD_Trend[TF_D1]=="Down" && MFIH4<=40 && MFI1H4<=46 && MFI2H4<=51 && RSIH4<=35 && MFIH1<=35 && MFI1H1<=40 && MFI2H1<=45 && RSIH1<=35 && SpreadD1<=-AverageH1Spread*3.4);
+   ForceLotUp=(MACD_Trend[TF_D1]=="Up" && MFIH4>=60 && MFI1H4>=54 && MFI2H4>=49 && RSIH4>=65 && MFIH1>=65 && MFI1H1>=60 && MFI2H1>=55 && RSIH1>=65 && SpreadD1>=AverageH1Spread*3.4 && SpreadH12>=AverageH1Spread*1.6 && SumSpread4Bars[TF_H4-TF_H1]>=AverageH1Spread*2 && SumSpread4Bars[TF_H1-TF_H1]>=AverageH1Spread*1);
+   ForceLotDown=(MACD_Trend[TF_D1]=="Down" && MFIH4<=40 && MFI1H4<=46 && MFI2H4<=51 && RSIH4<=35 && MFIH1<=35 && MFI1H1<=40 && MFI2H1<=45 && RSIH1<=35 && SpreadD1<=-AverageH1Spread*3.4 && SpreadH12<=-AverageH1Spread*1.6 && SumSpread4Bars[TF_H4-TF_H1]<=-AverageH1Spread*2 && SumSpread4Bars[TF_H1-TF_H1]<=-AverageH1Spread*1);
    ForceLot=(MACD_Trend[TF_D1]==W1Trend && (ForceLotUp==true || ForceLotDown==true));
    double TotalLotForce=FormatDecimals(TotalLot/3,2);
    double TotalLotNormal=FormatDecimals(TotalLot/5,2);
