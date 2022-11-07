@@ -78,8 +78,8 @@ string ValidateForce(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,st
             MFITotal_Periods=4; MFITotal_Up=52; MFITotal_Down=48; RSITotal_Up=55; RSITotal_Down=45;
             MFILastPeriod_Periods=3; MFILastPeriod_Up=54; MFILastPeriod_Down=46; RSILastPeriod_Up=58; RSILastPeriod_Down=42;
          }else{//MACD_Trend[TF_W1] en contra de tendencia de apertura MACD_Trend[TF_H4]
-            MFITotal_Periods=4; MFITotal_Up=57; MFITotal_Down=43; RSITotal_Up=57; RSITotal_Down=43;
-            MFILastPeriod_Periods=3; MFILastPeriod_Up=60; MFILastPeriod_Down=40; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+            MFITotal_Periods=4; MFITotal_Up=61; MFITotal_Down=39; RSITotal_Up=61; RSITotal_Down=39;
+            MFILastPeriod_Periods=3; MFILastPeriod_Up=65; MFILastPeriod_Down=35; RSILastPeriod_Up=65; RSILastPeriod_Down=35;
          }
          
       }
