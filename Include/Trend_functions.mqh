@@ -264,7 +264,7 @@ bool CheckZigZag(string Trend,int _MACD_TF,int Count_Periods=0,int ShiftM1=0,str
       if(Toppers[1]>0){
          _IsConstantRSI=IsConstantRSI(Trend,TF_H1,PeriodsZigZagH1,6,ShiftM1);
          if(_IsConstantRSI==false){
-            AverageSpread=( ( (Trend==W1Trend || ForceH4Trend==true) && PeriodsZigZagH1>8*4) && CurrentFunction=="CheckForOpen")? -AverageH1Spread*0.9 : 0;
+            AverageSpread=( ( (Trend==W1Trend || ForceH4Trend==true) && PeriodsZigZagH1>7*4) && CurrentFunction=="CheckForOpen")? -AverageH1Spread*0.9 : 0;
          }else{
             AverageSpread=-AverageH4Spread*2;
          }
@@ -291,7 +291,7 @@ bool CheckZigZag(string Trend,int _MACD_TF,int Count_Periods=0,int ShiftM1=0,str
       if(Bottoms[1]>0){
          _IsConstantRSI=IsConstantRSI(Trend,TF_H1,PeriodsZigZagH1,6,ShiftM1);
          if(_IsConstantRSI==false){
-            AverageSpread=( ( (Trend==W1Trend || ForceH4Trend==true) && PeriodsZigZagH1>8*4) && CurrentFunction=="CheckForOpen")? AverageH1Spread*0.9 : 0;
+            AverageSpread=( ( (Trend==W1Trend || ForceH4Trend==true) && PeriodsZigZagH1>7*4) && CurrentFunction=="CheckForOpen")? AverageH1Spread*0.9 : 0;
          }else{
             AverageSpread=AverageH4Spread*2;
          }
@@ -458,10 +458,13 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
             
       //Verifica la sumatoria del Spread de las ultimas 4 barras
       int index;
-      for(_MACD_TF=TF_H1;_MACD_TF<=TF_D1;_MACD_TF++){
+      for(_MACD_TF=TF_D1;_MACD_TF>=TF_H1;_MACD_TF--){
          index=_MACD_TF-TF_H1;//5-5,6-5,7-5
          SumSpread4Bars[index]=0;
-         MinSpread4Bars[index]=(_MACD_TF==TF_H4)? AverageH1Spread*1.3 : AverageH1Spread*0.6;
+         if(_MACD_TF==TF_D1){ MinSpread4Bars[index]=AverageH1Spread*0.1; } 
+         else if(_MACD_TF==TF_H4){ MinSpread4Bars[index]=AverageH1Spread*1.2; }
+         else if(_MACD_TF==TF_H1){ MinSpread4Bars[index]=AverageH1Spread*0.6; }
+         
          for(int i=0;i<=3;i++){
             SpreadTrend=SpreadNumPeriod(_MACD_TF,1,i+Get_Shift(ShiftM1,TF[_MACD_TF]),true);
             SumSpread4Bars[index]+=(_MACD_TF==TF_D1 && i>=2)? 0 : SpreadTrend;
@@ -647,7 +650,7 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
                case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*2; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1; break;
                case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*1; break;
-               case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread; break;
+               case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.5; break;
             }
             
             MA0=iMA(iSymbol,TF[TF_M30],MA_Period,0,MODE_LWMA,PRICE_HIGH,Get_Shift(ShiftM1,TF[TF_M30]));
@@ -688,7 +691,7 @@ bool IsConstantTrend(string Trend,int Max_Periods,int ShiftM1=0){
                case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*2; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1; break;
                case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*1; break;
-               case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread; break;
+               case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.5; break;
             }
             
             MA0=iMA(iSymbol,TF[TF_M30],MA_Period,0,MODE_LWMA,PRICE_LOW,Get_Shift(ShiftM1,TF[TF_M30]));
