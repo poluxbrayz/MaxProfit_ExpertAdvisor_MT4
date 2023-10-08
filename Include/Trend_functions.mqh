@@ -479,7 +479,7 @@ bool IsConstantTrendOpen(string Trend,int Max_Periods,int ShiftM1=0){
          else if(_MACD_TF==TF_H4){ MinSpread4Bars[index]=AverageH1Spread*1.2; }
          else if(_MACD_TF==TF_H1){ MinSpread4Bars[index]=AverageH1Spread*0.4; }
          else if(_MACD_TF==TF_M30){ MinSpread4Bars[index]=AverageH1Spread*0.4; }
-         else if(_MACD_TF==TF_M15){ MinSpread4Bars[index]=AverageH1Spread*0.7; }
+         else if(_MACD_TF==TF_M15){ MinSpread4Bars[index]=AverageH1Spread*0.51; }
          
          for(int i=0;i<=4;i++){
             SpreadTrend=SpreadNumPeriod(_MACD_TF,1,i+Get_Shift(ShiftM1,TF[_MACD_TF]),true);

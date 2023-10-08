@@ -452,24 +452,24 @@ void CheckForClose()
 }
 
 void SetStopLoss(){
-   double AverageH20Spread=AverageSpreadNumPeriod(TF_H4,1)*5;
-   double SpreadD1=MathAbs(SpreadNumPeriod(TF_H4,MathMin(7,CountPeriodsH4ofD1_PrevPeriodsH4),0,true));
+   double AverageD1Spread=AverageSpreadNumPeriod(TF_H4,1)*6;
+   double SpreadD1=MathAbs(SpreadNumPeriod(TF_H4,MathMin(7,CountPeriodsH4ofD1_PrevPeriodsH4+1),0,true));
    double PriceClose=iClose(iSymbol,TF[TF_H4],0);
    
    if(MACD_Trend[TF_H4]=="Up"){
-      double LowPriceD1=MathMin(PriceClose-SpreadD1,PriceClose-AverageH20Spread);
+      double LowPriceD1=MathMin(PriceClose-SpreadD1,PriceClose-AverageD1Spread);
       int LowestTrend=iLowest(iSymbol,PERIOD_H4,MODE_LOW,CountPeriodsH4ofD1_PrevPeriodsH4+1,0);
       double LowPriceTrend=iLow(iSymbol,PERIOD_H4,LowestTrend);
-      LowPriceTrend=MathMin(LowPriceTrend,PriceClose-AverageH20Spread);
-      Print("SetStopLoss: PriceStopLoss=",PriceStopLoss,", LowPriceD1=",LowPriceD1,", LowPriceTrend=",LowPriceTrend,", LowestTrend=",LowestTrend,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", SpreadD1=",SpreadD1,", AverageH20Spread=",AverageH20Spread);
+      LowPriceTrend=MathMin(LowPriceTrend,PriceClose-AverageD1Spread);
+      Print("SetStopLoss: PriceStopLoss=",PriceStopLoss,", LowPriceD1=",LowPriceD1,", LowPriceTrend=",LowPriceTrend,", LowestTrend=",LowestTrend,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", SpreadD1=",SpreadD1,", AverageD1Spread=",AverageD1Spread);
       PriceStopLoss=MathMax(LowPriceD1,LowPriceTrend);
       
    }else{//Down
-      double HighPriceD1=MathMax(PriceClose+SpreadD1,PriceClose+AverageH20Spread);
+      double HighPriceD1=MathMax(PriceClose+SpreadD1,PriceClose+AverageD1Spread);
       int HighestTrend=iHighest(iSymbol,PERIOD_H4,MODE_HIGH,CountPeriodsH4ofD1_PrevPeriodsH4+1,0);
       double HighPriceTrend=iHigh(iSymbol,PERIOD_H4,HighestTrend);
-      HighPriceTrend=MathMax(HighPriceTrend,PriceClose+AverageH20Spread);
-      Print("SetStopLoss: PriceStopLoss=",PriceStopLoss,", HighPriceD1=",HighPriceD1,", HighPriceTrend=",HighPriceTrend,", HighestTrend=",HighestTrend,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", SpreadD1=",SpreadD1,", AverageH20Spread=",AverageH20Spread);
+      HighPriceTrend=MathMax(HighPriceTrend,PriceClose+AverageD1Spread);
+      Print("SetStopLoss: PriceStopLoss=",PriceStopLoss,", HighPriceD1=",HighPriceD1,", HighPriceTrend=",HighPriceTrend,", HighestTrend=",HighestTrend,", CountPeriodsH4ofD1_PrevPeriodsH4=",CountPeriodsH4ofD1_PrevPeriodsH4,", SpreadD1=",SpreadD1,", AverageD1Spread=",AverageD1Spread);
       PriceStopLoss=MathMin(HighPriceD1,HighPriceTrend);
    }
 }
