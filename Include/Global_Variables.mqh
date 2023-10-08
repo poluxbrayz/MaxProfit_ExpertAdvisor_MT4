@@ -25,6 +25,25 @@ enum TF_Index{
    TF_MN1=9
 };
 
+string EA_Name = "Max Profit";
+int MAGICMA = 333777;
+double TakeProfit;
+double StopLoss;
+int MACD_TF;
+int Order_Ticket;
+double MinStopLevel;
+double PriceStopLoss;
+double PriceTakeProfit;
+int Count_Period_Up, Count_Period_Down;
+Orders objOrders();
+datetime TimeInit;
+bool PrintSymbols=false;
+datetime DateTime_Symbols;
+int Max_TF,Min_TF,Close_TF;
+int Minutes;
+
+
+
 string Symbols[];
 string iSymbol;
 string CurrentFunction;
@@ -49,4 +68,4 @@ int FastEMAPeriod,SlowEMAPeriod,SignalLinePeriod,Get_MACD_TF;
 int Count_Temp;
 string StartedSymbols[];
 bool ForceH4Trend, ForceLot, ForceLotUp, ForceLotDown;
-double SumSpread4Bars[3],MinSpread4Bars[3];
+double SumSpread4Bars[5],MinSpread4Bars[5];

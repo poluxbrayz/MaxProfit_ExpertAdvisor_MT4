@@ -1,0 +1,12 @@
+Centro de Historiales
+---------------------
+ultimo simbolo: #XOM
+
+si el balance es menor que 100 que apueste a las fijas
+
+IsConstantClose 
+si count h4==1 && count h1==1 and spread h1 < 4*averageh1 return false
+revisar diagonal de h4 a m15
+reducir el lote para las apuestas no fijas
+revisar min spread h1 para close
+string IntToTF
