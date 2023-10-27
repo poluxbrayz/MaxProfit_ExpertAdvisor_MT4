@@ -11,7 +11,7 @@
 Hash *hashAverageSpreadNumPeriod = new Hash();
 Hash *hash_MACD_Trend_By_Change = new Hash();
 //HashLoop *hashloop;
-int ValidDays=30;
+int ValidDays=7;
 
 //-------------------------------------------------------------------------------------------------------------------
 

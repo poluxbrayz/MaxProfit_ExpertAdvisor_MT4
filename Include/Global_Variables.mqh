@@ -11,7 +11,7 @@ int TF[10] = {0,1,5,15,30,60,240,1440,10080,43200};
 ENUM_TIMEFRAMES ENUM_TF[10] = {PERIOD_CURRENT,PERIOD_M1,PERIOD_M5,PERIOD_M15,PERIOD_M30,PERIOD_H1,PERIOD_H4,PERIOD_D1,PERIOD_W1,PERIOD_MN1};
 string TF_Label[10]={"Current TF","M1","M5","M15","M30","H1","H4","D1","W1","MN1"};
 //string TF_Label[15]={"Current TF","M1","M5","M15","M30","H1","H2","H3","H4","H6","H8","H12","D1","W1","MN1"};
-int AverageDaysPeriod[10]={0,30,60,90,180,360,360,360,720,720};
+int AverageDaysPeriod[10]={0,15,30,60,75,90,120,180,360,720};
 
 enum TF_Index{
    TF_M1=1,

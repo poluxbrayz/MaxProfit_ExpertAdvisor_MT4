@@ -33,28 +33,28 @@ string ValidateForce(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,st
       if(_MACD_TF<=TF_H1){
          
          if(MFI_Force==false){
-            MFITotal_TF=TF_H1; MFITotal_Periods=3; MFITotal_Up=40; MFITotal_Down=60; RSITotal_Up=51; RSITotal_Down=49;
-            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+            MFITotal_TF=TF_H1; MFITotal_Periods=3; MFITotal_Up=25; MFITotal_Down=75; RSITotal_Up=51; RSITotal_Down=49;
+            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=25; MFILastPeriod_Down=75; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
          }else{
             MFITotal_TF=TF_H4; MFITotal_Periods=5; MFITotal_Up=20; MFITotal_Down=80; RSITotal_Up=55; RSITotal_Down=45;
-            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=25; MFILastPeriod_Down=75; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
          }
       }
       else if(_MACD_TF==TF_H4){
          if(MFI_Force==false){
-            MFITotal_TF=TF_H4; MFITotal_Periods=2; MFITotal_Up=40; MFITotal_Down=60; RSITotal_Up=51; RSITotal_Down=49;
-            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+            MFITotal_TF=TF_H4; MFITotal_Periods=2; MFITotal_Up=25; MFITotal_Down=75; RSITotal_Up=51; RSITotal_Down=49;
+            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=25; MFILastPeriod_Down=75; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
          }else{
             MFITotal_TF=TF_H4; MFITotal_Periods=5; MFITotal_Up=20; MFITotal_Down=80; RSITotal_Up=55; RSITotal_Down=45;
-            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=25; MFILastPeriod_Down=75; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
          }
       }
       else if(_MACD_TF==TF_D1){ 
 
          if(Trend!=W1Trend){
             if(CheckZigZag(MACD_Trend[TF_D1],TF_D1,6,ShiftM1,_iSymbol)==true){
-               MFITotal_TF=TF_H4; MFITotal_Periods=2; MFITotal_Up=30; MFITotal_Down=70; RSITotal_Up=40; RSITotal_Down=60;
-               MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+               MFITotal_TF=TF_H4; MFITotal_Periods=2; MFITotal_Up=25; MFITotal_Down=75; RSITotal_Up=40; RSITotal_Down=60;
+               MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=25; MFILastPeriod_Down=75; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
             }else{
                if(MACD_Trend[TF_D1]==MACD_Trend[TF_W1] && CountPeriodsTrend[TF_W1]>=2){
                   MFITotal_TF=TF_H4; MFITotal_Periods=4;
@@ -67,7 +67,7 @@ string ValidateForce(string &Trend,int _MACD_TF,int Count_Periods,int ShiftM1,st
             
          }else{
             MFITotal_TF=TF_D1; MFITotal_Periods=2; MFITotal_Up=10; MFITotal_Down=90; RSITotal_Up=51; RSITotal_Down=49;
-            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=40; MFILastPeriod_Down=60; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
+            MFILastPeriod_TF=TF_H1; MFILastPeriod_Periods=2; MFILastPeriod_Up=25; MFILastPeriod_Down=75; RSILastPeriod_Up=60; RSILastPeriod_Down=40;
          }
           
       }
@@ -409,7 +409,7 @@ bool IsConstantTrendOpen(string Trend,int Max_Periods,int ShiftM1=0){
       double MaxMFI_H4=0,MinMFI_H4=100,MFI_H4;
       
       
-      //CheckZigZag en 14 barras H4
+      //CheckZigZag en 14 barras H4 = 2.5 Dias
       for(int index=13;index>=0;index--){
          MFI_H4=iMFI(iSymbol,TF[TF_H4],3,index+Get_Shift(ShiftM1,TF[TF_H4]));
          if(Trend=="Up" && MFI_H4<MinMFI_H4){ 
@@ -674,7 +674,7 @@ bool IsConstantTrendOpen(string Trend,int Max_Periods,int ShiftM1=0){
                case TF_D1: MA_Period=2; Max_Periods=(Hour()<=12? 3 : 2); MinSpread=AverageH1Spread*2; break;
                case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*2; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1; break;
-               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*1; break;
+               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.65; break;
                case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.5; break;
             }
             
@@ -715,7 +715,7 @@ bool IsConstantTrendOpen(string Trend,int Max_Periods,int ShiftM1=0){
                case TF_D1: MA_Period=2; Max_Periods=(Hour()<=12? 3 : 2); MinSpread=AverageH1Spread*2; break;
                case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*2; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1; break;
-               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*1; break;
+               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.65; break;
                case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.5; break;
             }
             
@@ -825,7 +825,7 @@ bool IsConstantTrendClose(string Trend,int ShiftM1=0){
                case TF_D1: MA_Period=2; Max_Periods=(Hour()<=12? 3 : 2); MinSpread=AverageH1Spread*2; break;
                case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*2; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1; break;
-               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*1; break;
+               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.65; break;
                case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.5; break;
             }
             
@@ -866,7 +866,7 @@ bool IsConstantTrendClose(string Trend,int ShiftM1=0){
                case TF_D1: MA_Period=2; Max_Periods=(Hour()<=12? 3 : 2); MinSpread=AverageH1Spread*2; break;
                case TF_H4: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*2; break;
                case TF_H1: MA_Period=2; Max_Periods=9; MinSpread=AverageH1Spread*1; break;
-               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*1; break;
+               case TF_M30: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.65; break;
                case TF_M15: MA_Period=2; Max_Periods=8; MinSpread=AverageM30Spread*0.5; break;
             }
             
